@@ -1,10 +1,10 @@
 export const personal = {
   name: "Jembar Gelar Kusumah Wibawa",
-  role: "Admin & Web Developer Enthusiast",
-  location: "Cianjur, Jawa Barat",
-  bio: "Seorang Admin berdedikasi di PT Syahrendra Megawatt Indonesia dan mahasiswa S1 Manajemen Universitas Terbuka. Berpengalaman dalam pengelolaan administrasi kelistrikan (SLO & NIDI), manajemen data, otomasi Excel, serta memiliki ketertarikan kuat pada pengembangan web modern dengan React.",
-  email: "jembargelar@gmail.com", // Sesuaikan jika ada email lain
-  phone: "+6281234567890", // Sesuaikan dengan nomor teleponmu
+  role: "Administrative Professional | Data Management Specialist | Front-End Web Developer Enthusiast",
+  location: "Cianjur, Jawa Barat, Indonesia",
+  bio: "Administrative professional dengan pengalaman dalam administrasi operasional, pengelolaan dokumen kelistrikan, validasi data, penyusunan laporan, serta pengolahan database perusahaan. Memiliki pengalaman menangani administrasi Sertifikat Laik Operasi (SLO), Nomor Identitas Instalasi Tenaga Listrik (NIDI), pembuatan invoice, monitoring progres pekerjaan, dan digitalisasi data. Saat ini menempuh pendidikan S1 Manajemen di Universitas Terbuka untuk memperkuat kompetensi di bidang manajemen bisnis, administrasi, dan pengambilan keputusan. Memiliki minat besar pada pengembangan web modern, otomasi administrasi, serta analisis data menggunakan JavaScript, React, Python, dan Microsoft Excel. Dikenal sebagai pribadi yang teliti, disiplin, cepat belajar, mampu bekerja secara mandiri maupun dalam tim, serta berorientasi pada efisiensi dan kualitas pekerjaan.",
+  email: "jembargelar@gmail.com",
+  phone: "+6281234567890",
   github: "https://github.com/jembargelar",
   linkedin: "https://linkedin.com/in/jembargelar",
   cvUrl: "/Jembar_CV.pdf"
@@ -12,71 +12,102 @@ export const personal = {
 
 export const experiences = [
   {
-    period: "2023 - Sekarang",
-    role: "Administrator",
+    period: "November 2025 - Agustus 2026",
+    role: "Administrative Officer",
     company: "PT Syahrendra Megawatt Indonesia",
-    description: "Mengelola administrasi pengajuan Sertifikat Laik Operasi (SLO) dan Nomor Identitas Instalasi (NIDI) pelanggan PLN, pembuatan invoice, rekapitulasi data operasional, serta otomasi laporan menggunakan Microsoft Excel."
+    highlights: [
+      "Mengelola administrasi instalasi tenaga listrik mulai dari pengajuan Sertifikat Laik Operasi (SLO) dan Nomor Identitas Instalasi Tenaga Listrik (NIDI).",
+      "Melakukan verifikasi kelengkapan dokumen pelanggan, menyusun invoice, dan mengelola database operasional.",
+      "Membuat laporan administrasi, memonitor progres pekerjaan, dan meningkatkan efisiensi operasional melalui otomasi Microsoft Excel."
+    ]
   },
   {
-    period: "2023",
+    period: "Juli 2025 - Oktober 2025",
     role: "Operator Cutting Laser",
     company: "PT Garyman Kreasi Indonesia",
-    description: "Mempersiapkan, mengoperasikan, dan melakukan kontrol kualitas (QC) pada pemotongan material menggunakan mesin cutting laser presisi tinggi."
+    highlights: [
+      "Mengoperasikan mesin cutting laser berpresisi tinggi dan melakukan pengaturan parameter mesin.",
+      "Memastikan kualitas hasil produksi sesuai standar perusahaan melalui inspeksi Quality Control (QC).",
+      "Menjalankan perawatan ringan mesin secara rutin untuk menjaga produktivitas lini produksi."
+    ]
   },
   {
-    period: "2022",
-    role: "Operator Mesin",
+    period: "Januari 2023 - Juni 2025",
+    role: "Production Machine Operator",
     company: "UD Sinar Soccer Industries",
-    description: "Bertanggung jawab atas jalannya mesin produksi, perawatan rutin alat, dan pencapaian target output operasional harian."
+    highlights: [
+      "Mengoperasikan mesin produksi dan mengawasi jalannya proses manufaktur.",
+      "Menjaga kualitas produk sesuai standar perusahaan dan melakukan perawatan dasar mesin.",
+      "Memastikan target produksi harian tercapai dengan konsisten menerapkan prosedur keselamatan kerja (K3)."
+    ]
   },
   {
-    period: "2021",
-    role: "Waiter",
+    period: "Juli 2022 - Desember 2022",
+    role: "Waiter & Cashier",
     company: "Kedai Susumurni 26",
-    description: "Melayani pelanggan, mengelola kasir & pesanan, serta memastikan kualitas pelayanan dan kebersihan tempat."
+    highlights: [
+      "Memberikan pelayanan responsif kepada pelanggan, mengelola transaksi kasir (POS), dan memproses pesanan.",
+      "Menjaga kebersihan area operasional dan memberikan pengalaman pelayanan yang ramah serta profesional."
+    ]
   }
 ];
 
 export const education = [
   {
-    period: "2023 - Sekarang",
-    degree: "S1 Manajemen",
-    institution: "Universitas Terbuka (UT)",
-    description: "Fokus pada Manajemen Operasional, Administrasi Bisnis, dan Strategi Organisasi."
+    period: "September 2026 - Sekarang",
+    degree: "Bachelor of Management (S1 Manajemen)",
+    institution: "Universitas Terbuka",
+    description: "Mempelajari Manajemen Operasional, Manajemen SDM, Administrasi Bisnis, Manajemen Risiko, Kepemimpinan, Analisis Organisasi, Pengambilan Keputusan, serta Manajemen Strategis untuk mendukung pengembangan karier di bidang administrasi dan manajemen."
   },
   {
-    period: "2020 - 2023",
-    degree: "SMA (IPA)",
+    period: "Juli 2020 - Mei 2023",
+    degree: "Senior High School - Science",
     institution: "SMAN 1 Garut",
-    description: "Lulus jurusan Ilmu Pengetahuan Alam dengan fokus logika matematika dan analitis."
+    description: "Lulus dari jurusan Ilmu Pengetahuan Alam (IPA) dengan fokus pada kemampuan analitis, logika, matematika, dan pemecahan masalah."
   }
 ];
 
 export const skills = [
-  "Administrasi & Office",
-  "Pengurusan SLO & NIDI",
-  "Microsoft Excel / Otomasi Data",
+  "Administrative Management",
+  "Office Administration",
+  "Document Control",
+  "Data Entry & Processing",
+  "Data Validation & Reporting",
+  "SLO & NIDI Administration",
+  "Invoice Management",
+  "Operational Reporting",
+  "Microsoft Excel (Advanced)",
+  "Microsoft Word & PowerPoint",
   "HTML5 & CSS3",
   "JavaScript (ES6+)",
   "React.js & Vite",
   "Git & GitHub",
-  "Python (Basic / Automation)",
-  "Problem Solving"
+  "Python (Basic)",
+  "Problem Solving & Critical Thinking",
+  "Time Management & Detail Oriented"
 ];
 
 export const projects = [
   {
-    title: "Dashboard Monitoring Status SLO & NIDI",
+    title: "SLO & NIDI Administration Dashboard",
     category: "Web Application",
-    description: "Aplikasi dashboard interaktif untuk melacak status pengajuan NIDI & SLO pelanggan kelistrikan secara real-time lengkap dengan fitur filter, pencarian ID, dan statistik visual.",
-    tech: ["React", "Vite", "CSS3", "JavaScript"],
+    description: "Dashboard administrasi berbasis React yang dirancang untuk memantau proses pengajuan Sertifikat Laik Operasi (SLO) dan Nomor Identitas Instalasi Tenaga Listrik (NIDI). Memiliki fitur pencarian pelanggan, monitoring status pekerjaan, filter data, statistik operasional, dan tampilan responsif.",
+    tech: ["React", "Vite", "JavaScript", "CSS3"],
     link: "https://github.com/jembargelar/jembar-portfolio"
   },
   {
-    title: "Otomasi Rekapitulasi Data & Invoice",
-    category: "Data Management & Excel",
-    description: "Sistem rekapitulasi spreadsheet otomatis untuk mempercepat alur kerja administrasi invoice dan laporan bulanan perusahaan.",
-    tech: ["Microsoft Excel", "VBA / Formula", "Data Processing"],
+    title: "Administrative Reporting Automation",
+    category: "Microsoft Excel Automation",
+    description: "Sistem otomasi administrasi menggunakan Microsoft Excel untuk mempercepat proses rekapitulasi data pelanggan, validasi data, pembuatan invoice, penyusunan laporan operasional, serta mengurangi kesalahan input manual.",
+    tech: ["Microsoft Excel", "Excel Formula", "Data Processing"],
     link: "#"
+  },
+  {
+    title: "Professional Portfolio Website",
+    category: "Frontend Development",
+    description: "Website portofolio profesional yang dibangun menggunakan React dan Vite untuk menampilkan profil, pengalaman kerja, pendidikan, keterampilan, proyek, dan informasi kontak dengan desain modern, responsif, dan ramah ATS.",
+    tech: ["React", "Vite", "JavaScript", "CSS3"],
+    link: "https://github.com/jembargelar/jembar-portfolio"
   }
 ];
+

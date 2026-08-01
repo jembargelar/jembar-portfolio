@@ -11,11 +11,21 @@ export default function Experience() {
               <div className="timeline-header">
                 <div>
                   <h3>{exp.role}</h3>
-                  <h4 style={{ color: "var(--accent-color)", fontSize: "0.95rem" }}>{exp.company}</h4>
+                  <h4 style={{ color: "var(--accent-color)", fontSize: "0.95rem" }}>
+                    {exp.company}
+                  </h4>
                 </div>
                 <span className="timeline-period">{exp.period}</span>
               </div>
-              <p style={{ color: "var(--text-muted)", fontSize: "0.95rem" }}>{exp.description}</p>
+              <ul style={{ paddingLeft: "18px", marginTop: "10px", color: "var(--text-muted)", fontSize: "0.92rem" }}>
+                {exp.highlights ? (
+                  exp.highlights.map((point, idx) => (
+                    <li key={idx} style={{ marginBottom: "6px" }}>{point}</li>
+                  ))
+                ) : (
+                  <li>{exp.description}</li>
+                )}
+              </ul>
             </div>
           ))}
         </div>
@@ -23,4 +33,3 @@ export default function Experience() {
     </section>
   );
 }
-
