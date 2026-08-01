@@ -11,15 +11,14 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "@tsparticles/react": "^4.3.2",
+    "@tsparticles/slim": "^4.3.2",
     "aos": "^2.3.4",
     "framer-motion": "^12.43.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-icons": "^5.7.0",
-    "react-tsparticles": "^2.12.2",
-    "tailwindcss": "^4.3.3",
-    "tsparticles": "^4.3.2",
-    "tsparticles-engine": "^2.12.0"
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@types/aos": "^3.0.8",
