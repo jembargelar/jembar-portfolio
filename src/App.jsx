@@ -8,9 +8,9 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-export default function App() {
+function App() {
   return (
-    <div className="app-container">
+    <div>
       <Navbar />
       <Hero />
       <About />
@@ -23,3 +23,6 @@ export default function App() {
     </div>
   );
 }
+
+export default App;
+
