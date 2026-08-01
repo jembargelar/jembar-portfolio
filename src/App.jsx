@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -11,17 +10,15 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="bg-slate-900 text-slate-100 min-h-screen">
+    <div>
       <Navbar />
-      <main className="max-w-6xl mx-auto px-4 py-8 space-y-16">
-        <Hero />
-        <About />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Education />
-        <Contact />
-      </main>
+      <Hero />
+      <About />
+      <Experience />
+      <Skills />
+      <Projects />
+      <Education />
+      <Contact />
       <Footer />
     </div>
   );

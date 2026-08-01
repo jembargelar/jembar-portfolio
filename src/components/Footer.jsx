@@ -1,9 +1,12 @@
+import { personal } from "../data/portfolio";
+
 export default function Footer() {
   return (
-    <footer className="footer">
-      <p>
-        © 2026 Jembar Gelar Kusumah Wibawa. All Rights Reserved.
-      </p>
+    <footer>
+      <div className="container">
+        <p>© {new Date().getFullYear()} {personal.name}. All Rights Reserved.</p>
+      </div>
     </footer>
   );
 }
+

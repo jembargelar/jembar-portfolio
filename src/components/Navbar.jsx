@@ -1,45 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from "react";
+import { personal } from "../data/portfolio";
 
 export default function Navbar() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    // Cek preferensi awal
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      setDarkMode(true);
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    if (darkMode) {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('theme', 'light');
-      setDarkMode(false);
-    } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-      setDarkMode(true);
-    }
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="navbar">
-      <div style={{ fontWeight: '800', fontSize: '18px' }}>
-        Jembar<span className="text-gradient">.dev</span>
+      <div className="container nav-container">
+        <a href="#" className="logo">{personal.name.split(" ")[0]}.dev</a>
+        <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? "✕" : "☰"}
+        </button>
+        <ul className={`nav-links ${isOpen ? "active" : ""}`}>
+          <li><a href="#about" onClick={() => setIsOpen(false)}>Tentang</a></li>
+          <li><a href="#experience" onClick={() => setIsOpen(false)}>Pengalaman</a></li>
+          <li><a href="#skills" onClick={() => setIsOpen(false)}>Keahlian</a></li>
+          <li><a href="#projects" onClick={() => setIsOpen(false)}>Proyek</a></li>
+          <li><a href="#education" onClick={() => setIsOpen(false)}>Pendidikan</a></li>
+          <li><a href="#contact" onClick={() => setIsOpen(false)}>Kontak</a></li>
+        </ul>
       </div>
-      <ul className="nav-links">
-        <li><a href="#about">Tentang</a></li>
-        <li><a href="#experience">Pengalaman</a></li>
-        <li><a href="#skills">Keahlian</a></li>
-        <li><a href="#contact">Kontak</a></li>
-        <li>
-          <button className="theme-toggle-btn" onClick={toggleTheme} title="Ganti Mode">
-            {darkMode ? '☀️ Light' : '🌙 Dark'}
-          </button>
-        </li>
-      </ul>
     </nav>
   );
 }

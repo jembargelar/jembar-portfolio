@@ -1,79 +1,82 @@
 export const personal = {
   name: "Jembar Gelar Kusumah Wibawa",
-  role: "Administration Specialist & Web Developer",
+  role: "Admin & Web Developer Enthusiast",
   location: "Cianjur, Jawa Barat",
-  bio: "Seorang profesional administrasi berlatar belakang pendidikan Manajemen yang berpengalaman dalam pengelolaan data, administrasi legalitas kelistrikan (SLO & NIDI), serta pembuatan invoice dan dokumen operasional. Memiliki minat tinggi pada efisiensi sistem administrasi berbasis teknologi dan pengembangan aplikasi web interaktif.",
-  email: "jembargelar@gmail.com",
-  whatsapp: "https://wa.me/6281234567890",
-  linkedin: "https://linkedin.com/in/jembargelar",
+  bio: "Seorang Admin berdedikasi di PT Syahrendra Megawatt Indonesia dan mahasiswa S1 Manajemen Universitas Terbuka. Berpengalaman dalam pengelolaan administrasi kelistrikan (SLO & NIDI), manajemen data, otomasi Excel, serta memiliki ketertarikan kuat pada pengembangan web modern dengan React.",
+  email: "jembargelar@gmail.com", // Sesuaikan jika ada email lain
+  phone: "+6281234567890", // Sesuaikan dengan nomor teleponmu
   github: "https://github.com/jembargelar",
-  cvPath: "/Jembar_CV.pdf"
+  linkedin: "https://linkedin.com/in/jembargelar",
+  cvUrl: "/Jembar_CV.pdf"
 };
 
 export const experiences = [
   {
-    role: "Staff Administrasi",
+    period: "2023 - Sekarang",
+    role: "Administrator",
     company: "PT Syahrendra Megawatt Indonesia",
-    period: "Okt 2023 - Sekarang",
-    description: "Mengelola administrasi operasional perusahaan, pemrosesan legalitas Sertifikat Laik Operasi (SLO) dan Nomor Identitas Instalasi (NIDI) pelanggan PLN, pembuatan invoice tagihan, penyiapan dokumen kontrak, serta rekapitulasi data kelistrikan berbasis Microsoft Excel."
+    description: "Mengelola administrasi pengajuan Sertifikat Laik Operasi (SLO) dan Nomor Identitas Instalasi (NIDI) pelanggan PLN, pembuatan invoice, rekapitulasi data operasional, serta otomasi laporan menggunakan Microsoft Excel."
   },
   {
+    period: "2023",
     role: "Operator Cutting Laser",
     company: "PT Garyman Kreasi Indonesia",
-    period: "Mei 2023 - Sep 2023",
-    description: "Mengoperasikan mesin cutting laser presisi tinggi, memastikan standar kualitas pemotongan material, serta melakukan pencatatan log produksi harian."
+    description: "Mempersiapkan, mengoperasikan, dan melakukan kontrol kualitas (QC) pada pemotongan material menggunakan mesin cutting laser presisi tinggi."
   },
   {
-    role: "Waiter",
-    company: "Kedai Susumurni 26",
-    period: "Nov 2022 - Apr 2023",
-    description: "Melayani pelanggan, mengelola transaksi kasir harian, serta menjaga kualitas layanan dan kebersihan area katering."
-  },
-  {
+    period: "2022",
     role: "Operator Mesin",
     company: "UD Sinar Soccer Industries",
-    period: "Jan 2021 - Okt 2022",
-    description: "Mengoperasikan mesin manufaktur peralatan olahraga serta melakukan pengecekan kualitas produk secara berkala."
-  }
-];
-
-export const skills = [
-  "Administrasi Perkantoran",
-  "Manajemen Data SLO & NIDI",
-  "Microsoft Excel / Spreadsheet",
-  "Penyusunan Invoice & Dokumen",
-  "JavaScript & React.js",
-  "HTML5 & CSS3 / Tailwind CSS",
-  "Git & GitHub",
-  "Otomasi & Python Basics"
-];
-
-export const projects = [
-  {
-    title: "Dashboard Monitoring Status SLO & NIDI",
-    description: "Aplikasi web interaktif berbasis React untuk memantau, memfilter, dan mengelola status pengajuan NIDI dan SLO pelanggan kelistrikan secara real-time.",
-    tech: ["React.js", "Tailwind CSS", "JavaScript"],
-    link: "https://github.com/jembargelar/jembar-portfolio"
+    description: "Bertanggung jawab atas jalannya mesin produksi, perawatan rutin alat, dan pencapaian target output operasional harian."
   },
   {
-    title: "Sistem Rekapitulasi Data & Invoice Digital",
-    description: "Model template dan sistem pengolahan data administrasi otomatis berbasis Excel dan skrip sederhana untuk mempecepat pembuatan billing/invoice perusahaan.",
-    tech: ["Microsoft Excel", "Spreadsheet", "VBA / Automation"],
-    link: "https://github.com/jembargelar"
+    period: "2021",
+    role: "Waiter",
+    company: "Kedai Susumurni 26",
+    description: "Melayani pelanggan, mengelola kasir & pesanan, serta memastikan kualitas pelayanan dan kebersihan tempat."
   }
 ];
 
 export const education = [
   {
+    period: "2023 - Sekarang",
     degree: "S1 Manajemen",
     institution: "Universitas Terbuka (UT)",
-    period: "Agt 2023 - Sekarang",
-    description: "Fokus pada Manajemen Operasional, Manajemen Sumber Daya Manusia, Analisis Data Bisnis, dan Strategi Organisasi."
+    description: "Fokus pada Manajemen Operasional, Administrasi Bisnis, dan Strategi Organisasi."
   },
   {
-    degree: "SMA (MIPA)",
+    period: "2020 - 2023",
+    degree: "SMA (IPA)",
     institution: "SMAN 1 Garut",
-    period: "Jul 2020 - Mei 2023",
-    description: "Fokus pada Matematika dan Ilmu Pengetahuan Alam."
+    description: "Lulus jurusan Ilmu Pengetahuan Alam dengan fokus logika matematika dan analitis."
+  }
+];
+
+export const skills = [
+  "Administrasi & Office",
+  "Pengurusan SLO & NIDI",
+  "Microsoft Excel / Otomasi Data",
+  "HTML5 & CSS3",
+  "JavaScript (ES6+)",
+  "React.js & Vite",
+  "Git & GitHub",
+  "Python (Basic / Automation)",
+  "Problem Solving"
+];
+
+export const projects = [
+  {
+    title: "Dashboard Monitoring Status SLO & NIDI",
+    category: "Web Application",
+    description: "Aplikasi dashboard interaktif untuk melacak status pengajuan NIDI & SLO pelanggan kelistrikan secara real-time lengkap dengan fitur filter, pencarian ID, dan statistik visual.",
+    tech: ["React", "Vite", "CSS3", "JavaScript"],
+    link: "https://github.com/jembargelar/jembar-portfolio"
+  },
+  {
+    title: "Otomasi Rekapitulasi Data & Invoice",
+    category: "Data Management & Excel",
+    description: "Sistem rekapitulasi spreadsheet otomatis untuk mempercepat alur kerja administrasi invoice dan laporan bulanan perusahaan.",
+    tech: ["Microsoft Excel", "VBA / Formula", "Data Processing"],
+    link: "#"
   }
 ];
