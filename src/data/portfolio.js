@@ -3,11 +3,11 @@ export const personal = {
   title: "Professional Administrative & Operational Specialist",
   quote: "Butuh solusi, rekan bisnis, atau talenta baru? Saya siap bantu.",
   about:
-    "Saya adalah seorang profesional di bidang Administrasi dan Operasional dengan latar belakang pengalaman di industri teknis, manufaktur, dan pelayanan. Memiliki keahlian kuat dalam pengelolaan data, rekapitulasi data, pengarsipan dokumen, serta pemanfaatan tools operasional.",
+    "Saya adalah seorang profesional di bidang Administrasi dan Operasional dengan latar belakang pengalaman di industri teknis, manufaktur, dan pelayanan. Memiliki keahlian kuat dalam pengelolaan data, rekapitulasi, penyusunan invoice, serta pengurusan administrasi kelistrikan (SLO & NIDI). Didukung oleh ketelitian tinggi, pemikiran analitis, dan adaptabilitas yang cepat, saya berkomitmen untuk mengoptimalkan efisiensi operasional dan manajemen dokumen perusahaan secara profesional.",
   location: "Cianjur, Jawa Barat",
-  email: "jembargelar@email.com", // Ganti dengan email aktif kamu
-  phone: "+62 89673674467",     // Ganti dengan nomor WhatsApp kamu
-  github: "https://github.com/",
+  email: "jembargelar@email.com",
+  phone: "+62 89673674467",
+  github: "https://github.com/jembargelar",
   linkedin: "https://linkedin.com/",
 };
 
@@ -17,7 +17,7 @@ export const experiences = [
     role: "Admin",
     period: "November 2025 - Agustus 2026",
     description:
-      "Mengelola administrasi operasional proyek kelistrikan, memproses penyusunan dan pengarsipan dokumen SLO (Sertifikat Laik Operasi) & NIDI, melakukan rekapitulasi data, pembuatan invoice, serta menangani komunikasi pelanggan.",
+      "Mengelola administrasi operasional proyek kelistrikan, memproses penyusunan dan pengarsipan dokumen SLO (Sertifikat Laik Operasi) & NIDI, melakukan rekapitulasi data, pembuatan invoice, serta menangani komunikasi administratif dengan pihak PLN.",
   },
   {
     company: "PT Garyman Indonesia",
@@ -73,18 +73,14 @@ export const skillCategories = [
       "Microsoft Excel (Pengolahan Data)",
       "Microsoft Word",
       "Microsoft PowerPoint",
-      "Google Docs",
-      "Google Sheets",
+      "Google Docs & Sheets",
       "Google Drive",
-      "Meta Trader5",
-      "termux",
-      "Vscode",
-      "Linux",
-      "Python,Html,node.js",
-      "Canva (Mahir)",
-      "Trader",
-      "(Apa Saja saya jual belikan,yang penting halal)",
-      "Analisis ekonomi makro",
+      "MetaTrader 5",
+      "Termux & Linux Dasar",
+      "VS Code",
+      "Python, HTML, Node.js",
+      "Canva",
+      "Analisis Ekonomi Makro",
     ],
   },
   {
@@ -93,44 +89,48 @@ export const skillCategories = [
       "Teliti & Detail",
       "Disiplin & Bertanggung Jawab",
       "Cepat Belajar (Fast Learner)",
-      "(Saking Cepatnya kerjaan kelompok,Saya kerjain sendiriam)",
-      "Mampu Bekerja dalam Tim",
-      "Mampu Bekerja di Bawah Tekanan (HANDAL)",
-      "(Jangankan di bawah tekanan,di bawah umr aja saya kerjain.)",
+      "Mandiri & Bekerja dalam Tim",
+      "Mampu Bekerja di Bawah Tekanan",
       "Problem Solving & Adaptif",
       "Manajemen Prioritas & Waktu",
       "Bahasa Indonesia (Aktif)",
       "Bahasa Inggris (Dasar)",
-      "Bahasa Sunda (Kasar)",
+      "Bahasa Sunda (Lokal)",
     ],
   },
 ];
 
+// Array sederhana untuk komponen yang membaca daftar skill langsung
+export const skills = skillCategories.flatMap((cat) => cat.skills);
+
 export const projects = [
   {
     title: "Sistem Tracking Administrasi SLO & NIDI",
-    description: "Aplikasi web dashboard interaktif berbasis React untuk memantau status pengajuan NIDI (Nomor Identitas Instalasi) dan SLO (Sertifikat Laik Operasi), memfilter status verifikasi, serta alur pengarsipan.",
-    tech: ["React.js", "JavaScript", "Tailwind CSS", "Vite"],
+    description:
+      "Aplikasi web dashboard interaktif untuk memantau status pengajuan NIDI (Nomor Identitas Instalasi) dan SLO (Sertifikat Laik Operasi), dilengkapi fitur filter status, pencarian cepat ID pelanggan, serta rekapitulasi data pengajuan.",
+    tech: ["React.js", "JavaScript", "CSS Glassmorphism", "Vite"],
     link: "https://github.com/jembargelar",
     demo: "https://jembar-portfolio.vercel.app",
   },
   {
     title: "Generator Invoice & Laporan Tagihan",
-    description: "Sistem pembuatan invoice otomatis untuk rekapitulasi jasa sertifikasi kelistrikan dan administrasi proyek, dilengkapi dengan kalkulasi otomatis dan fitur unduh laporan.",
-    tech: ["React.js", "Context API", "CSS Modules", "CSS Glassmorphism"],
+    description:
+      "Sistem pembuat invoice otomatis untuk rekapitulasi jasa sertifikasi kelistrikan dan administrasi proyek, dilengkapi kalkulasi pajak/PPN dan ringkasan kas masuk/keluar.",
+    tech: ["React.js", "Context API", "CSS Modules"],
     link: "https://github.com/jembargelar",
     demo: "https://jembar-portfolio.vercel.app",
   },
   {
     title: "Sistem Manajemen Stok Material Kelistrikan",
-    description: "Aplikasi pencatatan dan monitoring stok alat/material listrik (KwH Meter, MCB, Kabel) dengan peringatan otomatis saat stok menipis.",
+    description:
+      "Aplikasi pencatatan dan monitoring stok alat/material listrik (KwH Meter, MCB, Kabel) dengan peringatan otomatis saat stok berada di bawah batas minimum.",
     tech: ["React.js", "JavaScript", "LocalStorage"],
     link: "https://github.com/jembargelar",
     demo: "https://jembar-portfolio.vercel.app",
   },
 ];
 
-export const education = [
+export const educations = [
   {
     institution: "Universitas Terbuka (UT)",
     degree: "S1 Manajemen",
@@ -142,3 +142,6 @@ export const education = [
     period: "Lulus 2023",
   },
 ];
+
+// Ekspor alias ganda agar aman dari error mismatch komponen
+export const education = educations;
