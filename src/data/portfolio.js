@@ -3,7 +3,7 @@ export const personal = {
   title: "Professional Administrative & Operational Specialist",
   quote: "Butuh solusi, rekan bisnis, atau talenta baru? Saya siap bantu.",
   about:
-    "Saya adalah seorang profesional di bidang Administrasi dan Operasional dengan latar belakang pengalaman di industri teknis, manufaktur, dan pelayanan. Memiliki keahlian kuat dalam pengelolaan data, rekapitulasi, penyusunan invoice, serta pengurusan administrasi kelistrikan (SLO & NIDI). Didukung oleh ketelitian tinggi, pemikiran analitis, dan adaptabilitas yang cepat, saya berkomitmen untuk mengoptimalkan efisiensi operasional dan manajemen dokumen perusahaan secara profesional.",
+    "Saya adalah seorang profesional di bidang Administrasi dan Operasional dengan latar belakang pengalaman di industri teknis, manufaktur, dan pelayanan. Memiliki keahlian kuat dalam pengelolaan data, rekapitulasi data, pengarsipan dokumen, serta pemanfaatan tools operasional.",
   location: "Cianjur, Jawa Barat",
   email: "jembargelar@email.com", // Ganti dengan email aktif kamu
   phone: "+62 89673674467",     // Ganti dengan nomor WhatsApp kamu
@@ -17,7 +17,7 @@ export const experiences = [
     role: "Admin",
     period: "November 2025 - Agustus 2026",
     description:
-      "Mengelola administrasi operasional proyek kelistrikan, memproses penyusunan dan pengarsipan dokumen SLO (Sertifikat Laik Operasi) & NIDI, melakukan rekapitulasi data, pembuatan invoice, serta menangani komunikasi administratif dengan pihak PLN.",
+      "Mengelola administrasi operasional proyek kelistrikan, memproses penyusunan dan pengarsipan dokumen SLO (Sertifikat Laik Operasi) & NIDI, melakukan rekapitulasi data, pembuatan invoice, serta menangani komunikasi pelanggan.",
   },
   {
     company: "PT Garyman Indonesia",
@@ -109,42 +109,25 @@ export const skillCategories = [
 export const projects = [
   {
     title: "Sistem Tracking Administrasi SLO & NIDI",
-    description: "Aplikasi web dashboard berbasis React untuk memantau alur pengajuan sertifikasi kelistrikan, memfilter status verifikasi, dan merekap log pekerjaan secara efisien.",
-    tech: ["React", "JavaScript", "Tailwind CSS / CSS Modules"],
+    description: "Aplikasi web dashboard interaktif berbasis React untuk memantau status pengajuan NIDI (Nomor Identitas Instalasi) dan SLO (Sertifikat Laik Operasi), memfilter status verifikasi, serta alur pengarsipan.",
+    tech: ["React.js", "JavaScript", "Tailwind CSS", "Vite"],
     link: "https://github.com/jembargelar",
-    demo: "https://jembar-portfolio.vercel.app"
+    demo: "https://jembar-portfolio.vercel.app",
   },
-  {
-    title: "Invoice & Tagihan Generator App",
-    description:["Sistem pembuatan invoice otomatis untuk rekapitulasi jasa kelistrikan dan administrasi proyek lengkap dengan kalkulasi pajak dan rekap laporan bulanan.",
-    tech: ["React.js", "Context API", "CSS Glassmorphism"],
-    link: "https://github.com/jembargelar",
-    demo: "https://jembar-portfolio.vercel.app"
-  }
-];
-
-  {
-    title: "Sistem Tracking Administrasi SLO & NIDI",
-    description : "Aplikasi web dashboard, interaktif untuk memantau status pengajuan NIDI (Nomor Identitas Instalasi) dan SLO (Sertifikat Laik Operasi), Memiliki fitur filter status, pencarian cepat ID pelanggan, serta rekapitulasi data pengajuan.",
-];    tech: ["React.js", "JavaScript", "CSS Glassmorphism", "Vite"],
-    link: "https://github.com/jembargelar",
-    demo: "https://jembar-portfolio.vercel.app"
-  },
-];
   {
     title: "Generator Invoice & Laporan Tagihan",
-    description: "Sistem pembuat invoice otomatis untuk rekapitulasi jasa sertifikasi kelistrikan dan administrasi proyek, dilengkapi kalkulasi pajak/PPN dan ringkasan kas masuk/keluar.",
-    tech: ["React.js", "Context API", "CSS Modules"],
+    description: "Sistem pembuatan invoice otomatis untuk rekapitulasi jasa sertifikasi kelistrikan dan administrasi proyek, dilengkapi dengan kalkulasi otomatis dan fitur unduh laporan.",
+    tech: ["React.js", "Context API", "CSS Modules", "CSS Glassmorphism"],
     link: "https://github.com/jembargelar",
-    demo: "https://jembar-portfolio.vercel.app"
+    demo: "https://jembar-portfolio.vercel.app",
   },
   {
     title: "Sistem Manajemen Stok Material Kelistrikan",
-    description: "Aplikasi pencatatan dan monitoring stok alat/material listrik (KwH Meter, MCB, Kabel) dengan peringatan otomatis saat stok berada di bawah batas minimum.",
+    description: "Aplikasi pencatatan dan monitoring stok alat/material listrik (KwH Meter, MCB, Kabel) dengan peringatan otomatis saat stok menipis.",
     tech: ["React.js", "JavaScript", "LocalStorage"],
     link: "https://github.com/jembargelar",
-    demo: "https://jembar-portfolio.vercel.app"
-  }
+    demo: "https://jembar-portfolio.vercel.app",
+  },
 ];
 
 export const education = [
@@ -159,4 +142,3 @@ export const education = [
     period: "Lulus 2023",
   },
 ];
-
