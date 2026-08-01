@@ -1,16 +1,21 @@
-import { personal } from "../data/portfolio";
+import React from 'react';
 
 export default function Hero() {
   return (
-    <section id="hero" className="hero">
-      <div className="container">
-        <span className="hero-badge">Selamat Datang di Portofolio Saya</span>
-        <h1>Halo, Saya <span>{personal.name}</span></h1>
-        <p>{personal.role} yang berfokus pada efisiensi sistem administrasi, pengelolaan data, dan pengembangan web modern.</p>
-        <div className="hero-btns">
-          <a href="#contact" className="btn btn-primary">Hubungi Saya</a>
-          <a href="#about" className="btn btn-secondary">Pelajari Lebih Lanjut</a>
-        </div>
+    <section className="container" style={{ textAlign: 'center', paddingTop: '120px' }}>
+      <h1 style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '12px' }}>
+        Halo, Saya <span className="text-gradient">Jembar Gelar Kusumah Wibawa</span>
+      </h1>
+      <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', marginBottom: '24px' }}>
+        Administrative Specialist | Data Management | Web Developer
+      </p>
+      <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+        <a href="/Jembar_CV.pdf" download className="btn-primary">
+          📄 Download CV
+        </a>
+        <a href="#contact" className="theme-toggle-btn" style={{ textDecoration: 'none', padding: '12px 20px' }}>
+          Hubungi Saya
+        </a>
       </div>
     </section>
   );

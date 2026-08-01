@@ -1,33 +1,149 @@
-.period-badge {
-  display: inline-block;
-  padding: 4px 12px;
-  background: rgba(56, 189, 248, 0.1);
-  color: var(--accent, #38bdf8);
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Theme: Light Mode (Default) */
+  --bg-primary: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --bg-navbar: rgba(248, 250, 252, 0.85);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent: #2563eb;
+  --accent-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --border-color: rgba(226, 232, 240, 0.8);
+  --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
 }
 
-.about-card {
-  background: var(--bg-card, #1e293b);
-  border: 1px solid var(--border, rgba(255,255,255,0.1));
-  padding: 28px;
+[data-theme="dark"] {
+  /* Theme: Dark Mode */
+  --bg-primary: #0b0f19;
+  --bg-card: rgba(17, 24, 39, 0.7);
+  --bg-navbar: rgba(11, 15, 25, 0.85);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-gradient: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Cards */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
   border-radius: 16px;
+  padding: 24px;
   box-shadow: var(--shadow);
-}
-
-.about-text {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: var(--text-main, #f8fafc);
   margin-bottom: 20px;
 }
 
-.about-details {
+/* Gradient Text Effect */
+.text-gradient {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--accent-gradient);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
   display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--border, rgba(255,255,255,0.1));
-  padding-top: 16px;
-  color: var(--text-muted, #94a3b8);
+  align-items: center;
+  justify-content: center;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--bg-navbar);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* Layout Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 20px 40px;
+}
+
+/* Badges / Skills */
+.skill-badge {
+  display: inline-block;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 4px;
 }
