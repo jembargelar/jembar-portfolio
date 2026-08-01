@@ -8,21 +8,20 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-function App() {
+export default function App() {
   return (
-    <div>
+    <div className="bg-slate-900 text-slate-100 min-h-screen font-sans">
       <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Skills />
-      <Projects />
-      <Education />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Skills />
+        <Projects />
+        <Education />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );
 }
-
-export default App;
-
