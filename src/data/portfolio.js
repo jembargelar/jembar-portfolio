@@ -1,147 +1,79 @@
 export const personal = {
   name: "Jembar Gelar Kusumah Wibawa",
-  title: "Professional Administrative & Operational Specialist",
-  quote: "Butuh solusi, rekan bisnis, atau talenta baru? Saya siap bantu.",
-  about:
-    "Saya adalah seorang profesional di bidang Administrasi dan Operasional dengan latar belakang pengalaman di industri teknis, manufaktur, dan pelayanan. Memiliki keahlian kuat dalam pengelolaan data, rekapitulasi, penyusunan invoice, serta pengurusan administrasi kelistrikan (SLO & NIDI). Didukung oleh ketelitian tinggi, pemikiran analitis, dan adaptabilitas yang cepat, saya berkomitmen untuk mengoptimalkan efisiensi operasional dan manajemen dokumen perusahaan secara profesional.",
+  role: "Administration Specialist & Web Developer",
   location: "Cianjur, Jawa Barat",
-  email: "jembargelar@email.com",
-  phone: "+62 89673674467",
+  bio: "Seorang profesional administrasi berlatar belakang pendidikan Manajemen yang berpengalaman dalam pengelolaan data, administrasi legalitas kelistrikan (SLO & NIDI), serta pembuatan invoice dan dokumen operasional. Memiliki minat tinggi pada efisiensi sistem administrasi berbasis teknologi dan pengembangan aplikasi web interaktif.",
+  email: "jembargelar@gmail.com",
+  whatsapp: "https://wa.me/6281234567890",
+  linkedin: "https://linkedin.com/in/jembargelar",
   github: "https://github.com/jembargelar",
-  linkedin: "https://linkedin.com/",
+  cvPath: "/Jembar_CV.pdf"
 };
 
 export const experiences = [
   {
+    role: "Staff Administrasi",
     company: "PT Syahrendra Megawatt Indonesia",
-    role: "Admin",
-    period: "November 2025 - Agustus 2026",
-    description:
-      "Mengelola administrasi operasional proyek kelistrikan, memproses penyusunan dan pengarsipan dokumen SLO (Sertifikat Laik Operasi) & NIDI, melakukan rekapitulasi data, pembuatan invoice, serta menangani komunikasi administratif dengan pihak PLN.",
+    period: "Okt 2023 - Sekarang",
+    description: "Mengelola administrasi operasional perusahaan, pemrosesan legalitas Sertifikat Laik Operasi (SLO) dan Nomor Identitas Instalasi (NIDI) pelanggan PLN, pembuatan invoice tagihan, penyiapan dokumen kontrak, serta rekapitulasi data kelistrikan berbasis Microsoft Excel."
   },
   {
-    company: "PT Garyman Indonesia",
     role: "Operator Cutting Laser",
-    period: "Agustus 2025 - Oktober 2025",
-    description:
-      "Bertanggung jawab atas pengoperasian mesin cutting laser sesuai gambar kerja dasar, menjaga presisi hasil pemotongan bahan, melakukan Quality Control (QC), serta mencatat laporan produksi harian.",
+    company: "PT Garyman Kreasi Indonesia",
+    period: "Mei 2023 - Sep 2023",
+    description: "Mengoperasikan mesin cutting laser presisi tinggi, memastikan standar kualitas pemotongan material, serta melakukan pencatatan log produksi harian."
   },
   {
-    company: "Kedai Susumurni 26",
     role: "Waiter",
-    period: "Februari 2025 - Juli 2025",
-    description:
-      "Memberikan pelayanan pelanggan (Customer Service) secara prima, mengelola pesanan dengan cekatan, menjaga kebersihan area operasional, serta memastikan kepuasan konsumen secara konsisten.",
+    company: "Kedai Susumurni 26",
+    period: "Nov 2022 - Apr 2023",
+    description: "Melayani pelanggan, mengelola transaksi kasir harian, serta menjaga kualitas layanan dan kebersihan area katering."
   },
   {
-    company: "UD Sinar Soccer Industries",
     role: "Operator Mesin",
-    period: "Juli 2023 - Desember 2024",
-    description:
-      "Mengoperasikan mesin produksi manufaktur, menerapkan prosedur standar operasional dan keselamatan kerja, menjaga efisiensi target harian, serta melakukan pemeriksaan kualitas barang secara detail.",
-  },
+    company: "UD Sinar Soccer Industries",
+    period: "Jan 2021 - Okt 2022",
+    description: "Mengoperasikan mesin manufaktur peralatan olahraga serta melakukan pengecekan kualitas produk secara berkala."
+  }
 ];
 
-export const skillCategories = [
-  {
-    category: "Administrasi & Kelistrikan",
-    skills: [
-      "Administrasi Perkantoran",
-      "Administrasi SLO & NIDI",
-      "Administrasi Kelistrikan PLN",
-      "Pengarsipan Dokumen",
-      "Rekapitulasi Data",
-      "Pembuatan Invoice",
-      "Data Entry",
-      "Registrasi Pasang Baru KwH",
-      "Manajemen Dokumen",
-    ],
-  },
-  {
-    category: "Teknis & Operasional",
-    skills: [
-      "Pengoperasian Mesin Cutting Laser",
-      "Pengoperasian Mesin Produksi",
-      "Quality Control (QC)",
-      "Membaca Gambar Kerja Dasar",
-      "Pelayanan Pelanggan (Customer Service)",
-    ],
-  },
-  {
-    category: "Komputer & Alat Digital",
-    skills: [
-      "Microsoft Excel (Pengolahan Data)",
-      "Microsoft Word",
-      "Microsoft PowerPoint",
-      "Google Docs & Sheets",
-      "Google Drive",
-      "MetaTrader 5",
-      "Termux & Linux Dasar",
-      "VS Code",
-      "Python, HTML, Node.js",
-      "Canva",
-      "Analisis Ekonomi Makro",
-    ],
-  },
-  {
-    category: "Soft Skills & Bahasa",
-    skills: [
-      "Teliti & Detail",
-      "Disiplin & Bertanggung Jawab",
-      "Cepat Belajar (Fast Learner)",
-      "Mandiri & Bekerja dalam Tim",
-      "Mampu Bekerja di Bawah Tekanan",
-      "Problem Solving & Adaptif",
-      "Manajemen Prioritas & Waktu",
-      "Bahasa Indonesia (Aktif)",
-      "Bahasa Inggris (Dasar)",
-      "Bahasa Sunda (Lokal)",
-    ],
-  },
+export const skills = [
+  "Administrasi Perkantoran",
+  "Manajemen Data SLO & NIDI",
+  "Microsoft Excel / Spreadsheet",
+  "Penyusunan Invoice & Dokumen",
+  "JavaScript & React.js",
+  "HTML5 & CSS3 / Tailwind CSS",
+  "Git & GitHub",
+  "Otomasi & Python Basics"
 ];
-
-// Array sederhana untuk komponen yang membaca daftar skill langsung
-export const skills = skillCategories.flatMap((cat) => cat.skills);
 
 export const projects = [
   {
-    title: "Sistem Tracking Administrasi SLO & NIDI",
-    description:
-      "Aplikasi web dashboard interaktif untuk memantau status pengajuan NIDI (Nomor Identitas Instalasi) dan SLO (Sertifikat Laik Operasi), dilengkapi fitur filter status, pencarian cepat ID pelanggan, serta rekapitulasi data pengajuan.",
-    tech: ["React.js", "JavaScript", "CSS Glassmorphism", "Vite"],
-    link: "https://github.com/jembargelar",
-    demo: "https://jembar-portfolio.vercel.app",
+    title: "Dashboard Monitoring Status SLO & NIDI",
+    description: "Aplikasi web interaktif berbasis React untuk memantau, memfilter, dan mengelola status pengajuan NIDI dan SLO pelanggan kelistrikan secara real-time.",
+    tech: ["React.js", "Tailwind CSS", "JavaScript"],
+    link: "https://github.com/jembargelar/jembar-portfolio"
   },
   {
-    title: "Generator Invoice & Laporan Tagihan",
-    description:
-      "Sistem pembuat invoice otomatis untuk rekapitulasi jasa sertifikasi kelistrikan dan administrasi proyek, dilengkapi kalkulasi pajak/PPN dan ringkasan kas masuk/keluar.",
-    tech: ["React.js", "Context API", "CSS Modules"],
-    link: "https://github.com/jembargelar",
-    demo: "https://jembar-portfolio.vercel.app",
-  },
-  {
-    title: "Sistem Manajemen Stok Material Kelistrikan",
-    description:
-      "Aplikasi pencatatan dan monitoring stok alat/material listrik (KwH Meter, MCB, Kabel) dengan peringatan otomatis saat stok berada di bawah batas minimum.",
-    tech: ["React.js", "JavaScript", "LocalStorage"],
-    link: "https://github.com/jembargelar",
-    demo: "https://jembar-portfolio.vercel.app",
-  },
+    title: "Sistem Rekapitulasi Data & Invoice Digital",
+    description: "Model template dan sistem pengolahan data administrasi otomatis berbasis Excel dan skrip sederhana untuk mempecepat pembuatan billing/invoice perusahaan.",
+    tech: ["Microsoft Excel", "Spreadsheet", "VBA / Automation"],
+    link: "https://github.com/jembargelar"
+  }
 ];
 
-export const educations = [
+export const education = [
   {
-    institution: "Universitas Terbuka (UT)",
     degree: "S1 Manajemen",
-    period: "Saat ini",
+    institution: "Universitas Terbuka (UT)",
+    period: "Agt 2023 - Sekarang",
+    description: "Fokus pada Manajemen Operasional, Manajemen Sumber Daya Manusia, Analisis Data Bisnis, dan Strategi Organisasi."
   },
   {
+    degree: "SMA (MIPA)",
     institution: "SMAN 1 Garut",
-    degree: "IPA (Ilmu Pengetahuan Alam)",
-    period: "Lulus 2023",
-  },
+    period: "Jul 2020 - Mei 2023",
+    description: "Fokus pada Matematika dan Ilmu Pengetahuan Alam."
+  }
 ];
-
-// Ekspor alias ganda agar aman dari error mismatch komponen
-export const education = educations;
