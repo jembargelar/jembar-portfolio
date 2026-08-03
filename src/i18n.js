@@ -13,9 +13,18 @@ const resources = {
       navEducation: "Pendidikan",
       navContact: "Kontak",
 
-      // Hero
+      // Hero Section
+      available: "TERSEDIA UNTUK KERJA",
       greeting: "Halo, Saya 👋",
-      role: "Profesional Administrasi | Spesialis Manajemen Data | Penggemar Pengembangan Web Front-End",
+      roles: "Profesional Administrasi • Pengembang Web Front-End • Spesialis Manajemen Data",
+      heroDesc: "Saya membantu perusahaan mengelola administrasi, mengembangkan website modern, dan mengubah data menjadi keputusan yang lebih cepat.",
+      hireMe: "Hubungi Saya",
+      downloadCv: "Unduh CV",
+      yearsExp: "Tahun Pengalaman",
+      projectsDone: "Proyek Selesai",
+      commitment: "Komitmen",
+      
+      // Legacy Hero Keys (opsional/cadangan)
       contactBtn: "Hubungi saya",
       downloadCvBtn: "Unduh CV (PDF)",
 
@@ -43,9 +52,18 @@ const resources = {
       navEducation: "Education",
       navContact: "Contact",
 
-      // Hero
+      // Hero Section
+      available: "AVAILABLE FOR WORK",
       greeting: "Hello, I'm 👋",
-      role: "Administrative Professional | Data Management Specialist | Front-End Web Dev Enthusiast",
+      roles: "Administrative Professional • Frontend Web Developer • Data Management Specialist",
+      heroDesc: "I help companies manage administration, build modern websites, and turn data into faster decisions.",
+      hireMe: "Hire Me",
+      downloadCv: "Download CV",
+      yearsExp: "Years Experience",
+      projectsDone: "Projects Done",
+      commitment: "Commitment",
+
+      // Legacy Hero Keys (optional fallback)
       contactBtn: "Contact me",
       downloadCvBtn: "Download CV (PDF)",
 
