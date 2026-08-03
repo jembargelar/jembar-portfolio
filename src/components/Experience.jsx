@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import { experiences } from "../data/portfolio";
 
 export default function Experience() {
@@ -9,19 +10,24 @@ export default function Experience() {
     <section id="experience" style={{ padding: "60px 20px" }}>
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
         
-        {/* Judul Section */}
-        <h2 style={{ 
-          fontSize: "2rem", 
-          marginBottom: "40px", 
-          color: "#fff",
-          borderBottom: "2px solid #38bdf8",
-          display: "inline-block",
-          paddingBottom: "8px"
-        }}>
+        {/* Judul Animasi */}
+        <motion.h2 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{ 
+            fontSize: "2rem", 
+            marginBottom: "40px", 
+            color: "#fff",
+            borderBottom: "2px solid #38bdf8",
+            display: "inline-block",
+            paddingBottom: "8px"
+          }}
+        >
           {t("sectionExperience")}
-        </h2>
+        </motion.h2>
 
-        {/* Timeline Container */}
         <div style={{
           position: "relative",
           borderLeft: "2px solid #334155",
@@ -32,9 +38,15 @@ export default function Experience() {
           gap: "35px"
         }}>
           {experiences.map((exp, index) => (
-            <div key={index} style={{ position: "relative" }}>
-              
-              {/* Dot / Titik Aksen Timeline */}
+            <motion.div 
+              key={index} 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              style={{ position: "relative" }}
+            >
+              {/* Dot Aksen */}
               <div style={{
                 position: "absolute",
                 left: "-32px",
@@ -46,24 +58,25 @@ export default function Experience() {
                 boxShadow: "0 0 10px #38bdf8"
               }} />
 
-              {/* Card Container */}
-              <div style={{
-                backgroundColor: "#1e293b",
-                borderRadius: "12px",
-                padding: "20px",
-                border: "1px solid #334155"
-              }}>
-                {/* Posisi / Role */}
+              {/* Card dengan Efek Lift-Up saat Di-hover */}
+              <motion.div 
+                whileHover={{ y: -5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                style={{
+                  backgroundColor: "#1e293b",
+                  borderRadius: "12px",
+                  padding: "20px",
+                  border: "1px solid #334155"
+                }}
+              >
                 <h3 style={{ fontSize: "1.25rem", color: "#38bdf8", marginBottom: "4px" }}>
                   {exp.role}
                 </h3>
 
-                {/* Perusahaan */}
                 <h4 style={{ fontSize: "1rem", color: "#f8fafc", fontWeight: "600", marginBottom: "8px" }}>
                   {exp.company}
                 </h4>
 
-                {/* Periode Kerja */}
                 <span style={{ 
                   display: "inline-block",
                   fontSize: "0.85rem", 
@@ -76,7 +89,6 @@ export default function Experience() {
                   🗓️ {exp.period[lang]}
                 </span>
 
-                {/* Poin Pekerjaan */}
                 <ul style={{ 
                   paddingLeft: "18px", 
                   margin: 0, 
@@ -90,9 +102,8 @@ export default function Experience() {
                     </li>
                   ))}
                 </ul>
-              </div>
-
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
 
@@ -100,3 +111,4 @@ export default function Experience() {
     </section>
   );
 }
+

@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import { personal } from "../data/portfolio";
 
 export default function Hero() {
@@ -7,7 +8,11 @@ export default function Hero() {
   return (
     <section className="hero" id="hero">
       <div className="container hero-content">
-        <img
+        {/* Foto profil muncul dengan efek membesar (Scale) */}
+        <motion.img
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
           src="/profile.jpg"
           alt={personal.name}
           style={{
@@ -21,18 +26,60 @@ export default function Hero() {
           }}
         />
 
-        <p className="hero-subtitle">{t("greeting")}</p>
-        <h1 className="hero-title">{personal.name}</h1>
-        <p className="hero-desc">{t("role")}</p>
+        {/* Text muncul dari bawah berurutan (Staggered) */}
+        <motion.p 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="hero-subtitle"
+        >
+          {t("greeting")}
+        </motion.p>
 
-        <div className="btn-group">
-          <a href="#contact" className="btn btn-primary">
+        <motion.h1 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="hero-title"
+        >
+          {personal.name}
+        </motion.h1>
+
+        <motion.p 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="hero-desc"
+        >
+          {t("role")}
+        </motion.p>
+
+        {/* Tombol dengan Efek Hover / Membesar saat Ditekan */}
+        <motion.div 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="btn-group"
+        >
+          <motion.a 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            href="#contact" 
+            className="btn btn-primary"
+          >
             {t("contactBtn")}
-          </a>
-          <a href={personal.cvUrl} download className="btn btn-secondary">
+          </motion.a>
+          
+          <motion.a 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            href={personal.cvUrl} 
+            download 
+            className="btn btn-secondary"
+          >
             {t("downloadCvBtn")}
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
