@@ -21,13 +21,11 @@ export default function Hero() {
         overflow: "hidden"
       }}
     >
-      {/* Background Glow */}
       <div className="aurora-glow-1" />
       <div className="aurora-glow-2" />
 
       <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%", zIndex: 1 }}>
         
-        {/* LAYOUT RESPONSIVE GRID (60:40 di Desktop, Stack ke bawah di HP) */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -35,13 +33,13 @@ export default function Hero() {
           alignItems: "center"
         }}>
           
-          {/* KOLOM KIRI: TEKS */}
+          {/* TEKS HERO */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {/* Badge Status */}
+            {/* Badge Available */}
             <div style={{
               display: "inline-flex",
               alignItems: "center",
@@ -62,10 +60,10 @@ export default function Hero() {
                 borderRadius: "50%",
                 boxShadow: "0 0 8px #10b981"
               }} />
-              <span>AVAILABLE FOR WORK</span>
+              <span>{t("available")}</span>
             </div>
 
-            {/* Nama Raksasa Responsive */}
+            {/* Nama */}
             <h1 style={{
               fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
               fontWeight: "900",
@@ -85,7 +83,7 @@ export default function Hero() {
               WIBAWA
             </h1>
 
-            {/* Roles */}
+            {/* Roles Dynamic */}
             <p style={{ 
               color: "#38bdf8", 
               fontWeight: "500", 
@@ -93,20 +91,20 @@ export default function Hero() {
               marginBottom: "16px",
               lineHeight: "1.5"
             }}>
-              Administrative Professional • Frontend Web Developer • Data Management Specialist
+              {t("roles")}
             </p>
 
-            {/* Description */}
+            {/* Description Dynamic */}
             <p style={{
               fontSize: "1rem",
               color: "#9ca3af",
               lineHeight: "1.6",
               marginBottom: "30px"
             }}>
-              Saya membantu perusahaan mengelola administrasi, mengembangkan website modern, dan mengubah data menjadi keputusan yang lebih cepat.
+              {t("heroDesc")}
             </p>
 
-            {/* Tombol Aksi */}
+            {/* Tombol Aksi Dynamic */}
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "40px" }}>
               <motion.a 
                 whileHover={{ scale: 1.03 }}
@@ -125,7 +123,7 @@ export default function Hero() {
                   fontSize: "0.95rem"
                 }}
               >
-                Hire Me ➔
+                {t("hireMe")} ➔
               </motion.a>
 
               <motion.a 
@@ -147,11 +145,11 @@ export default function Hero() {
                   fontSize: "0.95rem"
                 }}
               >
-                📥 Download CV
+                📥 {t("downloadCv")}
               </motion.a>
             </div>
 
-            {/* Stats Bar */}
+            {/* Stats Bar Dynamic */}
             <div style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
@@ -161,23 +159,23 @@ export default function Hero() {
             }}>
               <div>
                 <h3 style={{ fontSize: "1.6rem", fontWeight: "800", color: "#60a5fa" }}>2+</h3>
-                <p style={{ fontSize: "0.8rem", color: "#6b7280" }}>Years Experience</p>
+                <p style={{ fontSize: "0.8rem", color: "#6b7280" }}>{t("yearsExp")}</p>
               </div>
 
               <div>
                 <h3 style={{ fontSize: "1.6rem", fontWeight: "800", color: "#60a5fa" }}>20+</h3>
-                <p style={{ fontSize: "0.8rem", color: "#6b7280" }}>Projects Done</p>
+                <p style={{ fontSize: "0.8rem", color: "#6b7280" }}>{t("projectsDone")}</p>
               </div>
 
               <div>
                 <h3 style={{ fontSize: "1.6rem", fontWeight: "800", color: "#10b981" }}>100%</h3>
-                <p style={{ fontSize: "0.8rem", color: "#6b7280" }}>Commitment</p>
+                <p style={{ fontSize: "0.8rem", color: "#6b7280" }}>{t("commitment")}</p>
               </div>
             </div>
 
           </motion.div>
 
-          {/* KOLOM KANAN: FOTO PROFIL RESPONSIF */}
+          {/* FOTO PROFIL */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -204,29 +202,7 @@ export default function Hero() {
                   objectPosition: "center"
                 }}
               />
-              
-              <div style={{
-                position: "absolute",
-                bottom: "12px",
-                left: "12px",
-                right: "12px",
-                padding: "10px 14px",
-                backgroundColor: "rgba(3, 7, 18, 0.85)",
-                backdropFilter: "blur(10px)",
-                borderRadius: "12px",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
-                display: "flex",
-                alignItems: "center",
-                gap: "10px"
-              }}>
-                <div style={{ fontSize: "1.1rem" }}>✨</div>
-                <div>
-                  <div style={{ color: "#f59e0b", fontSize: "0.75rem", marginBottom: "1px" }}>⭐⭐⭐⭐⭐</div>
-                  <p style={{ fontSize: "0.75rem", color: "#e5e7eb", fontWeight: "600", margin: 0 }}>Trusted Administrative & Web Solutions</p>
-                </div>
-              </div>
             </div>
-
           </motion.div>
 
         </div>
@@ -234,4 +210,3 @@ export default function Hero() {
     </section>
   );
 }
-
