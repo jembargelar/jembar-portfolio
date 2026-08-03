@@ -1,24 +1,22 @@
+import { useTranslation } from "react-i18next";
 import { education } from "../data/portfolio";
 
 export default function Education() {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language === 'en' ? 'en' : 'id';
+
   return (
-    <section id="education">
+    <section id="education" className="education">
       <div className="container">
-        <h2 className="section-title">Pendidikan</h2>
-        <div className="timeline">
-          {education.map((edu, index) => (
-            <div key={index} className="glass-card">
-              <div className="timeline-header">
-                <div>
-                  <h3>{edu.degree}</h3>
-                  <h4 style={{ color: "var(--accent-color)", fontSize: "0.95rem" }}>{edu.institution}</h4>
-                </div>
-                <span className="timeline-period">{edu.period}</span>
-              </div>
-              <p style={{ color: "var(--text-muted)", fontSize: "0.95rem" }}>{edu.description}</p>
-            </div>
-          ))}
-        </div>
+        <h2>{t("sectionEducation")}</h2>
+        {education.map((edu, index) => (
+          <div key={index} className="edu-card">
+            <h3>{edu.degree[lang]}</h3>
+            <h4>{edu.institution}</h4>
+            <span>{edu.period[lang]}</span>
+            <p>{edu.description[lang]}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
