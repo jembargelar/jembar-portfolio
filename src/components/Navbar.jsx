@@ -39,13 +39,36 @@ export default function Navbar() {
       justifyContent: "center",
       padding: "0 16px"
     }}>
+      {/* Style CSS Khusus Responsif Navbar */}
+      <style>{`
+        .desktop-nav-links {
+          display: flex;
+          gap: 20px;
+          font-size: 0.85rem;
+          font-weight: 500;
+        }
+        .hamburger-button {
+          display: none;
+        }
+
+        /* Di HP dan Tablet (Layar < 768px): Sembunyikan Nav Horizontal & Tampilkan Tombol Garis Tiga */
+        @media (max-width: 768px) {
+          .desktop-nav-links {
+            display: none !important;
+          }
+          .hamburger-button {
+            display: flex !important;
+          }
+        }
+      `}</style>
+
       <nav className="glass-navbar" style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
         maxWidth: "900px",
-        padding: "10px 24px",
+        padding: "10px 20px",
         borderRadius: "999px",
         position: "relative"
       }}>
@@ -65,8 +88,8 @@ export default function Navbar() {
           {personal.name.split(" ")[0]}<span style={{ color: "#3B82F6" }}>.dev</span>
         </button>
 
-        {/* Menu Desktop (Layar Lebar) */}
-        <div style={{ display: "flex", gap: "20px", fontSize: "0.85rem", fontWeight: "500" }} className="desktop-nav">
+        {/* Menu Desktop Horizontal (Hanya Muncul di Layar Komputer) */}
+        <div className="desktop-nav-links">
           {navLinks.map((link, idx) => (
             <a key={idx} href={link.href} style={{ color: "#9ca3af", textDecoration: "none", transition: "color 0.2s" }}>
               {link.name}
@@ -74,10 +97,10 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right Action: Language Switcher & Hamburger Button */}
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        {/* Aksi Kanan: Switcher Bahasa & Tombol Garis Tiga */}
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           
-          {/* Lang Switcher */}
+          {/* Switcher Bahasa */}
           <div style={{
             display: "flex",
             alignItems: "center",
@@ -113,8 +136,9 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Tombol Garis Tiga (Hamburger) */}
+          {/* Tombol Garis Tiga (Khusus Tampilan HP) */}
           <button
+            className="hamburger-button"
             onClick={() => setIsOpen(!isOpen)}
             style={{
               background: "rgba(255, 255, 255, 0.05)",
@@ -122,18 +146,17 @@ export default function Navbar() {
               borderRadius: "50%",
               width: "36px",
               height: "36px",
-              display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
               color: "#f9fafb"
             }}
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+            {isOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
 
-        {/* Dropdown Menu dengan Animasi Framer Motion */}
+        {/* Dropdown Menu HP dengan Animasi */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -143,7 +166,7 @@ export default function Navbar() {
               transition={{ duration: 0.2 }}
               style={{
                 position: "absolute",
-                top: "70px",
+                top: "65px",
                 right: "0",
                 width: "220px",
                 backgroundColor: "rgba(15, 23, 42, 0.95)",
@@ -153,7 +176,7 @@ export default function Navbar() {
                 padding: "16px",
                 display: "flex",
                 flexDirection: "column",
-                gap: "12px",
+                gap: "8px",
                 boxShadow: "0 20px 40px rgba(0, 0, 0, 0.5)",
                 zIndex: 101
               }}
@@ -166,14 +189,11 @@ export default function Navbar() {
                   style={{
                     color: "#e2e8f0",
                     textDecoration: "none",
-                    fontSize: "0.95rem",
+                    fontSize: "0.9rem",
                     fontWeight: "500",
                     padding: "8px 12px",
-                    borderRadius: "8px",
-                    transition: "background 0.2s"
+                    borderRadius: "8px"
                   }}
-                  onMouseEnter={(e) => e.target.style.backgroundColor = "rgba(59, 130, 246, 0.15)"}
-                  onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
                 >
                   {link.name}
                 </a>
