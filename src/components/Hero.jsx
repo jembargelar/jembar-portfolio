@@ -4,11 +4,20 @@ export default function Hero() {
   return (
     <section className="hero" id="hero">
       <div className="container hero-content">
-        <img
-          src="/profile.jpg"
-          alt={personal.name}
-          className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover object-center mb-4"
-        />
+  <img
+  src="/profile.jpg"
+  alt={personal.name}
+  style={{
+    width: "150px",
+    height: "150px",
+    borderRadius: "50%",
+    objectFit: "cover",
+    objectPosition: "center",
+    display: "block",
+    margin: "0 auto 1rem auto"
+  }}
+/>
+
         <p className="hero-subtitle">Halo, Saya 👋</p>
         <h1 className="hero-title">{personal.name}</h1>
         <p className="hero-desc">{personal.role}</p>
