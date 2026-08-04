@@ -11,7 +11,7 @@ export default function Certificates() {
       title: isEn ? "Work Experience Certificate (Paklaring)" : "Surat Keterangan Pengalaman Kerja",
       issuer: "PT Syahrendra Megawatt Indonesia",
       date: "05 Agustus 2026",
-      desc: isEn 
+      desc: isEn
         ? "Official work experience letter verifying role as Administration Staff managing SLO/NIDI data and document control."
         : "Surat keterangan resmi pengalaman kerja sebagai Staf Administrasi dan Kontrol Dokumen, mengelola permohonan SLO/NIDI[span_0](start_span)[span_0](end_span).",
       tag: "Professional Experience",
@@ -21,7 +21,7 @@ export default function Certificates() {
       title: isEn ? "Certificate of Graduation" : "Surat Keterangan Kelulusan (SKL)",
       issuer: "SMA Negeri 1 Garut",
       date: "05 Mei 2023",
-      desc: isEn 
+      desc: isEn
         ? "Official graduation document from MIPA (Science) major with excellent academic performance."
         : "Surat keterangan kelulusan jenjang SMA Jurusan MIPA dengan daftar nilai mata pelajaran yang sangat memuaskan[span_1](start_span)[span_1](end_span).",
       tag: "Education",
@@ -31,7 +31,7 @@ export default function Certificates() {
       title: isEn ? "Informatics Competency Certificate" : "Sertifikat Kompetensi Informatika",
       issuer: "SMA Negeri 1 Garut (Lab Komputer)",
       date: "08 Mei 2023",
-      desc: isEn 
+      desc: isEn
         ? "Competency certificate focusing on Office Integration, Data Analysis, Computer Networks, and Programming."
         : "Sertifikat kompetensi mata pelajaran Informatika dengan fokus Integrasi Office, Analisis Data, dan Algoritma Pemrograman[span_2](start_span)[span_2](end_span).",
       tag: "Technical Skill",
@@ -41,7 +41,7 @@ export default function Certificates() {
       title: isEn ? "Scientific Paper Award" : "Piagam Penghargaan Karya Tulis Ilmiah",
       issuer: "SMA Negeri 1 Garut",
       date: "03 Februari 2023",
-      desc: isEn 
+      desc: isEn
         ? "Awarded 'Sangat Memuaskan' (Score: 86) for scientific research paper titled 'Pengaruh Game Online Terhadap Sikap Belajar'."
         : "Meraih predikat Sangat Memuaskan dengan nilai 86 untuk Uji Karya Tulis Ilmiah tentang Pengaruh Game Online Terhadap Sikap Belajar[span_3](start_span)[span_3](end_span).",
       tag: "Achievement",
@@ -52,7 +52,7 @@ export default function Certificates() {
   return (
     <section id="certificates" style={{ padding: "80px 20px" }}>
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-        
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
