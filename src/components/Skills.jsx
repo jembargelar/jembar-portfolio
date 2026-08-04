@@ -21,25 +21,25 @@ export default function Skills() {
   return (
     <section id="skills" style={{ padding: "80px 20px" }}>
       <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-        
+
         {/* Title Section */}
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           style={{ fontSize: "2rem", fontWeight: "800", color: "var(--text-primary)", marginBottom: "40px" }}
         >
-          {t("navSkills")} <span style={{ color: "#3B82F6" }}>.</span>
+          {t("navSkills")} <span style={{ color: "var(--accent-blue)" }}>.</span>
         </motion.h2>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "28px" }}>
-          
+
           {/* Progress Bar Container */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-card" 
+            className="glass-card"
             style={{ padding: "28px" }}
           >
             <h3 style={{ fontSize: "1.2rem", fontWeight: "700", color: "var(--text-primary)", marginBottom: "24px" }}>
@@ -58,11 +58,11 @@ export default function Skills() {
                   <div style={{
                     height: "8px",
                     width: "100%",
-                    backgroundColor: "rgba(255, 255, 255, 0.08)",
+                    backgroundColor: "var(--card-border)",
                     borderRadius: "999px",
                     overflow: "hidden"
                   }}>
-                    {/* Animated Inner Bar */}
+                    {/* Inner Bar */}
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
@@ -71,8 +71,7 @@ export default function Skills() {
                       style={{
                         height: "100%",
                         backgroundColor: skill.color,
-                        borderRadius: "999px",
-                        boxShadow: `0 0 10px ${skill.color}`
+                        borderRadius: "999px"
                       }}
                     />
                   </div>
@@ -81,13 +80,13 @@ export default function Skills() {
             </div>
           </motion.div>
 
-          {/* Tools & Technologies Pills */}
-          <motion.div 
+          {/* Tools & Ecosystem Pills */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="glass-card" 
+            className="glass-card"
             style={{ padding: "28px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
           >
             <div>
@@ -100,10 +99,8 @@ export default function Skills() {
                   <motion.span
                     key={idx}
                     whileHover={{ scale: 1.05 }}
+                    className="tech-badge"
                     style={{
-                      backgroundColor: "rgba(59, 130, 246, 0.08)",
-                      border: "1px solid rgba(59, 130, 246, 0.2)",
-                      color: "#93c5fd",
                       padding: "8px 14px",
                       borderRadius: "12px",
                       fontSize: "0.85rem",
@@ -121,7 +118,7 @@ export default function Skills() {
             <div style={{
               marginTop: "24px",
               padding: "14px",
-              backgroundColor: "rgba(255, 255, 255, 0.03)",
+              backgroundColor: "var(--btn-sec-bg)",
               border: "1px solid var(--card-border)",
               borderRadius: "12px",
               fontSize: "0.85rem",
@@ -132,9 +129,7 @@ export default function Skills() {
           </motion.div>
 
         </div>
-
       </div>
     </section>
   );
 }
-

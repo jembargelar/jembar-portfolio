@@ -1,39 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* =========================================================
-   1. SYSTEM THEME VARIABLES (OBSIDIAN DARK & CLEAN LIGHT)
+   1. COLOR SYSTEM VARIABLES
    ========================================================= */
 
-/* --- DARK MODE / NIGHT MODE (DEFAULT) --- */
+/* --- NIGHT MODE (DEFAULT) --- */
 :root {
   --bg-color: #0b0f19;
-  --text-primary: #ffffff;
+  --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
-  --card-bg: #111827;
+  --card-bg: rgba(17, 24, 39, 0.85);
   --card-border: rgba(255, 255, 255, 0.12);
   --nav-bg: rgba(11, 15, 25, 0.9);
   --tag-bg: rgba(59, 130, 246, 0.15);
   --tag-text: #60a5fa;
   --tag-border: rgba(59, 130, 246, 0.3);
   --accent-blue: #3b82f6;
+  --subheading-color: #38bdf8;
   --shadow-color: rgba(0, 0, 0, 0.5);
-  --stat-num: #60a5fa;
+  --btn-sec-bg: rgba(255, 255, 255, 0.06);
+  --map-filter: grayscale(80%) invert(90%) contrast(120%);
 }
 
-/* --- LIGHT MODE (SLATE PREMIUM) --- */
-.light-mode, [data-theme="light"], html.light-mode, body.light-mode {
-  --bg-color: #f8fafc !important;
-  --text-primary: #0f172a !important;
-  --text-secondary: #334155 !important;
-  --card-bg: #ffffff !important;
-  --card-border: #cbd5e1 !important;
-  --nav-bg: rgba(255, 255, 255, 0.95) !important;
-  --tag-bg: #eff6ff !important;
-  --tag-text: #1d4ed8 !important;
-  --tag-border: #bfdbfe !important;
-  --accent-blue: #2563eb !important;
-  --shadow-color: rgba(15, 23, 42, 0.06) !important;
-  --stat-num: #2563eb !important;
+/* --- LIGHT MODE --- */
+.light-mode {
+  --bg-color: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --card-bg: #ffffff;
+  --card-border: #cbd5e1;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --tag-bg: #eff6ff;
+  --tag-text: #1d4ed8;
+  --tag-border: #bfdbfe;
+  --accent-blue: #2563eb;
+  --subheading-color: #2563eb;
+  --shadow-color: rgba(15, 23, 42, 0.08);
+  --btn-sec-bg: #f1f5f9;
+  --map-filter: none;
 }
 
 /* =========================================================
@@ -49,126 +53,68 @@
 }
 
 html, body {
-  background-color: var(--bg-color) !important;
-  color: var(--text-primary) !important;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
   overflow-x: hidden;
 }
 
-section, header, main, footer, div[id] {
-  background-color: transparent !important;
+section, header, main, footer {
+  background-color: transparent;
+}
+
+h1, h2, h3, h4, h5, h6, strong, b {
+  color: var(--text-primary);
+}
+
+p, li, div, small, label {
+  color: inherit;
 }
 
 /* =========================================================
-   3. OVERRIDE TOTAL NIGHT MODE (PERBAIKAN HERO & SEMUA SECTION)
+   3. GLASS CARDS & BADGES
    ========================================================= */
-
-/* --- TEKS MODE GELAP (NIGHT MODE) --- */
-:not(.light-mode) h1, :not(.light-mode) h1 *,
-:not(.light-mode) h2, :not(.light-mode) h2 *,
-:not(.light-mode) h3, :not(.light-mode) h3 *,
-:not(.light-mode) h4, :not(.light-mode) h4 *,
-:not(.light-mode) h5, :not(.light-mode) h5 *,
-:not(.light-mode) h6, :not(.light-mode) h6 *,
-:not(.light-mode) strong, :not(.light-mode) b {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-}
-
-:not(.light-mode) p, :not(.light-mode) p *,
-:not(.light-mode) li, :not(.light-mode) li *,
-:not(.light-mode) small, :not(.light-mode) small * {
-  color: #94a3b8 !important;
-}
-
-/* Fix Kartu & Tag di Night Mode */
-:not(.light-mode) .glass-card,
-:not(.light-mode) [class*="card"] {
-  background-color: #111827 !important;
-  border-color: rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
-}
-
-:not(.light-mode) span:not(.btn-gradient span) {
-  background-color: rgba(59, 130, 246, 0.15) !important;
-  color: #60a5fa !important;
-  border-color: rgba(59, 130, 246, 0.3) !important;
-}
-
-/* =========================================================
-   4. OVERRIDE TOTAL LIGHT MODE (MODE TERANG)
-   ========================================================= */
-
-.light-mode h1, .light-mode h1 *,
-.light-mode h2, .light-mode h2 *,
-.light-mode h3, .light-mode h3 *,
-.light-mode h4, .light-mode h4 *,
-.light-mode h5, .light-mode h5 *,
-.light-mode h6, .light-mode h6 *,
-.light-mode strong, .light-mode b, .light-mode label,
-.light-mode [class*="text-white"],
-.light-mode [class*="text-slate-100"],
-.light-mode [class*="text-slate-200"] {
-  color: #0f172a !important;
-  -webkit-text-fill-color: #0f172a !important;
-}
-
-.light-mode p, .light-mode p *,
-.light-mode li, .light-mode li *,
-.light-mode small, .light-mode small *,
-.light-mode [class*="text-slate-300"],
-.light-mode [class*="text-slate-400"] {
-  color: #334155 !important;
-}
-
-.light-mode .glass-card,
-.light-mode [class*="card"],
-.light-mode [class*="bg-slate-800"],
-.light-mode [class*="bg-slate-900"] {
-  background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
-}
-
-.light-mode span:not(.btn-gradient span) {
-  background-color: #eff6ff !important;
-  color: #1d4ed8 !important;
-  border-color: #bfdbfe !important;
-}
-
-/* =========================================================
-   5. SPECIAL HERO STATS & BUTTONS
-   ========================================================= */
-
-/* Angka Statistik (3+, 10+, 100%) */
-div[style*="font-size"] span, 
-.stat-number {
-  color: var(--stat-num) !important;
-}
-
-/* Navbar */
 .glass-navbar {
-  background: var(--nav-bg) !important;
+  background: var(--nav-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--card-border) !important;
-  box-shadow: 0 4px 20px var(--shadow-color) !important;
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 4px 20px var(--shadow-color);
 }
 
-/* Glass Card Radius */
 .glass-card {
-  border-radius: 16px !important;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px var(--shadow-color);
 }
 
-/* Tombol Utama (Hubungi Saya / Kirim Email) */
+.glass-card:hover {
+  border-color: var(--accent-blue);
+}
+
+/* Style Terpusat Badge Tech Stack & Tags */
+.glass-card span:not(.status-dot),
+span.tech-badge {
+  background-color: var(--tag-bg) !important;
+  color: var(--tag-text) !important;
+  border: 1px solid var(--tag-border) !important;
+}
+
+/* Sub-heading Peran / Kategori */
+.role-text, .subhead-blue {
+  color: var(--subheading-color) !important;
+  font-weight: 600;
+}
+
+/* Tombol Gradient Utama */
 .btn-gradient {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   color: #ffffff !important;
-  border: none !important;
-  border-radius: 10px !important;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
 }
 
 .btn-gradient span, .btn-gradient svg, .btn-gradient * {
   color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
 }

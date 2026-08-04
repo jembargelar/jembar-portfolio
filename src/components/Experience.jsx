@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, Building2 } from "lucide-react";
+import { Calendar, Building2 } from "lucide-react";
 
 export default function Experience() {
   const { t, i18n } = useTranslation();
@@ -50,20 +50,20 @@ export default function Experience() {
           viewport={{ once: true }}
           style={{ fontSize: "2rem", fontWeight: "800", color: "var(--text-primary)", marginBottom: "48px" }}
         >
-          {t("navExperience")} <span style={{ color: "#3B82F6" }}>.</span>
+          {t("navExperience")} <span style={{ color: "var(--accent-blue)" }}>.</span>
         </motion.h2>
 
         {/* Timeline Container */}
         <div style={{ position: "relative", paddingLeft: "28px" }}>
 
-          {/* Glowing Vertical Line */}
+          {/* Vertical Line */}
           <div style={{
             position: "absolute",
             top: "8px",
             bottom: "8px",
             left: "8px",
             width: "2px",
-            background: "linear-gradient(180deg, #3B82F6 0%, rgba(59, 130, 246, 0.2) 100%)"
+            background: "linear-gradient(180deg, var(--accent-blue) 0%, rgba(59, 130, 246, 0.1) 100%)"
           }} />
 
           {experiences.map((exp, idx) => (
@@ -84,8 +84,8 @@ export default function Experience() {
                 height: "18px",
                 borderRadius: "50%",
                 backgroundColor: "var(--bg-color)",
-                border: "3px solid #3B82F6",
-                boxShadow: "0 0 12px #3B82F6",
+                border: "3px solid var(--accent-blue)",
+                boxShadow: "0 0 12px var(--accent-blue)",
                 zIndex: 2
               }} />
 
@@ -93,7 +93,7 @@ export default function Experience() {
               <div className="glass-card" style={{ padding: "26px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <Building2 size={20} color="#60a5fa" />
+                    <Building2 size={20} color="var(--accent-blue)" />
                     <h3 style={{ fontSize: "1.2rem", fontWeight: "700", color: "var(--text-primary)", margin: 0 }}>
                       {exp.company}
                     </h3>
@@ -104,7 +104,7 @@ export default function Experience() {
                   </div>
                 </div>
 
-                <p style={{ color: "#38bdf8", fontWeight: "600", fontSize: "0.98rem", marginBottom: "12px" }}>
+                <p className="role-text" style={{ fontSize: "0.98rem", marginBottom: "12px" }}>
                   {exp.role}
                 </p>
 
@@ -115,10 +115,7 @@ export default function Experience() {
                 {/* Tech & Skill Tags */}
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   {exp.skills.map((skill, sIdx) => (
-                    <span key={sIdx} style={{
-                      backgroundColor: "rgba(59, 130, 246, 0.1)",
-                      border: "1px solid rgba(59, 130, 246, 0.2)",
-                      color: "#93c5fd",
+                    <span key={sIdx} className="tech-badge" style={{
                       fontSize: "0.78rem",
                       padding: "4px 12px",
                       borderRadius: "6px",

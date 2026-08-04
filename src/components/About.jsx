@@ -8,31 +8,31 @@ export default function About() {
 
   const bentoItems = [
     {
-      icon: <MapPin size={24} color="#60a5fa" />,
+      icon: <MapPin size={24} color="var(--accent-blue)" />,
       title: isEn ? "Location" : "Lokasi",
       desc: "Cianjur & Garut, West Java, Indonesia",
       highlight: "Open for Remote & Onsite"
     },
     {
-      icon: <GraduationCap size={24} color="#60a5fa" />,
+      icon: <GraduationCap size={24} color="var(--accent-blue)" />,
       title: isEn ? "Education" : "Pendidikan",
       desc: "Universitas Terbuka (S1 Manajemen)",
       highlight: "Operations & Business Admin"
     },
     {
-      icon: <Briefcase size={24} color="#60a5fa" />,
+      icon: <Briefcase size={24} color="var(--accent-blue)" />,
       title: isEn ? "Core Expertise" : "Keahlian Utama",
       desc: isEn ? "Administrative & Document Control" : "Administrasi & Kontrol Dokumen",
       highlight: "SLO, NIDI & Executive Reporting"
     },
     {
-      icon: <Code size={24} color="#60a5fa" />,
+      icon: <Code size={24} color="var(--accent-blue)" />,
       title: "Frontend Web Dev",
       desc: "React.js, Vite, JavaScript (ES6+), Tailwind CSS",
       highlight: "Modern & Responsive UI"
     },
     {
-      icon: <TrendingUp size={24} color="#60a5fa" />,
+      icon: <TrendingUp size={24} color="var(--accent-blue)" />,
       title: isEn ? "Data Management" : "Manajemen Data",
       desc: isEn ? "Advanced Excel, Automated Recapitulation & Validation" : "Excel Lanjutan, Rekapitulasi Otomatis & Validasi",
       highlight: "Fast Decision Making"
@@ -48,15 +48,15 @@ export default function About() {
   return (
     <section id="about" style={{ padding: "80px 20px" }}>
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-        
+
         {/* Title Section */}
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           style={{ fontSize: "2rem", fontWeight: "800", color: "var(--text-primary)", marginBottom: "40px" }}
         >
-          {t("sectionAbout")} <span style={{ color: "#3B82F6" }}>.</span>
+          {t("sectionAbout")} <span style={{ color: "var(--accent-blue)" }}>.</span>
         </motion.h2>
 
         {/* Bento Grid Layout */}
@@ -78,7 +78,7 @@ export default function About() {
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
                 <div style={{
                   padding: "10px",
-                  backgroundColor: "rgba(59, 130, 246, 0.1)",
+                  backgroundColor: "var(--tag-bg)",
                   borderRadius: "12px",
                   display: "flex",
                   alignItems: "center",
@@ -95,14 +95,11 @@ export default function About() {
                 {item.desc}
               </p>
 
-              <span style={{
+              <span className="tech-badge" style={{
                 fontSize: "0.75rem",
                 fontWeight: "600",
-                color: "#60a5fa",
-                backgroundColor: "rgba(59, 130, 246, 0.1)",
                 padding: "4px 10px",
                 borderRadius: "20px",
-                border: "1px solid rgba(59, 130, 246, 0.2)",
                 display: "inline-block"
               }}>
                 {item.highlight}
@@ -110,8 +107,8 @@ export default function About() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
 }
+

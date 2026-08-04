@@ -9,21 +9,21 @@ export default function Contact() {
   return (
     <section id="contact" style={{ padding: "80px 20px" }}>
       <div style={{ maxWidth: "950px", margin: "0 auto" }}>
-        
+
         {/* Title */}
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           style={{ fontSize: "2rem", fontWeight: "800", color: "var(--text-primary)", marginBottom: "40px" }}
         >
-          {t("sectionContact")} <span style={{ color: "#3B82F6" }}>.</span>
+          {t("sectionContact")} <span style={{ color: "var(--accent-blue)" }}>.</span>
         </motion.h2>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "28px" }}>
-          
+
           {/* Main Action Glass Card */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -41,7 +41,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <motion.a 
+              <motion.a
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 href={`mailto:${personal.email}`}
@@ -65,20 +65,20 @@ export default function Contact() {
                 <span>{t("sendEmail")} ({personal.email})</span>
               </motion.a>
 
-              {/* Social Links dengan Inline SVG Asli */}
+              {/* Social Links */}
               <div style={{ display: "flex", gap: "16px" }}>
-                <a 
-                  href={personal.github} 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  style={{ 
+                <a
+                  href={personal.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
                     flex: 1,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     gap: "8px",
                     color: "var(--text-primary)",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
+                    backgroundColor: "var(--btn-sec-bg)",
                     border: "1px solid var(--card-border)",
                     padding: "10px",
                     borderRadius: "10px",
@@ -93,18 +93,18 @@ export default function Contact() {
                   </svg>
                   GitHub ↗
                 </a>
-                <a 
-                  href={personal.linkedin} 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  style={{ 
+                <a
+                  href={personal.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
                     flex: 1,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     gap: "8px",
                     color: "var(--text-primary)",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
+                    backgroundColor: "var(--btn-sec-bg)",
                     border: "1px solid var(--card-border)",
                     padding: "10px",
                     borderRadius: "10px",
@@ -134,7 +134,7 @@ export default function Contact() {
             style={{ padding: "20px", overflow: "hidden", display: "flex", flexDirection: "column" }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
-              <MapPin size={18} color="#60a5fa" />
+              <MapPin size={18} color="var(--accent-blue)" />
               <span style={{ fontSize: "0.9rem", fontWeight: "600", color: "var(--text-primary)" }}>
                 Location Base: West Java, Indonesia
               </span>
@@ -152,7 +152,7 @@ export default function Contact() {
                 src="https://maps.google.com/maps?q=Cianjur,West%20Java&t=&z=10&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
-                style={{ border: 0, filter: "grayscale(80%) invert(90%) contrast(120%)" }}
+                style={{ border: 0, filter: "var(--map-filter)" }}
                 allowFullScreen=""
                 loading="lazy"
               />
