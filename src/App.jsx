@@ -1,7 +1,3 @@
-import { useEffect, useState } from "react";
-import Lenis from "lenis";
-import confetti from "canvas-confetti";
-
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -12,55 +8,8 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 
 export default function App() {
-  const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
-
-  useEffect(() => {
-    // 1. Initialize Lenis Smooth Scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // 2. Mouse Move Listener for Custom Glow Cursor
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-
-    // 3. Register Easter Egg Function Globally
-    window.triggerEasterEgg = () => {
-      confetti({
-        particleCount: 120,
-        spread: 70,
-        origin: { y: 0.2 },
-        colors: ['#3B82F6', '#60A5FA', '#9333EA', '#10B981']
-      });
-    };
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      lenis.destroy();
-    };
-  }, []);
-
   return (
-    <div style={{ position: "relative", minHeight: "100vh" }}>
-      {/* Custom Glowing Mouse Pointer */}
-      <div 
-        className="mouse-cursor-glow"
-        style={{
-          left: `${mousePos.x}px`,
-          top: `${mousePos.y}px`
-        }}
-      />
-
+    <div style={{ minHeight: "100vh", backgroundColor: "#030712", color: "#f9fafb" }}>
       <Navbar />
       <main>
         <Hero />
