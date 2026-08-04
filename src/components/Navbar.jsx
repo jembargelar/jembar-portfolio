@@ -9,12 +9,14 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Toggle Dark / Light Mode
+  // Toggle Dark / Light Mode secara sinkron ke <body> & <html>
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.remove("light-mode");
+      document.body.classList.remove("light-mode");
     } else {
       document.documentElement.classList.add("light-mode");
+      document.body.classList.add("light-mode");
     }
   }, [isDarkMode]);
 
@@ -80,7 +82,7 @@ export default function Navbar() {
         position: "relative"
       }}>
         {/* Logo */}
-        <button 
+        <button
           onClick={handleLogoClick}
           style={{
             background: "none",
@@ -98,13 +100,13 @@ export default function Navbar() {
         {/* Menu Desktop Horizontal */}
         <div className="desktop-nav-links">
           {navLinks.map((link, idx) => (
-            <a 
-              key={idx} 
-              href={link.href} 
-              style={{ 
-                color: "var(--text-secondary)", 
-                textDecoration: "none", 
-                transition: "color 0.2s" 
+            <a
+              key={idx}
+              href={link.href}
+              style={{
+                color: "var(--text-secondary)",
+                textDecoration: "none",
+                transition: "color 0.2s"
               }}
             >
               {link.name}
@@ -114,12 +116,12 @@ export default function Navbar() {
 
         {/* Action Right: Dark Mode + Lang Switcher + Hamburger */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          
+
           {/* Dark / Light Mode Button */}
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
             style={{
-              background: "rgba(255, 255, 255, 0.05)",
+              background: "var(--btn-secondary-bg)",
               border: "1px solid var(--card-border)",
               borderRadius: "50%",
               width: "34px",
@@ -140,7 +142,7 @@ export default function Navbar() {
             display: "flex",
             alignItems: "center",
             gap: "4px",
-            backgroundColor: "rgba(255, 255, 255, 0.05)",
+            backgroundColor: "var(--btn-secondary-bg)",
             padding: "4px 8px",
             borderRadius: "20px",
             border: "1px solid var(--card-border)"
@@ -176,7 +178,7 @@ export default function Navbar() {
             className="hamburger-button"
             onClick={() => setIsOpen(!isOpen)}
             style={{
-              background: "rgba(255, 255, 255, 0.05)",
+              background: "var(--btn-secondary-bg)",
               border: "1px solid var(--card-border)",
               borderRadius: "50%",
               width: "34px",
@@ -191,7 +193,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Dropdown Mobile */}
+        {/* Dropdown Mobile Bersih & Adaptif Tema */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -204,7 +206,7 @@ export default function Navbar() {
                 top: "65px",
                 right: "0",
                 width: "220px",
-                backgroundColor: "var(--nav-bg)",
+                backgroundColor: "var(--dropdown-bg)",
                 backdropFilter: "blur(20px)",
                 border: "1px solid var(--card-border)",
                 borderRadius: "16px",
@@ -212,7 +214,7 @@ export default function Navbar() {
                 display: "flex",
                 flexDirection: "column",
                 gap: "8px",
-                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.5)",
+                boxShadow: "0 10px 30px var(--shadow-color)",
                 zIndex: 101
               }}
             >
