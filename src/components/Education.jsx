@@ -1,73 +1,105 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { education } from "../data/portfolio";
+import { GraduationCap, Calendar, Award } from "lucide-react";
 
 export default function Education() {
   const { t, i18n } = useTranslation();
-  const lang = i18n.language === 'en' ? 'en' : 'id';
+  const isEn = i18n.language === 'en';
+
+  const eduList = [
+    {
+      title: isEn ? "Bachelor of Management" : "S1 Manajemen",
+      institution: "Universitas Terbuka",
+      period: "Sept 2026 - Present",
+      desc: isEn 
+        ? "Focusing on Operational Management, Business Administration, HR, Strategic Planning, and Data Analysis." 
+        : "Fokus pada Manajemen Operasional, Administrasi Bisnis, SDM, Perencanaan Strategis, dan Analisis Data.",
+      status: isEn ? "Ongoing Degree" : "Sedang Menempuh Pendidikan"
+    },
+    {
+      title: isEn ? "Senior High School - Natural Sciences" : "SMA - Ilmu Pengetahuan Alam (IPA)",
+      institution: "SMAN 1 Garut",
+      period: "July 2020 - May 2023",
+      desc: isEn 
+        ? "Graduated with a focus on analytical thinking, logic, mathematics, and structured problem solving." 
+        : "Lulus dengan fokus pada pola pikir analitis, logika, matematika, dan pemecahan masalah terstruktur.",
+      status: isEn ? "Graduated" : "Lulus"
+    }
+  ];
 
   return (
-    <section id="education" style={{ padding: "60px 20px" }}>
-      <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+    <section id="education" style={{ padding: "80px 20px" }}>
+      <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+        
+        {/* Section Title */}
         <motion.h2 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          style={{ 
-            fontSize: "2rem", 
-            marginBottom: "32px", 
-            color: "#fff",
-            borderBottom: "2px solid #38bdf8",
-            display: "inline-block",
-            paddingBottom: "8px"
-          }}
+          style={{ fontSize: "2rem", fontWeight: "800", color: "var(--text-primary)", marginBottom: "40px" }}
         >
-          {t("sectionEducation")}
+          {t("navEducation")} <span style={{ color: "#3B82F6" }}>.</span>
         </motion.h2>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-          {education.map((edu, index) => (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
+          {eduList.map((edu, idx) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              whileHover={{ y: -4 }}
-              style={{
-                backgroundColor: "#1e293b",
-                borderRadius: "16px",
-                padding: "24px",
-                border: "1px solid #334155"
-              }}
+              transition={{ delay: idx * 0.15 }}
+              className="glass-card"
+              style={{ padding: "28px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
             >
-              <h3 style={{ fontSize: "1.25rem", color: "#38bdf8", marginBottom: "4px" }}>
-                {edu.degree[lang]}
-              </h3>
-              
-              <h4 style={{ fontSize: "1rem", color: "#f8fafc", fontWeight: "600", marginBottom: "8px" }}>
-                🎓 {edu.institution}
-              </h4>
-              
-              <span style={{ 
-                display: "inline-block",
-                fontSize: "0.85rem", 
-                color: "#94a3b8", 
-                marginBottom: "12px",
-                backgroundColor: "#0f172a",
-                padding: "4px 10px",
-                borderRadius: "6px"
-              }}>
-                🗓️ {edu.period[lang]}
-              </span>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
+                  <div style={{
+                    width: "42px",
+                    height: "42px",
+                    borderRadius: "12px",
+                    backgroundColor: "rgba(59, 130, 246, 0.1)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#60a5fa"
+                  }}>
+                    <GraduationCap size={22} />
+                  </div>
+                  <span style={{
+                    fontSize: "0.75rem",
+                    fontWeight: "600",
+                    color: "#10b981",
+                    backgroundColor: "rgba(16, 185, 129, 0.1)",
+                    padding: "4px 10px",
+                    borderRadius: "20px",
+                    border: "1px solid rgba(16, 185, 129, 0.2)"
+                  }}>
+                    {edu.status}
+                  </span>
+                </div>
 
-              <p style={{ color: "#cbd5e1", fontSize: "0.95rem", lineHeight: "1.6", margin: 0 }}>
-                {edu.description[lang]}
-              </p>
+                <h3 style={{ fontSize: "1.25rem", fontWeight: "700", color: "var(--text-primary)", marginBottom: "6px" }}>
+                  {edu.title}
+                </h3>
+
+                <p style={{ color: "#60a5fa", fontWeight: "600", fontSize: "0.95rem", marginBottom: "12px" }}>
+                  {edu.institution}
+                </p>
+
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "var(--text-secondary)", fontSize: "0.85rem", marginBottom: "16px" }}>
+                  <Calendar size={14} />
+                  <span>{edu.period}</span>
+                </div>
+
+                <p style={{ color: "var(--text-secondary)", fontSize: "0.9rem", lineHeight: "1.6", margin: 0 }}>
+                  {edu.desc}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

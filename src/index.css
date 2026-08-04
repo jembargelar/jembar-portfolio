@@ -1,20 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
+:root {
+  --bg-color: #030712;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --card-bg: rgba(17, 24, 39, 0.5);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(3, 7, 18, 0.75);
+}
+
+.light-mode {
+  --bg-color: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(0, 0, 0, 0.08);
+  --nav-bg: rgba(255, 255, 255, 0.8);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   scroll-behavior: smooth;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 body {
-  background-color: #030712;
-  color: #f9fafb;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
   overflow-x: hidden;
 }
 
-/* Background Grid Pattern Ala Linear/Vercel */
+/* Background Grid Pattern Linear/Vercel Style */
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image: 
@@ -22,46 +41,46 @@ body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-/* Aurora Glow Effect */
+/* Aurora Glow Effects */
 .aurora-glow-1 {
   position: absolute;
   top: -10%;
   left: 10%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.08) 50%, transparent 70%);
-  filter: blur(80px);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.22) 0%, rgba(147, 51, 234, 0.08) 50%, transparent 70%);
+  filter: blur(90px);
   pointer-events: none;
   z-index: 0;
 }
 
 .aurora-glow-2 {
   position: absolute;
-  top: 30%;
+  top: 35%;
   right: 5%;
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%);
-  filter: blur(90px);
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%);
+  filter: blur(100px);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Floating Glassmorphism Navbar */
+/* Glassmorphism Classes */
 .glass-navbar {
-  background: rgba(3, 7, 18, 0.7);
+  background: var(--nav-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Glass Card Bento Box */
 .glass-card {
-  background: rgba(17, 24, 39, 0.5);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -71,7 +90,7 @@ body {
   transform: translateY(-4px);
 }
 
-/* Button Gradient Premium */
+/* Premium Gradient Button */
 .btn-gradient {
   background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
   box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
@@ -81,4 +100,21 @@ body {
 .btn-gradient:hover {
   box-shadow: 0 0 30px rgba(59, 130, 246, 0.7);
   transform: translateY(-2px);
+}
+
+/* Custom Glowing Mouse Pointer (Desktop Only) */
+@media (min-width: 1024px) {
+  .mouse-cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: transform 0.08s ease-out;
+  }
 }

@@ -1,54 +1,116 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { personal } from "../data/portfolio";
+import { MapPin, GraduationCap, Briefcase, Code, TrendingUp, Zap } from "lucide-react";
 
 export default function About() {
   const { t, i18n } = useTranslation();
-  const lang = i18n.language === 'en' ? 'en' : 'id';
+  const isEn = i18n.language === 'en';
+
+  const bentoItems = [
+    {
+      icon: <MapPin size={24} color="#60a5fa" />,
+      title: isEn ? "Location" : "Lokasi",
+      desc: "Cianjur & Garut, West Java, Indonesia",
+      highlight: "Open for Remote & Onsite"
+    },
+    {
+      icon: <GraduationCap size={24} color="#60a5fa" />,
+      title: isEn ? "Education" : "Pendidikan",
+      desc: "Universitas Terbuka (S1 Manajemen)",
+      highlight: "Operations & Business Admin"
+    },
+    {
+      icon: <Briefcase size={24} color="#60a5fa" />,
+      title: isEn ? "Core Expertise" : "Keahlian Utama",
+      desc: isEn ? "Administrative & Document Control" : "Administrasi & Kontrol Dokumen",
+      highlight: "SLO, NIDI & Executive Reporting"
+    },
+    {
+      icon: <Code size={24} color="#60a5fa" />,
+      title: "Frontend Web Dev",
+      desc: "React.js, Vite, JavaScript (ES6+), Tailwind CSS",
+      highlight: "Modern & Responsive UI"
+    },
+    {
+      icon: <TrendingUp size={24} color="#60a5fa" />,
+      title: isEn ? "Data Management" : "Manajemen Data",
+      desc: isEn ? "Advanced Excel, Automated Recapitulation & Validation" : "Excel Lanjutan, Rekapitulasi Otomatis & Validasi",
+      highlight: "Fast Decision Making"
+    },
+    {
+      icon: <Zap size={24} color="#10b981" />,
+      title: isEn ? "Work Ethic" : "Etos Kerja",
+      desc: isEn ? "Fast Learner, Detail-Oriented, High Dedication" : "Pembelajar Cepat, Detail, Dedikasi Tinggi",
+      highlight: "100% Commitment"
+    }
+  ];
 
   return (
-    <section id="about" style={{ padding: "60px 20px" }}>
-      <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+    <section id="about" style={{ padding: "80px 20px" }}>
+      <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+        
+        {/* Title Section */}
         <motion.h2 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          style={{ 
-            fontSize: "2rem", 
-            marginBottom: "24px", 
-            color: "#fff",
-            borderBottom: "2px solid #38bdf8",
-            display: "inline-block",
-            paddingBottom: "8px"
-          }}
-        >
-          {t("sectionAbout")}
-        </motion.h2>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          whileHover={{ y: -4 }}
-          style={{
-            backgroundColor: "#1e293b",
-            borderRadius: "16px",
-            padding: "28px",
-            border: "1px solid #334155",
-            boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3)"
-          }}
+          style={{ fontSize: "2rem", fontWeight: "800", color: "var(--text-primary)", marginBottom: "40px" }}
         >
-          <p style={{ 
-            color: "#cbd5e1", 
-            fontSize: "1.05rem", 
-            lineHeight: "1.8", 
-            margin: 0 
-          }}>
-            {personal.bio[lang]}
-          </p>
-        </motion.div>
+          {t("sectionAbout")} <span style={{ color: "#3B82F6" }}>.</span>
+        </motion.h2>
+
+        {/* Bento Grid Layout */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "20px"
+        }}>
+          {bentoItems.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="glass-card"
+              style={{ padding: "24px", position: "relative", overflow: "hidden" }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+                <div style={{
+                  padding: "10px",
+                  backgroundColor: "rgba(59, 130, 246, 0.1)",
+                  borderRadius: "12px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}>
+                  {item.icon}
+                </div>
+                <h3 style={{ fontSize: "1.1rem", fontWeight: "700", color: "var(--text-primary)", margin: 0 }}>
+                  {item.title}
+                </h3>
+              </div>
+
+              <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", lineHeight: "1.5", marginBottom: "16px" }}>
+                {item.desc}
+              </p>
+
+              <span style={{
+                fontSize: "0.75rem",
+                fontWeight: "600",
+                color: "#60a5fa",
+                backgroundColor: "rgba(59, 130, 246, 0.1)",
+                padding: "4px 10px",
+                borderRadius: "20px",
+                border: "1px solid rgba(59, 130, 246, 0.2)",
+                display: "inline-block"
+              }}>
+                {item.highlight}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
