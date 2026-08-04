@@ -1,58 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
 /* =========================================================
-   1. CYBERPUNK THEME VARIABLES
+   1. CYBERPUNK PALETTE (DARK NEON & LIGHT CYBER-CLEAN)
    ========================================================= */
 
 /* --- DARK CYBERPUNK (DEFAULT) --- */
 :root {
-  --bg-color: #080811;
+  --bg-color: #05050a;
   --text-primary: #00f0ff;
   --text-secondary: #ff007f;
   --text-body: #e2e8f0;
-  --card-bg: rgba(13, 13, 26, 0.85);
+  --card-bg: rgba(10, 10, 20, 0.85);
   --card-border: #00f0ff;
-  --nav-bg: rgba(8, 8, 17, 0.9);
-  --dropdown-bg: #0d0d1a;
+  --nav-bg: rgba(5, 5, 10, 0.9);
+  --dropdown-bg: #0a0a14;
   --tag-bg: rgba(255, 0, 127, 0.15);
   --tag-text: #ff007f;
   --tag-border: #ff007f;
-  --shadow-color: rgba(0, 240, 255, 0.25);
+  --shadow-color: rgba(0, 240, 255, 0.2);
   --accent-cyan: #00f0ff;
   --accent-pink: #ff007f;
-  --accent-yellow: #ffe600;
-  --btn-secondary-bg: rgba(0, 240, 255, 0.08);
-  --btn-secondary-border: #00f0ff;
 }
 
-/* --- LIGHT CYBERPUNK (NEON HIGH-CONTRAST) --- */
+/* --- LIGHT CYBER-CLEAN (TERANG & KONTRAST TAJAM) --- */
 .light-mode, [data-theme="light"], html.light-mode, body.light-mode {
-  --bg-color: #f0f4f8 !important;
-  --text-primary: #0f172a !important;
+  --bg-color: #ffffff !important;
+  --text-primary: #090d16 !important;
   --text-secondary: #d90429 !important;
   --text-body: #1e293b !important;
-  --card-bg: #ffffff !important;
-  --card-border: #00f0ff !important;
-  --nav-bg: rgba(255, 255, 255, 0.92) !important;
+  --card-bg: #f8fafc !important;
+  --card-border: #0284c7 !important;
+  --nav-bg: rgba(255, 255, 255, 0.95) !important;
   --dropdown-bg: #ffffff !important;
-  --tag-bg: #ffe5ec !important;
-  --tag-text: #d90429 !important;
-  --tag-border: #ff4d6d !important;
-  --shadow-color: rgba(0, 240, 255, 0.15) !important;
-  --btn-secondary-bg: #e2e8f0 !important;
-  --btn-secondary-border: #0f172a !important;
+  --tag-bg: #e0f2fe !important;
+  --tag-text: #0369a1 !important;
+  --tag-border: #0284c7 !important;
+  --shadow-color: rgba(2, 132, 199, 0.15) !important;
+  --accent-cyan: #0284c7 !important;
+  --accent-pink: #d90429 !important;
 }
 
 /* =========================================================
-   2. GLOBAL RESET & CYBERPUNK TYPOGRAPHY
+   2. RESET & GRID BACKGROUND
    ========================================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Chakra Petch', 'JetBrains Mono', sans-serif;
+  font-family: 'Chakra Petch', sans-serif;
   scroll-behavior: smooth;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 html, body {
@@ -65,52 +62,64 @@ section, header, main, footer, div[id] {
   background-color: transparent !important;
 }
 
-/* Cyberpunk Grid Background Lines */
+/* Cyber Grid Lines */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   background-image: 
-    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-  background-size: 30px 30px;
+    linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
   pointer-events: none;
   z-index: -1;
 }
 
+.light-mode::before {
+  background-image: 
+    linear-gradient(rgba(2, 132, 199, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2, 132, 199, 0.05) 1px, transparent 1px) !important;
+}
+
 /* =========================================================
-   3. HEADINGS & TEXT CYBERPUNK GLOW
+   3. TYPOGRAPHY (TEKS DIJAMIN BISA DIBACA)
    ========================================================= */
 
-/* Headings Utama (Judul Besar) */
+/* Dark Mode Headings */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700 !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-primary) !important;
-  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
 }
 
+/* Light Mode Headings (Paksa Gelap) */
 .light-mode h1, .light-mode h2, .light-mode h3, 
-.light-mode h4, .light-mode h5, .light-mode h6 {
-  text-shadow: none !important;
+.light-mode h4, .light-mode h5, .light-mode h6,
+.light-mode h1 *, .light-mode h2 *, .light-mode h3 * {
   color: #0f172a !important;
+  text-shadow: none !important;
 }
 
-/* Paragraf & Teks Deskripsi */
+/* Paragraf & Teks Biasa */
 p, li {
-  color: var(--text-body) !important;
   font-family: 'JetBrains Mono', monospace;
+  color: var(--text-body) !important;
   font-size: 0.92rem;
 }
 
-/* Highlight / Sub-judul Pink Neon */
+.light-mode p, .light-mode li {
+  color: #334155 !important;
+}
+
+/* Highlight Text Pink Neon */
 span, strong, b {
   color: var(--accent-pink);
 }
 
 /* =========================================================
-   4. CYBERPUNK CARDS & NAVBAR (NEON BORDERS)
+   4. CARDS & NAVBAR
    ========================================================= */
 
 /* Glass Navbar */
@@ -118,26 +127,24 @@ span, strong, b {
   background: var(--nav-bg) !important;
   backdrop-filter: blur(12px);
   border: 1px solid var(--accent-cyan) !important;
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3) !important;
+  box-shadow: 0 0 15px var(--shadow-color) !important;
 }
 
-/* Cards Cyberpunk dengan Corner Accent */
+/* Cyber Cards */
 .glass-card {
   background: var(--card-bg) !important;
   border: 1px solid var(--card-border) !important;
-  border-radius: 8px !important; /* Cyberpunk khas siku/minimalis */
+  border-radius: 8px !important;
   box-shadow: 0 0 15px var(--shadow-color) !important;
-  position: relative;
-  overflow: hidden;
 }
 
 .glass-card:hover {
-  transform: translateY(-4px) scale(1.01);
+  transform: translateY(-4px);
   border-color: var(--accent-pink) !important;
-  box-shadow: 0 0 25px rgba(255, 0, 127, 0.4) !important;
+  box-shadow: 0 0 25px rgba(255, 0, 127, 0.35) !important;
 }
 
-/* Tag / Badge Tech Stack Cyberpunk */
+/* Tag / Badge Tech Stack */
 .glass-card span, 
 div span:not(.btn-gradient span) {
   background-color: var(--tag-bg) !important;
@@ -146,41 +153,30 @@ div span:not(.btn-gradient span) {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: 4px !important;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 /* =========================================================
-   5. NEON BUTTONS (CYBERPUNK GLOW)
+   5. BUTTONS
    ========================================================= */
 
-/* Tombol Utama (Hubungi Saya) */
 .btn-gradient {
-  background: #ff007f !important;
+  background: var(--accent-pink) !important;
   color: #ffffff !important;
-  border: 1px solid #ff007f !important;
+  border: 1px solid var(--accent-pink) !important;
   border-radius: 6px !important;
   font-weight: 700 !important;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  box-shadow: 0 0 15px rgba(255, 0, 127, 0.6) !important;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.5) !important;
 }
 
 .btn-gradient:hover {
-  background: #00f0ff !important;
-  color: #080811 !important;
-  border-color: #00f0ff !important;
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.8) !important;
+  background: var(--accent-cyan) !important;
+  color: #000000 !important;
+  border-color: var(--accent-cyan) !important;
 }
 
 .btn-gradient span, .btn-gradient svg, .btn-gradient * {
   color: inherit !important;
-}
-
-/* Reduksi Cahaya Aurora di Light Mode */
-.light-mode .aurora-glow-1,
-.light-mode .aurora-glow-2 {
-  opacity: 0.05 !important;
 }
