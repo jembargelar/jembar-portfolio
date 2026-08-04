@@ -1,43 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
+/* =========================================================
+   1. SYSTEM THEME VARIABLES (ELEGAN & MODERN PALETTE)
+   ========================================================= */
+
 /* --- DARK MODE (DEFAULT) --- */
 :root {
-  --bg-color: #030712;
-  --text-primary: #f9fafb;
-  --text-secondary: #9ca3af;
-  --card-bg: rgba(17, 24, 39, 0.7);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --nav-bg: rgba(3, 7, 18, 0.85);
+  --bg-color: #090d16;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --card-bg: rgba(15, 23, 42, 0.65);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(9, 13, 22, 0.85);
   --dropdown-bg: #0f172a;
-  --grid-line: rgba(255, 255, 255, 0.04);
-  --btn-secondary-bg: rgba(255, 255, 255, 0.08);
-  --btn-secondary-border: rgba(255, 255, 255, 0.15);
-  --btn-secondary-text: #f3f4f6;
-  --shadow-color: rgba(0, 0, 0, 0.5);
+  --tag-bg: rgba(255, 255, 255, 0.05);
+  --tag-text: #cbd5e1;
+  --tag-border: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --accent-color: #3b82f6;
+  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
+  --btn-secondary-border: rgba(255, 255, 255, 0.12);
 }
 
-/* --- LIGHT MODE (SANGAT KONTRAS & SERASI) --- */
+/* --- LIGHT MODE (MINIMALIS & PREMIUM) --- */
 .light-mode, [data-theme="light"], html.light-mode, body.light-mode {
   --bg-color: #f8fafc !important;
   --text-primary: #0f172a !important;
-  --text-secondary: #334155 !important;
+  --text-secondary: #475569 !important;
   --card-bg: #ffffff !important;
-  --card-border: #cbd5e1 !important;
-  --nav-bg: rgba(255, 255, 255, 0.95) !important;
+  --card-border: #e2e8f0 !important;
+  --nav-bg: rgba(255, 255, 255, 0.9) !important;
   --dropdown-bg: #ffffff !important;
-  --grid-line: rgba(15, 23, 42, 0.05) !important;
-  --btn-secondary-bg: #e2e8f0 !important;
+  --tag-bg: #f1f5f9 !important;
+  --tag-text: #334155 !important;
+  --tag-border: #e2e8f0 !important;
+  --shadow-color: rgba(15, 23, 42, 0.06) !important;
+  --accent-color: #2563eb !important;
+  --btn-secondary-bg: #f1f5f9 !important;
   --btn-secondary-border: #cbd5e1 !important;
-  --btn-secondary-text: #0f172a !important;
-  --shadow-color: rgba(15, 23, 42, 0.08) !important;
 }
 
+/* =========================================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 html, body {
@@ -46,12 +57,15 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Paksa Semua Container dan Section Mengikuti Latar Belakang Utama */
 section, header, main, footer, div[id] {
   background-color: transparent !important;
 }
 
-/* --- ATURAN PENYESUAIAN SEMUA TEKS DI LIGHT MODE --- */
+/* =========================================================
+   3. TYPOGRAPHY & TEXT OVERRIDES (FIX LIGHT & DARK MODE)
+   ========================================================= */
+
+/* Rule untuk Light Mode */
 .light-mode h1,
 .light-mode h2,
 .light-mode h3,
@@ -60,21 +74,17 @@ section, header, main, footer, div[id] {
 .light-mode h6,
 .light-mode strong,
 .light-mode b,
-.light-mode label {
+.light-mode label,
+.light-mode div {
   color: #0f172a !important;
 }
 
 .light-mode p,
-.light-mode li,
-.light-mode span:not(.btn-gradient span) {
-  color: #334155 !important;
+.light-mode li {
+  color: #475569 !important;
 }
 
-.light-mode a:not(.btn-gradient) {
-  color: #0f172a !important;
-}
-
-/* --- ATURAN PENYESUAIAN SEMUA TEKS DI DARK MODE --- */
+/* Rule untuk Dark Mode */
 :not(.light-mode) h1,
 :not(.light-mode) h2,
 :not(.light-mode) h3,
@@ -84,51 +94,66 @@ section, header, main, footer, div[id] {
 :not(.light-mode) strong,
 :not(.light-mode) b,
 :not(.light-mode) label {
-  color: #f9fafb !important;
+  color: #f8fafc !important;
 }
 
 :not(.light-mode) p,
 :not(.light-mode) li {
-  color: #9ca3af !important;
+  color: #94a3b8 !important;
 }
 
-:not(.light-mode) a:not(.btn-gradient) {
-  color: #f9fafb !important;
-}
+/* =========================================================
+   4. COMPONENTS: NAVBAR, CARDS, BADGES & BUTTONS
+   ========================================================= */
 
-/* Glass Card & Navbar Adaptif */
-.glass-card {
-  background: var(--card-bg) !important;
+/* Glass Navbar */
+.glass-navbar {
+  background: var(--nav-bg) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--card-border) !important;
-  border-radius: 20px;
   box-shadow: 0 4px 20px var(--shadow-color) !important;
 }
 
-.glass-navbar {
-  background: var(--nav-bg) !important;
-  border-bottom: 1px solid var(--card-border) !important;
+/* Glass Card Container */
+.glass-card {
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border) !important;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px var(--shadow-color) !important;
 }
 
-/* Tag Badge di dalam Card */
-.light-mode .glass-card span {
-  background-color: #f1f5f9 !important;
-  border-color: #e2e8f0 !important;
-  color: #1d4ed8 !important;
+.glass-card:hover {
+  border-color: var(--accent-color) !important;
 }
 
-/* Tombol Utama (Button Gradien) */
+/* Badge / Tech-Stack Tags (Sudah tidak norak lagi) */
+.glass-card span, 
+div span:not(.btn-gradient span) {
+  background-color: var(--tag-bg) !important;
+  color: var(--tag-text) !important;
+  border: 1px solid var(--tag-border) !important;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+/* Tombol Primary Gradient */
 .btn-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25) !important;
+  border: none !important;
 }
 
 .btn-gradient span, .btn-gradient svg {
   color: #ffffff !important;
 }
 
-/* Reduksi Efek Aurora Glow di Mode Terang */
+/* Reduksi Cahaya Aurora di Background */
 .light-mode .aurora-glow-1,
 .light-mode .aurora-glow-2 {
-  opacity: 0.1 !important;
+  opacity: 0.08 !important;
 }
 
