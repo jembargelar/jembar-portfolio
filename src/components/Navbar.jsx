@@ -99,7 +99,7 @@ export default function Navbar() {
             letterSpacing: "-0.02em"
           }}
         >
-          {personal.name.split(" ")[0]}<span style={{ color: "var(--accent-blue, #3b82f6)" }}>.dev</span>
+          {personal.name.split(" ")[0]}<span style={{ color: "var(--accent-blue)" }}>.dev</span>
         </button>
 
         {/* Menu Desktop Horizontal */}
@@ -126,7 +126,7 @@ export default function Navbar() {
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
             style={{
-              background: "var(--btn-secondary-bg)",
+              background: "var(--btn-sec-bg)",
               border: "1px solid var(--card-border)",
               borderRadius: "50%",
               width: "36px",
@@ -140,7 +140,7 @@ export default function Navbar() {
             }}
             title="Toggle Dark/Light Mode"
           >
-            {isDarkMode ? <Sun size={17} color="#f59e0b" /> : <Moon size={17} color="#3b82f6" />}
+            {isDarkMode ? <Sun size={17} color="#f59e0b" /> : <Moon size={17} color="#2563eb" />}
           </button>
 
           {/* Switcher Bahasa */}
@@ -148,18 +148,18 @@ export default function Navbar() {
             display: "flex",
             alignItems: "center",
             gap: "4px",
-            backgroundColor: "var(--btn-secondary-bg)",
+            backgroundColor: "var(--btn-sec-bg)",
             padding: "4px 10px",
             borderRadius: "20px",
             border: "1px solid var(--card-border)"
           }}>
-            <Globe size={13} color="var(--accent-blue, #60a5fa)" />
+            <Globe size={13} color="var(--accent-blue)" />
             <button
               onClick={() => changeLanguage('id')}
               style={{
                 background: "none",
                 border: "none",
-                color: i18n.language === 'id' ? 'var(--accent-blue, #3b82f6)' : 'var(--text-secondary)',
+                color: i18n.language === 'id' ? 'var(--accent-blue)' : 'var(--text-secondary)',
                 fontWeight: i18n.language === 'id' ? '700' : '500',
                 cursor: "pointer",
                 fontSize: "0.75rem"
@@ -173,7 +173,7 @@ export default function Navbar() {
               style={{
                 background: "none",
                 border: "none",
-                color: i18n.language === 'en' ? 'var(--accent-blue, #3b82f6)' : 'var(--text-secondary)',
+                color: i18n.language === 'en' ? 'var(--accent-blue)' : 'var(--text-secondary)',
                 fontWeight: i18n.language === 'en' ? '700' : '500',
                 cursor: "pointer",
                 fontSize: "0.75rem"
@@ -188,7 +188,7 @@ export default function Navbar() {
             className="hamburger-button"
             onClick={() => setIsOpen(!isOpen)}
             style={{
-              background: "var(--btn-secondary-bg)",
+              background: "var(--btn-sec-bg)",
               border: "1px solid var(--card-border)",
               borderRadius: "50%",
               width: "36px",
