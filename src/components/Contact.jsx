@@ -10,7 +10,7 @@ export default function Contact() {
     <section id="contact" style={{ padding: "80px 20px" }}>
       <div style={{ maxWidth: "950px", margin: "0 auto" }}>
         
-        {/* Judul Dinamis */}
+        {/* Title Dynamic */}
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,7 +22,7 @@ export default function Contact() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "28px" }}>
           
-          {/* Card Aksi Utama */}
+          {/* Main Action Glass Card */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -31,19 +31,19 @@ export default function Contact() {
             style={{ padding: "36px 28px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
           >
             <div>
-              {/* Lets Build Dinamis */}
+              {/* Lets Build Dynamic */}
               <h3 style={{ fontSize: "1.4rem", fontWeight: "700", color: "var(--text-primary)", marginBottom: "12px" }}>
                 {t("letsBuild")}
               </h3>
 
-              {/* Subtitle Dinamis */}
+              {/* Subtitle Dynamic */}
               <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", lineHeight: "1.6", marginBottom: "28px" }}>
                 {t("contactSubtitle")}
               </p>
             </div>
 
             <div>
-              {/* Tombol Email Dinamis */}
+              {/* Tombol Email Dynamic */}
               <motion.a 
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
@@ -118,7 +118,7 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Card Map Mini */}
+          {/* Small Interactive Map Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -155,7 +155,7 @@ export default function Contact() {
 
         </div>
 
-        {/* Footer Dinamis */}
+        {/* Footer Dynamic */}
         <footer style={{ marginTop: "60px", textAlign: "center", color: "var(--text-secondary)", fontSize: "0.85rem" }}>
           <p>© {new Date().getFullYear()} {personal.name}. {t("copyright")}</p>
         </footer>
