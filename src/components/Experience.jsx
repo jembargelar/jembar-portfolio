@@ -8,43 +8,43 @@ export default function Experience() {
 
   const experiences = [
     {
-      year: "2026",
+      year: "2025 - 2026",
       company: "PT Syahrendra Megawatt Indonesia",
       role: isEn ? "Administrative & Document Control Specialist" : "Spesialis Administrasi & Kontrol Dokumen",
-      period: isEn ? "Jan 2026 - Present" : "Jan 2026 - Sekarang",
-      desc: isEn 
-        ? "Managed SLO & NIDI administrative processing, operational logging, customer database validation, and executive reporting." 
+      period: isEn ? "Nov 2025 - Aug 2026" : "Nov 2025 - Agu 2026",
+      desc: isEn
+        ? "Managed SLO & NIDI administrative processing, operational logging, customer database validation, and executive reporting."
         : "Mengelola pemrosesan administrasi SLO & NIDI, pencatatan operasional, validasi database pelanggan, dan pelaporan eksekutif.",
       skills: ["SLO & NIDI", "Excel Advanced", "Document Control", "Operational Reporting"]
     },
     {
       year: "2025",
-      company: "PT Garyman Indonesia",
-      role: isEn ? "Data Management & Admin Specialist" : "Spesialis Manajemen Data & Administrasi",
-      period: "2025",
-      desc: isEn 
-        ? "Automated reporting workflows, customer data recapitulation, invoice generation, and financial verification." 
-        : "Mengotomatisasi alur kerja pelaporan, rekapitulasi data pelanggan, pembuatan faktur, dan verifikasi keuangan.",
-      skills: ["Data Automation", "Invoice Management", "Data Validation", "Advanced Excel"]
+      company: "PT Garyman Kreasi Indonesia",
+      role: isEn ? "Laser Cutting Operator" : "Operator Cutting Laser",
+      period: isEn ? "Sep 2025 - Oct 2025" : "Sep 2025 - Okt 2025",
+      desc: isEn
+        ? "Operated high-precision laser cutting machines according to company SOPs, set material parameters, conducted Quality Control (QC) inspections, and performed routine light maintenance."
+        : "Mengoperasikan mesin cutting laser sesuai SOP perusahaan, menyiapkan material dan mengatur parameter mesin, melakukan pemeriksaan Quality Control (QC), serta perawatan ringan mesin.",
+      skills: ["Laser Cutting", "Quality Control (QC)", "Preventive Maintenance", "SOP & K3"]
     },
     {
-      year: "2023 - 2024",
-      company: "UD Sinar Soccer",
-      role: isEn ? "Administrative Staff & Operations" : "Staf Administrasi & Operasional",
-      period: "2023 - 2024",
-      desc: isEn 
-        ? "Handled daily transactions, stock inventory control, customer relations, and monthly financial logging." 
-        : "Menangani transaksi harian, kontrol inventaris stok, hubungan pelanggan, dan pencatatan keuangan bulanan.",
-      skills: ["Inventory Admin", "Financial Logging", "Data Entry", "Customer Service"]
+      year: "2022 - 2024",
+      company: "UD Sinar Soccer Industries",
+      role: isEn ? "Production Machine Operator" : "Operator Mesin Produksi",
+      period: isEn ? "Mar 2022 - Aug 2024" : "Mar 2022 - Agu 2024",
+      desc: isEn
+        ? "Operated production machinery in compliance with company SOPs, prepared raw materials, conducted step-by-step product quality checks, and ensured daily targets were achieved safely."
+        : "Mengoperasikan mesin produksi sesuai SOP perusahaan, menyiapkan bahan baku, melakukan pengecekan kualitas produk bertahap, serta menjaga standar K3 dan target harian.",
+      skills: ["Machine Operation", "Quality Control (QC)", "Preventive Maintenance", "SOP & K3 Compliance"]
     }
   ];
 
   return (
     <section id="experience" style={{ padding: "80px 20px", position: "relative" }}>
       <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-        
+
         {/* Title */}
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -55,7 +55,7 @@ export default function Experience() {
 
         {/* Timeline Container */}
         <div style={{ position: "relative", paddingLeft: "28px" }}>
-          
+
           {/* Glowing Vertical Line */}
           <div style={{
             position: "absolute",
