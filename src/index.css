@@ -1,28 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 /* =========================================================
-   1. COLOR VARIABLES
+   1. COLOR SYSTEM (NIGHT MODE & LIGHT MODE)
    ========================================================= */
 
-/* NIGHT MODE (DEFAULT) */
 :root {
   --bg-color: #030712;
   --text-primary: #ffffff;
   --text-secondary: #94a3b8;
   --card-bg: #111827;
-  --card-border: rgba(255, 255, 255, 0.15);
-  --nav-bg: rgba(3, 7, 18, 0.9);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --nav-bg: rgba(3, 7, 18, 0.85);
   --tag-bg: rgba(59, 130, 246, 0.15);
   --tag-text: #60a5fa;
   --tag-border: rgba(96, 165, 250, 0.3);
   --accent-blue: #3b82f6;
   --subheading-color: #38bdf8;
-  --shadow-color: rgba(0, 0, 0, 0.8);
+  --shadow-color: rgba(0, 0, 0, 0.7);
   --btn-sec-bg: #1f2937;
   --map-filter: grayscale(80%) invert(90%) contrast(120%);
 }
 
-/* LIGHT MODE */
 .light-mode {
   --bg-color: #f8fafc;
   --text-primary: #0f172a;
@@ -41,7 +39,7 @@
 }
 
 /* =========================================================
-   2. REFORSASI TEMA KHUSUS (MEMAKSA PERUBAHAN TEMA)
+   2. GLOBAL RESET & BASE STYLES
    ========================================================= */
 
 * {
@@ -50,7 +48,7 @@
   box-sizing: border-box;
   font-family: 'Plus Jakarta Sans', sans-serif;
   scroll-behavior: smooth;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 html, body {
@@ -59,70 +57,78 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Memaksa Semua Judul Section & Nama Raksasa Kelihatan */
+section, header, main, footer {
+  background-color: transparent !important;
+}
+
+/* Judul Section (Memunculkan kembali judul yang hilang) */
 h1, h2, h3, h4, h5, h6, strong, b {
   color: var(--text-primary) !important;
 }
 
-/* Mencegah Teks Tersembunyi */
-p, li, label {
+p {
   color: var(--text-secondary) !important;
 }
 
 /* =========================================================
-   3. MEMAKSA KARTU (GLASS CARD) AGAR GELAP DI NIGHT MODE
+   3. GLASS CARDS & UI COMPONENTS
    ========================================================= */
 
-.glass-card, 
-div[class*="glass"],
-div[style*="background-color: white"],
-div[style*="backgroundColor: white"],
-div[style*="background: white"] {
+.glass-navbar {
+  background: var(--nav-bg) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border) !important;
+}
+
+/* Kartu Utama (Satu warna solid di Night Mode & Light Mode) */
+.glass-card {
   background-color: var(--card-bg) !important;
   background: var(--card-bg) !important;
   border: 1px solid var(--card-border) !important;
-  box-shadow: 0 10px 30px var(--shadow-color) !important;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px var(--shadow-color) !important;
 }
 
-.glass-card h3, .glass-card h2, .glass-card strong {
-  color: var(--text-primary) !important;
-}
-
-.glass-card p, .glass-card span:not(.tech-badge) {
-  color: var(--text-secondary) !important;
-}
-
-/* Fix Badge & Pill */
-.glass-card span, span.tech-badge, div span {
+/* Badge Keahlian / Tech Tags (Spesifik tanpa merusak span lain) */
+span.tech-badge {
   background-color: var(--tag-bg) !important;
   color: var(--tag-text) !important;
   border: 1px solid var(--tag-border) !important;
+  display: inline-block;
 }
 
-/* Fix Tombol Utama & Email */
-.btn-gradient, a[href*="mailto"] {
+/* Sub-heading Peran (Biru Cyan) */
+.role-text {
+  color: var(--subheading-color) !important;
+  font-weight: 600;
+}
+
+/* Tombol Gradient Kirim Email & Hire Me */
+.btn-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
   border: none !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
 }
 
-.btn-gradient *, a[href*="mailto"] * {
+.btn-gradient span, .btn-gradient svg {
   color: #ffffff !important;
+  background: transparent !important;
+  border: none !important;
 }
 
-/* Fix Tombol Download CV, GitHub, LinkedIn */
+/* Tombol Sekunder (Download CV, GitHub, LinkedIn) */
 a[download], a[href*="github"], a[href*="linkedin"] {
   background-color: var(--btn-sec-bg) !important;
   color: var(--text-primary) !important;
   border: 1px solid var(--card-border) !important;
 }
 
-a[download] *, a[href*="github"] *, a[href*="linkedin"] * {
+a[download] span, a[href*="github"] span, a[href*="linkedin"] span {
+  background: transparent !important;
+  border: none !important;
   color: var(--text-primary) !important;
 }
 
-/* Fix Navbar Float */
-.glass-navbar {
-  background: var(--nav-bg) !important;
-  border: 1px solid var(--card-border) !important;
-}
+
