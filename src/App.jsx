@@ -10,7 +10,7 @@ import Contact from "./components/Contact";
 
 export default function App() {
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#030712", color: "#ffffff" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-color)", color: "var(--text-primary)" }}>
       <Navbar />
       <Hero />
       <About />

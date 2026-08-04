@@ -8,7 +8,6 @@ export default function Experience() {
 
   const experiences = [
     {
-      year: "2025 - 2026",
       company: "PT Syahrendra Megawatt Indonesia",
       role: isEn ? "Administrative & Document Control Specialist" : "Spesialis Administrasi & Kontrol Dokumen",
       period: isEn ? "Nov 2025 - Aug 2026" : "Nov 2025 - Agu 2026",
@@ -18,7 +17,6 @@ export default function Experience() {
       skills: ["SLO & NIDI", "Excel Advanced", "Document Control", "Operational Reporting"]
     },
     {
-      year: "2025",
       company: "PT Garyman Kreasi Indonesia",
       role: isEn ? "Laser Cutting Operator" : "Operator Cutting Laser",
       period: isEn ? "Sep 2025 - Oct 2025" : "Sep 2025 - Okt 2025",
@@ -28,7 +26,6 @@ export default function Experience() {
       skills: ["Laser Cutting", "Quality Control (QC)", "Preventive Maintenance", "SOP & K3"]
     },
     {
-      year: "2022 - 2024",
       company: "UD Sinar Soccer Industries",
       role: isEn ? "Production Machine Operator" : "Operator Mesin Produksi",
       period: isEn ? "Mar 2022 - Aug 2024" : "Mar 2022 - Agu 2024",
@@ -40,30 +37,26 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" style={{ padding: "80px 20px", position: "relative" }}>
+    <section id="experience" style={{ padding: "80px 20px" }}>
       <div style={{ maxWidth: "900px", margin: "0 auto" }}>
 
-        {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           style={{ fontSize: "2rem", fontWeight: "800", color: "var(--text-primary)", marginBottom: "48px" }}
         >
-          {t("navExperience")} <span style={{ color: "var(--accent-blue)" }}>.</span>
+          {t("navExperience")} <span style={{ color: "var(--accent)" }}>.</span>
         </motion.h2>
 
-        {/* Timeline Container */}
         <div style={{ position: "relative", paddingLeft: "28px" }}>
-
-          {/* Vertical Line */}
           <div style={{
             position: "absolute",
             top: "8px",
             bottom: "8px",
             left: "8px",
             width: "2px",
-            background: "linear-gradient(180deg, var(--accent-blue) 0%, rgba(59, 130, 246, 0.1) 100%)"
+            background: "linear-gradient(180deg, var(--primary) 0%, rgba(59, 130, 246, 0.1) 100%)"
           }} />
 
           {experiences.map((exp, idx) => (
@@ -75,7 +68,6 @@ export default function Experience() {
               transition={{ duration: 0.5, delay: idx * 0.15 }}
               style={{ position: "relative", marginBottom: "40px" }}
             >
-              {/* Pulsing Node Dot */}
               <div style={{
                 position: "absolute",
                 left: "-28px",
@@ -84,16 +76,15 @@ export default function Experience() {
                 height: "18px",
                 borderRadius: "50%",
                 backgroundColor: "var(--bg-color)",
-                border: "3px solid var(--accent-blue)",
-                boxShadow: "0 0 12px var(--accent-blue)",
+                border: "3px solid var(--accent)",
+                boxShadow: "0 0 12px var(--accent)",
                 zIndex: 2
               }} />
 
-              {/* Experience Glass Card */}
               <div className="glass-card" style={{ padding: "26px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <Building2 size={20} color="var(--accent-blue)" />
+                    <Building2 size={20} color="var(--accent)" />
                     <h3 style={{ fontSize: "1.2rem", fontWeight: "700", color: "var(--text-primary)", margin: 0 }}>
                       {exp.company}
                     </h3>
@@ -104,7 +95,7 @@ export default function Experience() {
                   </div>
                 </div>
 
-                <p className="role-text" style={{ fontSize: "0.98rem", marginBottom: "12px" }}>
+                <p style={{ color: "var(--accent)", fontWeight: "600", fontSize: "0.98rem", marginBottom: "12px" }}>
                   {exp.role}
                 </p>
 
@@ -112,15 +103,9 @@ export default function Experience() {
                   {exp.desc}
                 </p>
 
-                {/* Tech & Skill Tags */}
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   {exp.skills.map((skill, sIdx) => (
-                    <span key={sIdx} className="tech-badge" style={{
-                      fontSize: "0.78rem",
-                      padding: "4px 12px",
-                      borderRadius: "6px",
-                      fontWeight: "500"
-                    }}>
+                    <span key={sIdx} className="tech-pill">
                       {skill}
                     </span>
                   ))}
@@ -129,7 +114,6 @@ export default function Experience() {
 
             </motion.div>
           ))}
-
         </div>
 
       </div>

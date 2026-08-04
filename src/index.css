@@ -1,47 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-/* =========================================================
-   1. COLOR SYSTEM (NIGHT MODE & LIGHT MODE)
-   ========================================================= */
-
+/* ==========================================
+   THEME VARIABLES
+   ========================================== */
 :root {
-  --bg-color: #030712;
-  --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
-  --card-bg: #111827;
-  --card-border: rgba(255, 255, 255, 0.12);
-  --nav-bg: rgba(3, 7, 18, 0.85);
-  --tag-bg: rgba(59, 130, 246, 0.15);
-  --tag-text: #60a5fa;
-  --tag-border: rgba(96, 165, 250, 0.3);
-  --accent-blue: #3b82f6;
-  --subheading-color: #38bdf8;
-  --shadow-color: rgba(0, 0, 0, 0.7);
-  --btn-sec-bg: #1f2937;
-  --map-filter: grayscale(80%) invert(90%) contrast(120%);
+  --bg-color: #020617;
+  --surface-color: #0F172A;
+  --card-bg: #1E293B;
+  
+  --primary: #3B82F6;
+  --accent: #22D3EE;
+  
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  
+  --card-border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(34, 211, 238, 0.4);
+  --shadow-glow: 0 20px 60px rgba(59, 130, 246, 0.15);
+  
+  --nav-bg: rgba(2, 6, 23, 0.85);
+  --btn-sec-bg: rgba(255, 255, 255, 0.05);
 }
 
 .light-mode {
-  --bg-color: #f8fafc;
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --card-bg: #ffffff;
-  --card-border: #cbd5e1;
-  --nav-bg: rgba(255, 255, 255, 0.95);
-  --tag-bg: #eff6ff;
-  --tag-text: #1d4ed8;
-  --tag-border: #bfdbfe;
-  --accent-blue: #2563eb;
-  --subheading-color: #1d4ed8;
-  --shadow-color: rgba(15, 23, 42, 0.08);
-  --btn-sec-bg: #e2e8f0;
-  --map-filter: none;
+  --bg-color: #F8FAFC;
+  --surface-color: #FFFFFF;
+  --card-bg: #FFFFFF;
+  
+  --primary: #2563EB;
+  --accent: #0891B2;
+  
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  
+  --card-border: #E2E8F0;
+  --border-hover: #93C5FD;
+  --shadow-glow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --btn-sec-bg: #F1F5F9;
 }
 
-/* =========================================================
-   2. GLOBAL RESET & BASE STYLES
-   ========================================================= */
-
+/* ==========================================
+   RESET & GLOBAL
+   ========================================== */
 * {
   margin: 0;
   padding: 0;
@@ -52,83 +54,57 @@
 }
 
 html, body {
-  background-color: var(--bg-color) !important;
-  color: var(--text-primary) !important;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
   overflow-x: hidden;
 }
 
-section, header, main, footer {
-  background-color: transparent !important;
-}
-
-/* Judul Section (Memunculkan kembali judul yang hilang) */
-h1, h2, h3, h4, h5, h6, strong, b {
-  color: var(--text-primary) !important;
-}
-
-p {
-  color: var(--text-secondary) !important;
-}
-
-/* =========================================================
-   3. GLASS CARDS & UI COMPONENTS
-   ========================================================= */
-
+/* ==========================================
+   GLASS CARDS & UI COMPONENTS
+   ========================================== */
 .glass-navbar {
-  background: var(--nav-bg) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border) !important;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--card-border);
 }
 
-/* Kartu Utama (Satu warna solid di Night Mode & Light Mode) */
 .glass-card {
-  background-color: var(--card-bg) !important;
-  background: var(--card-bg) !important;
-  border: 1px solid var(--card-border) !important;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px var(--shadow-color) !important;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-glow);
 }
 
-/* Badge Keahlian / Tech Tags (Spesifik tanpa merusak span lain) */
-span.tech-badge {
-  background-color: var(--tag-bg) !important;
-  color: var(--tag-text) !important;
-  border: 1px solid var(--tag-border) !important;
+.glass-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff !important;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.35);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-gradient:hover {
+  box-shadow: 0 12px 35px rgba(34, 211, 238, 0.45);
+}
+
+.tech-pill {
+  background-color: rgba(59, 130, 246, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
   display: inline-block;
 }
-
-/* Sub-heading Peran (Biru Cyan) */
-.role-text {
-  color: var(--subheading-color) !important;
-  font-weight: 600;
-}
-
-/* Tombol Gradient Kirim Email & Hire Me */
-.btn-gradient {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
-  color: #ffffff !important;
-  border: none !important;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-}
-
-.btn-gradient span, .btn-gradient svg {
-  color: #ffffff !important;
-  background: transparent !important;
-  border: none !important;
-}
-
-/* Tombol Sekunder (Download CV, GitHub, LinkedIn) */
-a[download], a[href*="github"], a[href*="linkedin"] {
-  background-color: var(--btn-sec-bg) !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--card-border) !important;
-}
-
-a[download] span, a[href*="github"] span, a[href*="linkedin"] span {
-  background: transparent !important;
-  border: none !important;
-  color: var(--text-primary) !important;
-}
-
-
