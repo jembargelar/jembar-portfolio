@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, FolderGit2 } from "lucide-react";
+import { ExternalLink, Globe, FolderGit2 } from "lucide-react";
 import { projects } from "../data/portfolio";
 
 export default function Projects() {
@@ -63,9 +63,9 @@ export default function Projects() {
                         target="_blank" 
                         rel="noreferrer" 
                         style={{ color: "var(--text-secondary)", transition: "0.2s" }}
-                        title="View GitHub Repository"
+                        title="View Code Repository"
                       >
-                        <Github size={20} />
+                        <Globe size={20} />
                       </motion.a>
                     )}
                     {proj.demo && (

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Github, Linkedin } from "lucide-react";
+import { Mail, MapPin, Globe, Share2 } from "lucide-react";
 import { personal } from "../data/portfolio";
 
 export default function Contact() {
@@ -31,19 +31,16 @@ export default function Contact() {
             style={{ padding: "36px 28px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
           >
             <div>
-              {/* SUBJUDUL - PANGGIL TRANSLASI */}
               <h3 style={{ fontSize: "1.4rem", fontWeight: "700", color: "var(--text-primary)", marginBottom: "12px" }}>
                 {t("letsBuild")}
               </h3>
 
-              {/* DESKRIPSI - PANGGIL TRANSLASI */}
               <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", lineHeight: "1.6", marginBottom: "28px" }}>
                 {t("contactSubtitle")}
               </p>
             </div>
 
             <div>
-              {/* TOMBOL EMAIL - PANGGIL TRANSLASI */}
               <motion.a 
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
@@ -90,7 +87,7 @@ export default function Contact() {
                     fontSize: "0.85rem"
                   }}
                 >
-                  <Github size={16} /> GitHub ↗
+                  <Globe size={16} /> GitHub ↗
                 </a>
                 <a 
                   href={personal.linkedin} 
@@ -112,7 +109,7 @@ export default function Contact() {
                     fontSize: "0.85rem"
                   }}
                 >
-                  <Linkedin size={16} /> LinkedIn ↗
+                  <Share2 size={16} /> LinkedIn ↗
                 </a>
               </div>
             </div>
