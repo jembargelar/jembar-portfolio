@@ -6,8 +6,8 @@ export const personal = {
   },
   location: "Cianjur, Jawa Barat, Indonesia",
   bio: {
-    id: "Administrative professional dengan pengalaman dalam administrasi operasional, pengelolaan dokumen kelistrikan, validasi data, penyusunan laporan, serta pengolahan database perusahaan. Memiliki ketertarikan kuat pada pengembangan web front-end.",
-    en: "Administrative professional with experience in operational administration, electrical document management, data validation, report preparation, and company database processing. Strongly passionate about front-end web development."
+    id: "Administrative professional dengan pengalaman dalam administrasi operasional, pengelolaan dokumen kelistrikan, validasi data, penyusunan laporan, serta pengolahan database perusahaan. Memiliki ketertarikan tinggi pada pengembangan web dan teknologi.",
+    en: "Administrative professional with experience in operational administration, electrical document management, data validation, report preparation, and company database processing. Strongly passionate about web development and technology."
   },
   email: "jembargelar@gmail.com",
   phone: "+6281234567890",
@@ -39,41 +39,41 @@ export const experiences = [
   },
   {
     period: {
-      id: "Juli 2025 - Oktober 2025",
-      en: "July 2025 - October 2025"
+      id: "September 2025 - Oktober 2025",
+      en: "September 2025 - October 2025"
     },
     role: "Operator Cutting Laser",
     company: "PT Garyman Kreasi Indonesia",
     highlights: {
       id: [
-        "Mengoperasikan mesin cutting laser berpresisi tinggi dan melakukan pengaturan parameter mesin.",
-        "Memastikan kualitas hasil produksi sesuai standar perusahaan melalui inspeksi Quality Control (QC).",
-        "Menjalankan perawatan ringan mesin secara rutin untuk menjaga produktivitas lini produksi."
+        "Mengoperasikan mesin cutting laser sesuai SOP perusahaan dan mengatur parameter mesin sesuai spesifikasi.",
+        "Menyiapkan material presisi serta melakukan pemeriksaan kualitas (Quality Control) hasil pemotongan.",
+        "Menjaga kebersihan area kerja, melakukan perawatan ringan mesin, dan berkolaborasi dengan tim produksi untuk mencapai target harian."
       ],
       en: [
-        "Operated high-precision laser cutting machinery and adjusted machine parameters.",
-        "Ensured production quality met company standards through Quality Control (QC) inspections.",
-        "Performed routine light maintenance on machines to maintain production line productivity."
+        "Operated laser cutting machinery according to company SOPs and adjusted machine parameters to specification.",
+        "Prepared materials and performed Quality Control (QC) inspections on cut results.",
+        "Maintained work area cleanliness, performed routine light maintenance, and collaborated with production team to achieve daily targets."
       ]
     }
   },
   {
     period: {
-      id: "Januari 2023 - Juni 2025",
-      en: "January 2023 - June 2025"
+      id: "Maret 2022 - Agustus 2024",
+      en: "March 2022 - August 2024"
     },
-    role: "Production Machine Operator",
+    role: "Operator Mesin Produksi",
     company: "UD Sinar Soccer Industries",
     highlights: {
       id: [
-        "Mengoperasikan mesin produksi dan mengawasi jalannya proses manufaktur.",
-        "Menjaga kualitas produk sesuai standar perusahaan dan melakukan perawatan dasar mesin.",
-        "Memastikan target produksi harian tercapai dengan konsisten menerapkan prosedur keselamatan kerja (K3)."
+        "Mengoperasikan mesin produksi sesuai SOP serta menyiapkan bahan baku untuk kelancaran proses manufaktur.",
+        "Melakukan pengecekan kualitas produk bertahap dan menjalankan perawatan ringan mesin produksi secara berkala.",
+        "Memastikan target produksi harian tercapai dengan menerapkan standar K3 dan meningkatkan efisiensi bersama tim."
       ],
       en: [
-        "Operated production machinery and supervised manufacturing processes.",
-        "Maintained product quality in accordance with company standards and performed basic machine maintenance.",
-        "Ensured daily production targets were met while consistently applying occupational health and safety (K3) procedures."
+        "Operated production machinery in compliance with SOPs and prepared raw materials for smooth processing.",
+        "Conducted step-by-step product quality inspections and carried out routine light maintenance.",
+        "Ensured daily targets were achieved while adhering to safety (K3) standards and driving efficiency with the team."
       ]
     }
   },
@@ -131,6 +131,10 @@ export const education = [
 ];
 
 export const skills = [
+  "Pengoperasian Mesin Produksi & Laser",
+  "Quality Control (QC)",
+  "Preventive Maintenance Dasar",
+  "Penerapan SOP & K3",
   "Administrative Management",
   "Office Administration",
   "Document Control",
@@ -144,10 +148,7 @@ export const skills = [
   "HTML5 & CSS3",
   "JavaScript (ES6+)",
   "React.js & Vite",
-  "Git & GitHub",
-  "Python (Basic)",
-  "Problem Solving & Critical Thinking",
-  "Time Management & Detail Oriented"
+  "Git & GitHub"
 ];
 
 export const projects = [
@@ -188,6 +189,6 @@ export const projects = [
       en: "Professional portfolio website built using React and Vite to showcase profile, work experience, education, skills, projects, and contact info."
     },
     tech: ["React", "Vite", "JavaScript", "CSS3"],
-    link: "https://github.com/jembargelar/jembar-portfolio"        
+    link: "https://github.com/jembargelar/jembar-portfolio"
   }
 ];
