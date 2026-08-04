@@ -11,17 +11,14 @@ export default function Hero() {
     <section id="about" style={{ padding: "120px 20px 80px 20px", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "90vh" }}>
       <div style={{ maxWidth: "920px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "30px" }}>
 
-        {/* Foto Profil Interaktif (Bisa diklik & ada efek hover) */}
+        {/* Foto Profil Interaktif (Bisa diklik, bentuk lingkaran, ada efek glow) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          style={{
-            position: "relative",
-            cursor: "pointer"
-          }}
+          style={{ position: "relative", cursor: "pointer" }}
         >
           <a 
             href="/jem.webp" 
@@ -30,7 +27,7 @@ export default function Hero() {
             title={isEn ? "Click to view full image" : "Klik untuk melihat foto ukuran penuh"}
             style={{ display: "block", position: "relative" }}
           >
-            {/* Efek Lingkaran Bercahaya di Luar */}
+            {/* Efek Lingkaran Bercahaya */}
             <div style={{
               position: "absolute",
               inset: "-6px",
@@ -41,7 +38,7 @@ export default function Hero() {
               opacity: 0.7
             }} />
 
-            {/* Kontainer Foto Utama */}
+            {/* Kontainer Foto Lingkaran */}
             <div
               style={{
                 position: "relative",
@@ -62,7 +59,7 @@ export default function Hero() {
               />
             </div>
 
-            {/* Badge kecil petunjuk "Klik" */}
+            {/* Badge View */}
             <span style={{
               position: "absolute",
               bottom: "5px",
@@ -81,21 +78,67 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Teks Perkenalan */}
+        {/* Teks Perkenalan Lengkap */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
+          style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "center" }}
         >
-          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: "800", color: "var(--text-primary)", marginBottom: "12px" }}>
+          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", fontWeight: "500", margin: 0 }}>
+            {isEn ? "Hello, I am" : "Halo, Saya"}
+          </p>
+
+          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: "800", color: "var(--text-primary)", margin: 0 }}>
             {personal.name} <span style={{ color: "var(--accent)" }}>.</span>
           </h1>
-          <p style={{ fontSize: "1.1rem", color: "var(--accent)", fontWeight: "600", marginBottom: "16px" }}>
-            {isEn ? personal.roleEn : personal.roleId}
+
+          {/* Badge Peran / Keahlian */}
+          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center", marginTop: "4px" }}>
+            <span style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", padding: "6px 14px", borderRadius: "20px", fontSize: "0.85rem", color: "var(--accent)", fontWeight: "600" }}>Administrative Professional</span>
+            <span style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", padding: "6px 14px", borderRadius: "20px", fontSize: "0.85rem", color: "var(--accent)", fontWeight: "600" }}>Web Developer</span>
+            <span style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", padding: "6px 14px", borderRadius: "20px", fontSize: "0.85rem", color: "var(--accent)", fontWeight: "600" }}>Management Student</span>
+          </div>
+
+          <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", maxWidth: "700px", margin: "10px auto 0 auto", lineHeight: "1.7", textAlign: "center" }}>
+            {isEn 
+              ? "Experienced in administration, manufacturing, and data processing through PT Syahrendra Megawatt Indonesia, PT Garyman Kreasi Indonesia, and UD Sinar Soccer Industries. Currently developing expertise as a Web Developer focusing on modern, responsive, and SEO-friendly websites." 
+              : "Memiliki pengalaman di bidang administrasi, manufaktur, dan pengolahan data melalui PT Syahrendra Megawatt Indonesia, PT Garyman Kreasi Indonesia, serta UD Sinar Soccer Industries. Saat ini saya juga mengembangkan keahlian sebagai Web Developer dengan fokus pada website modern, responsif, dan SEO Friendly."
+            }
           </p>
-          <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", maxWidth: "600px", margin: "0 auto", lineHeight: "1.6" }}>
-            {isEn ? personal.aboutEn : personal.aboutId}
-          </p>
+        </motion.div>
+
+        {/* Statistik / Counter Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "20px",
+            width: "100%",
+            maxWidth: "600px",
+            margin: "10px 0",
+            padding: "20px",
+            background: "var(--card-bg)",
+            border: "1px solid var(--card-border)",
+            borderRadius: "16px",
+            boxShadow: "0 10px 30px var(--shadow-color)"
+          }}
+        >
+          <div style={{ textAlign: "center" }}>
+            <h3 style={{ fontSize: "1.8rem", fontWeight: "800", color: "var(--accent)", margin: "0 0 4px 0" }}>500+</h3>
+            <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", margin: 0, fontWeight: "600" }}>Project</p>
+          </div>
+          <div style={{ textAlign: "center", borderLeft: "1px solid var(--card-border)", borderRight: "1px solid var(--card-border)" }}>
+            <h3 style={{ fontSize: "1.8rem", fontWeight: "800", color: "var(--accent)", margin: "0 0 4px 0" }}>3+</h3>
+            <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", margin: 0, fontWeight: "600" }}>Experience</p>
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <h3 style={{ fontSize: "1.8rem", fontWeight: "800", color: "var(--accent)", margin: "0 0 4px 0" }}>100%</h3>
+            <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", margin: 0, fontWeight: "600" }}>Commitment</p>
+          </div>
         </motion.div>
 
         {/* Tombol Aksi */}
