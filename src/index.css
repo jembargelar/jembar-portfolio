@@ -3,7 +3,7 @@
 /* --- DARK MODE (DEFAULT) --- */
 :root {
   --bg-color: #030712;
-  --text-primary: #ffffff;
+  --text-primary: #f9fafb;
   --text-secondary: #9ca3af;
   --card-bg: rgba(17, 24, 39, 0.7);
   --card-border: rgba(255, 255, 255, 0.1);
@@ -12,14 +12,14 @@
   --shadow-color: rgba(0, 0, 0, 0.5);
 }
 
-/* --- LIGHT MODE (SANGAT KONTRAST) --- */
-.light-mode {
+/* --- LIGHT MODE (TEMA TERANG) --- */
+.light-mode, [data-theme="light"], html.light-mode, body.light-mode {
   --bg-color: #f8fafc !important;
   --text-primary: #0f172a !important;
   --text-secondary: #334155 !important;
   --card-bg: #ffffff !important;
-  --card-border: #e2e8f0 !important;
-  --nav-bg: rgba(255, 255, 255, 0.9) !important;
+  --card-border: #cbd5e1 !important;
+  --nav-bg: rgba(255, 255, 255, 0.95) !important;
   --dropdown-bg: #ffffff !important;
   --shadow-color: rgba(0, 0, 0, 0.08) !important;
 }
@@ -29,7 +29,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 html, body {
@@ -38,19 +38,42 @@ html, body {
   overflow-x: hidden;
 }
 
+/* Paksa Semua Section Transparan */
 section, header, main, footer, div {
   background-color: transparent;
 }
 
-/* PAKSA SEMUA JUDUL MENGIKUTI WARNA UTAMA THEME */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary) !important;
+/* --- PAKSA WARNA JUDUL DI LIGHT MODE --- */
+.light-mode h1,
+.light-mode h2,
+.light-mode h3,
+.light-mode h4,
+.light-mode h5,
+.light-mode h6,
+.light-mode div,
+.light-mode span:not(.btn-gradient span) {
+  color: #0f172a !important;
 }
 
-p, span:not(.btn-gradient span) {
-  color: var(--text-secondary);
+.light-mode p {
+  color: #334155 !important;
 }
 
+/* --- FIX UNTUK DARK MODE (SUPAYA TETAP PUTIH) --- */
+:not(.light-mode) h1,
+:not(.light-mode) h2,
+:not(.light-mode) h3,
+:not(.light-mode) h4,
+:not(.light-mode) h5,
+:not(.light-mode) h6 {
+  color: #f9fafb !important;
+}
+
+:not(.light-mode) p {
+  color: #9ca3af !important;
+}
+
+/* Card & Navbar Fix */
 .glass-card {
   background: var(--card-bg) !important;
   border: 1px solid var(--card-border) !important;
@@ -63,7 +86,14 @@ p, span:not(.btn-gradient span) {
   border-bottom: 1px solid var(--card-border) !important;
 }
 
+/* Button Gradien Utama */
 .btn-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
+}
+
+/* Reduksi Cahaya Aurora di Mode Terang */
+.light-mode .aurora-glow-1,
+.light-mode .aurora-glow-2 {
+  opacity: 0.1 !important;
 }
