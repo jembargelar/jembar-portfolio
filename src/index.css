@@ -1,57 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 /* =========================================================
-   1. CYBERPUNK PALETTE (DARK MATRIX & LIGHT CYBER-CLEAN)
+   1. ELEGANT OBSIDIAN PALETTE (GELAP MEWAH & TIDAK NORAK)
    ========================================================= */
 
-/* --- DARK MODE (NEON OBSIDIAN - DEFAULT) --- */
+/* --- DARK MODE (MINIMALIS FUTURISTIK) --- */
 :root {
-  --bg-color: #05070e;
-  --text-primary: #00f0ff;
-  --text-heading: #ffffff;
-  --text-body: #e2e8f0;
-  --text-muted: #94a3b8;
-  --card-bg: rgba(10, 15, 29, 0.85);
-  --card-border: rgba(0, 240, 255, 0.3);
-  --nav-bg: rgba(5, 7, 14, 0.9);
-  --dropdown-bg: #0a0f1d;
-  --tag-bg: rgba(255, 0, 127, 0.15);
-  --tag-text: #ff2a85;
-  --tag-border: rgba(255, 0, 127, 0.4);
-  --shadow-color: rgba(0, 240, 255, 0.25);
-  --accent-cyan: #00f0ff;
-  --accent-pink: #ff2a85;
+  --bg-color: #0b0f19;
+  --text-heading: #f8fafc;
+  --text-body: #94a3b8;
+  --card-bg: rgba(17, 24, 39, 0.75);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --nav-bg: rgba(11, 15, 25, 0.9);
+  --tag-bg: rgba(59, 130, 246, 0.1);
+  --tag-text: #60a5fa;
+  --tag-border: rgba(59, 130, 246, 0.25);
+  --accent-color: #3b82f6;
+  --shadow-color: rgba(0, 0, 0, 0.4);
 }
 
-/* --- LIGHT MODE (CYBER-CLEAN HIGH CONTRAST) --- */
+/* --- LIGHT MODE (CLEAN PREMIER) --- */
 .light-mode, [data-theme="light"], html.light-mode, body.light-mode {
   --bg-color: #f8fafc !important;
-  --text-primary: #0284c7 !important;
   --text-heading: #0f172a !important;
-  --text-body: #1e293b !important;
-  --text-muted: #475569 !important;
+  --text-body: #334155 !important;
   --card-bg: #ffffff !important;
-  --card-border: #0284c7 !important;
+  --card-border: #e2e8f0 !important;
   --nav-bg: rgba(255, 255, 255, 0.95) !important;
-  --dropdown-bg: #ffffff !important;
-  --tag-bg: #e0f2fe !important;
-  --tag-text: #0369a1 !important;
-  --tag-border: #0284c7 !important;
-  --shadow-color: rgba(2, 132, 199, 0.12) !important;
-  --accent-cyan: #0284c7 !important;
-  --accent-pink: #e11d48 !important;
+  --tag-bg: #f1f5f9 !important;
+  --tag-text: #1d4ed8 !important;
+  --tag-border: #cbd5e1 !important;
+  --accent-color: #2563eb !important;
+  --shadow-color: rgba(15, 23, 42, 0.06) !important;
 }
 
 /* =========================================================
-   2. GLOBAL RESET & CYBERPUNK GRID
+   2. GLOBAL RESET & BASE STYLES
    ========================================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   scroll-behavior: smooth;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 html, body {
@@ -64,57 +56,31 @@ section, header, main, footer, div[id] {
   background-color: transparent !important;
 }
 
-/* Cyberpunk Grid Background */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-image: 
-    linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
-  background-size: 30px 30px;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.light-mode::before {
-  background-image: 
-    linear-gradient(rgba(2, 132, 199, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(2, 132, 199, 0.06) 1px, transparent 1px) !important;
-}
-
 /* =========================================================
-   3. TYPOGRAPHY FORCE OVERRIDE (100% PASTI TERBACA)
+   3. TYPOGRAPHY (DIJAMIN 100% TERBACA DI KEDUA MODE)
    ========================================================= */
 
-/* Judul Utama Section & H1-H6 */
+/* Headings Utama (Judul Besar) */
 h1, h2, h3, h4, h5, h6, 
 h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
-  font-family: 'Chakra Petch', sans-serif !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
   font-weight: 700 !important;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.02em;
   color: var(--text-heading) !important;
-}
-
-/* Judul Biru Neon di Dark Mode */
-:not(.light-mode) h1, :not(.light-mode) h2 {
-  color: var(--text-heading) !important;
-  text-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+  text-shadow: none !important;
 }
 
 .light-mode h1, .light-mode h2, .light-mode h3, 
 .light-mode h4, .light-mode h5, .light-mode h6,
 .light-mode h1 *, .light-mode h2 *, .light-mode h3 * {
   color: #0f172a !important;
-  text-shadow: none !important;
 }
 
 /* Paragraf & Deskripsi Teks */
 p, li, p *, li * {
-  font-family: 'JetBrains Mono', monospace !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
   color: var(--text-body) !important;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   line-height: 1.6;
 }
 
@@ -122,13 +88,13 @@ p, li, p *, li * {
   color: #334155 !important;
 }
 
-/* Text Accent (Aksen Pink / Cyan) */
+/* Highlight Text */
 span.text-accent, strong, b {
-  color: var(--accent-pink) !important;
+  color: var(--accent-color) !important;
 }
 
 /* =========================================================
-   4. CYBERPUNK CARDS & NAVBAR
+   4. CARDS & NAVBAR (SIMPLE, ELEGANT GLASS)
    ========================================================= */
 
 /* Glass Navbar */
@@ -136,26 +102,23 @@ span.text-accent, strong, b {
   background: var(--nav-bg) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--accent-cyan) !important;
-  box-shadow: 0 0 20px var(--shadow-color) !important;
+  border-bottom: 1px solid var(--card-border) !important;
+  box-shadow: 0 4px 20px var(--shadow-color) !important;
 }
 
-/* Cyber Card Container */
+/* Glass Card Container */
 .glass-card {
   background: var(--card-bg) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border) !important;
-  border-radius: 8px !important;
+  border-radius: 16px !important;
   box-shadow: 0 4px 20px var(--shadow-color) !important;
-  position: relative;
-  overflow: hidden;
 }
 
 .glass-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-pink) !important;
-  box-shadow: 0 0 25px rgba(255, 0, 127, 0.35) !important;
+  border-color: var(--accent-color) !important;
+  transform: translateY(-3px);
 }
 
 /* Tag / Badge Keahlian & Tech Stack */
@@ -165,42 +128,30 @@ div span:not(.btn-gradient span) {
   color: var(--tag-text) !important;
   border: 1px solid var(--tag-border) !important;
   font-family: 'JetBrains Mono', monospace !important;
-  font-size: 0.75rem !important;
-  font-weight: 700 !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
   padding: 4px 10px !important;
-  border-radius: 4px !important;
-  text-transform: uppercase;
-}
-
-/* Progress Bar Skills Fix */
-div[style*="width"] {
-  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink)) !important;
+  border-radius: 8px !important;
 }
 
 /* =========================================================
-   5. NEON BUTTONS & INTERACTION
+   5. BUTTONS & ACCENTS
    ========================================================= */
 
-/* Tombol Utama (Hubungi Saya) */
 .btn-gradient {
-  background: var(--accent-pink) !important;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
-  border: 1px solid var(--accent-pink) !important;
-  border-radius: 6px !important;
-  font-family: 'Chakra Petch', sans-serif !important;
-  font-weight: 700 !important;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 0 0 15px rgba(255, 0, 127, 0.5) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
 }
 
 .btn-gradient:hover {
-  background: var(--accent-cyan) !important;
-  color: #000000 !important;
-  border-color: var(--accent-cyan) !important;
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.8) !important;
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  transform: translateY(-2px);
 }
 
 .btn-gradient span, .btn-gradient svg, .btn-gradient * {
-  color: inherit !important;
+  color: #ffffff !important;
 }
