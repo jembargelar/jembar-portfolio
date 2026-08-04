@@ -9,10 +9,14 @@
   --card-border: rgba(255, 255, 255, 0.1);
   --nav-bg: rgba(3, 7, 18, 0.85);
   --dropdown-bg: #0f172a;
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.08);
+  --btn-secondary-border: rgba(255, 255, 255, 0.15);
+  --btn-secondary-text: #f3f4f6;
   --shadow-color: rgba(0, 0, 0, 0.5);
 }
 
-/* --- LIGHT MODE (TEMA TERANG) --- */
+/* --- LIGHT MODE (SANGAT KONTRAS & SERASI) --- */
 .light-mode, [data-theme="light"], html.light-mode, body.light-mode {
   --bg-color: #f8fafc !important;
   --text-primary: #0f172a !important;
@@ -21,7 +25,11 @@
   --card-border: #cbd5e1 !important;
   --nav-bg: rgba(255, 255, 255, 0.95) !important;
   --dropdown-bg: #ffffff !important;
-  --shadow-color: rgba(0, 0, 0, 0.08) !important;
+  --grid-line: rgba(15, 23, 42, 0.05) !important;
+  --btn-secondary-bg: #e2e8f0 !important;
+  --btn-secondary-border: #cbd5e1 !important;
+  --btn-secondary-text: #0f172a !important;
+  --shadow-color: rgba(15, 23, 42, 0.08) !important;
 }
 
 * {
@@ -38,42 +46,57 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Paksa Semua Section Transparan */
-section, header, main, footer, div {
-  background-color: transparent;
+/* Paksa Semua Container dan Section Mengikuti Latar Belakang Utama */
+section, header, main, footer, div[id] {
+  background-color: transparent !important;
 }
 
-/* --- PAKSA WARNA JUDUL DI LIGHT MODE --- */
+/* --- ATURAN PENYESUAIAN SEMUA TEKS DI LIGHT MODE --- */
 .light-mode h1,
 .light-mode h2,
 .light-mode h3,
 .light-mode h4,
 .light-mode h5,
 .light-mode h6,
-.light-mode div,
-.light-mode span:not(.btn-gradient span) {
+.light-mode strong,
+.light-mode b,
+.light-mode label {
   color: #0f172a !important;
 }
 
-.light-mode p {
+.light-mode p,
+.light-mode li,
+.light-mode span:not(.btn-gradient span) {
   color: #334155 !important;
 }
 
-/* --- FIX UNTUK DARK MODE (SUPAYA TETAP PUTIH) --- */
+.light-mode a:not(.btn-gradient) {
+  color: #0f172a !important;
+}
+
+/* --- ATURAN PENYESUAIAN SEMUA TEKS DI DARK MODE --- */
 :not(.light-mode) h1,
 :not(.light-mode) h2,
 :not(.light-mode) h3,
 :not(.light-mode) h4,
 :not(.light-mode) h5,
-:not(.light-mode) h6 {
+:not(.light-mode) h6,
+:not(.light-mode) strong,
+:not(.light-mode) b,
+:not(.light-mode) label {
   color: #f9fafb !important;
 }
 
-:not(.light-mode) p {
+:not(.light-mode) p,
+:not(.light-mode) li {
   color: #9ca3af !important;
 }
 
-/* Card & Navbar Fix */
+:not(.light-mode) a:not(.btn-gradient) {
+  color: #f9fafb !important;
+}
+
+/* Glass Card & Navbar Adaptif */
 .glass-card {
   background: var(--card-bg) !important;
   border: 1px solid var(--card-border) !important;
@@ -86,14 +109,26 @@ section, header, main, footer, div {
   border-bottom: 1px solid var(--card-border) !important;
 }
 
-/* Button Gradien Utama */
+/* Tag Badge di dalam Card */
+.light-mode .glass-card span {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #1d4ed8 !important;
+}
+
+/* Tombol Utama (Button Gradien) */
 .btn-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
 }
 
-/* Reduksi Cahaya Aurora di Mode Terang */
+.btn-gradient span, .btn-gradient svg {
+  color: #ffffff !important;
+}
+
+/* Reduksi Efek Aurora Glow di Mode Terang */
 .light-mode .aurora-glow-1,
 .light-mode .aurora-glow-2 {
   opacity: 0.1 !important;
 }
+
