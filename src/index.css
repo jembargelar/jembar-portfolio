@@ -1,60 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
 /* =========================================================
-   1. SYSTEM THEME VARIABLES (MODERN, CLEAN & ELEGANT)
+   1. CYBERPUNK THEME VARIABLES
    ========================================================= */
 
-/* --- DARK MODE (OBSIDIAN BLUE NIGHT) --- */
+/* --- DARK CYBERPUNK (DEFAULT) --- */
 :root {
-  --bg-color: #030712;
-  --text-primary: #f9fafb;
-  --text-secondary: #9ca3af;
-  --card-bg: rgba(17, 24, 39, 0.75);
-  --card-border: rgba(255, 255, 255, 0.12);
-  --nav-bg: rgba(3, 7, 18, 0.85);
-  --dropdown-bg: #0f172a;
-  --tag-bg: rgba(59, 130, 246, 0.12);
-  --tag-text: #60a5fa;
-  --tag-border: rgba(59, 130, 246, 0.25);
-  --shadow-color: rgba(0, 0, 0, 0.5);
-  --glow-color: rgba(59, 130, 246, 0.35);
-  --btn-secondary-bg: rgba(255, 255, 255, 0.08);
-  --btn-secondary-border: rgba(255, 255, 255, 0.15);
+  --bg-color: #080811;
+  --text-primary: #00f0ff;
+  --text-secondary: #ff007f;
+  --text-body: #e2e8f0;
+  --card-bg: rgba(13, 13, 26, 0.85);
+  --card-border: #00f0ff;
+  --nav-bg: rgba(8, 8, 17, 0.9);
+  --dropdown-bg: #0d0d1a;
+  --tag-bg: rgba(255, 0, 127, 0.15);
+  --tag-text: #ff007f;
+  --tag-border: #ff007f;
+  --shadow-color: rgba(0, 240, 255, 0.25);
+  --accent-cyan: #00f0ff;
+  --accent-pink: #ff007f;
+  --accent-yellow: #ffe600;
+  --btn-secondary-bg: rgba(0, 240, 255, 0.08);
+  --btn-secondary-border: #00f0ff;
 }
 
-/* --- LIGHT MODE (FRESH SLATE & SHARP CONTRAST) --- */
+/* --- LIGHT CYBERPUNK (NEON HIGH-CONTRAST) --- */
 .light-mode, [data-theme="light"], html.light-mode, body.light-mode {
-  --bg-color: #f8fafc !important;
+  --bg-color: #f0f4f8 !important;
   --text-primary: #0f172a !important;
-  --text-secondary: #334155 !important;
+  --text-secondary: #d90429 !important;
+  --text-body: #1e293b !important;
   --card-bg: #ffffff !important;
-  --card-border: #cbd5e1 !important;
+  --card-border: #00f0ff !important;
   --nav-bg: rgba(255, 255, 255, 0.92) !important;
   --dropdown-bg: #ffffff !important;
-  --tag-bg: #e0f2fe !important;
-  --tag-text: #0369a1 !important;
-  --tag-border: #bae6fd !important;
-  --shadow-color: rgba(15, 23, 42, 0.08) !important;
-  --glow-color: rgba(37, 99, 235, 0.2) !important;
-  --btn-secondary-bg: #f1f5f9 !important;
-  --btn-secondary-border: #cbd5e1 !important;
+  --tag-bg: #ffe5ec !important;
+  --tag-text: #d90429 !important;
+  --tag-border: #ff4d6d !important;
+  --shadow-color: rgba(0, 240, 255, 0.15) !important;
+  --btn-secondary-bg: #e2e8f0 !important;
+  --btn-secondary-border: #0f172a !important;
 }
 
 /* =========================================================
-   2. GLOBAL RESET & SMOOTH ANIMATIONS
+   2. GLOBAL RESET & CYBERPUNK TYPOGRAPHY
    ========================================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'Chakra Petch', 'JetBrains Mono', sans-serif;
   scroll-behavior: smooth;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 html, body {
   background-color: var(--bg-color) !important;
-  color: var(--text-primary) !important;
+  color: var(--text-body) !important;
   overflow-x: hidden;
 }
 
@@ -62,125 +65,122 @@ section, header, main, footer, div[id] {
   background-color: transparent !important;
 }
 
+/* Cyberpunk Grid Background Lines */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: -1;
+}
+
 /* =========================================================
-   3. PAKSA WARNA SEMUA TEKS DI LIGHT MODE (PASTI MUNCUL 100%)
+   3. HEADINGS & TEXT CYBERPUNK GLOW
    ========================================================= */
 
-.light-mode h1, .light-mode h1 *,
-.light-mode h2, .light-mode h2 *,
-.light-mode h3, .light-mode h3 *,
-.light-mode h4, .light-mode h4 *,
-.light-mode h5, .light-mode h5 *,
-.light-mode h6, .light-mode h6 *,
-.light-mode strong, .light-mode b, .light-mode label {
-  color: #0f172a !important;
-  -webkit-text-fill-color: initial !important;
+/* Headings Utama (Judul Besar) */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-primary) !important;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
 }
 
-.light-mode p, .light-mode p *,
-.light-mode li, .light-mode li *,
-.light-mode small {
-  color: #334155 !important;
-}
-
-.light-mode a:not(.btn-gradient) {
+.light-mode h1, .light-mode h2, .light-mode h3, 
+.light-mode h4, .light-mode h5, .light-mode h6 {
+  text-shadow: none !important;
   color: #0f172a !important;
 }
 
-/* Paksa Teks di Dalam Card */
-.light-mode .glass-card,
-.light-mode .glass-card *,
-.light-mode div[class*="card"] * {
-  color: #0f172a !important;
+/* Paragraf & Teks Deskripsi */
+p, li {
+  color: var(--text-body) !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.92rem;
 }
 
-.light-mode .glass-card p,
-.light-mode .glass-card p * {
-  color: #334155 !important;
-}
-
-/* Fix Tag / Badge di Dalam Card */
-.light-mode .glass-card span,
-.light-mode span:not(.btn-gradient span) {
-  background-color: var(--tag-bg) !important;
-  color: var(--tag-text) !important;
-  border: 1px solid var(--tag-border) !important;
+/* Highlight / Sub-judul Pink Neon */
+span, strong, b {
+  color: var(--accent-pink);
 }
 
 /* =========================================================
-   4. EFEK DYNAMIC & MODERN CARD HOVER (ANIMASI MEWAH)
+   4. CYBERPUNK CARDS & NAVBAR (NEON BORDERS)
    ========================================================= */
 
 /* Glass Navbar */
 .glass-navbar {
   background: var(--nav-bg) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border) !important;
-  box-shadow: 0 8px 32px var(--shadow-color) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--accent-cyan) !important;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3) !important;
 }
 
-/* Glass Card dengan Efek Floating & Glowing Border */
+/* Cards Cyberpunk dengan Corner Accent */
 .glass-card {
   background: var(--card-bg) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--card-border) !important;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px var(--shadow-color) !important;
+  border-radius: 8px !important; /* Cyberpunk khas siku/minimalis */
+  box-shadow: 0 0 15px var(--shadow-color) !important;
   position: relative;
   overflow: hidden;
 }
 
 .glass-card:hover {
-  transform: translateY(-6px) scale(1.01);
-  border-color: #3b82f6 !important;
-  box-shadow: 0 12px 30px -5px var(--glow-color) !important;
+  transform: translateY(-4px) scale(1.01);
+  border-color: var(--accent-pink) !important;
+  box-shadow: 0 0 25px rgba(255, 0, 127, 0.4) !important;
 }
 
-/* Shimmer Line Animation di Atas Card */
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
-  transition: 0.5s;
+/* Tag / Badge Tech Stack Cyberpunk */
+.glass-card span, 
+div span:not(.btn-gradient span) {
+  background-color: var(--tag-bg) !important;
+  color: var(--tag-text) !important;
+  border: 1px solid var(--tag-border) !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.glass-card:hover::before {
-  left: 100%;
-}
+/* =========================================================
+   5. NEON BUTTONS (CYBERPUNK GLOW)
+   ========================================================= */
 
-/* Tombol Gradient Utama (Glow on Hover) */
+/* Tombol Utama (Hubungi Saya) */
 .btn-gradient {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  background: #ff007f !important;
   color: #ffffff !important;
-  border: none !important;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
-  border-radius: 12px;
+  border: 1px solid #ff007f !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.6) !important;
 }
 
 .btn-gradient:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6) !important;
+  background: #00f0ff !important;
+  color: #080811 !important;
+  border-color: #00f0ff !important;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.8) !important;
 }
 
 .btn-gradient span, .btn-gradient svg, .btn-gradient * {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
+  color: inherit !important;
 }
 
-/* Aurora Glow Accent di Background */
-.aurora-glow-1, .aurora-glow-2 {
-  filter: blur(90px);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
+/* Reduksi Cahaya Aurora di Light Mode */
 .light-mode .aurora-glow-1,
 .light-mode .aurora-glow-2 {
-  opacity: 0.12 !important;
+  opacity: 0.05 !important;
 }
