@@ -19,113 +19,155 @@ export const personal = {
 export const experiences = [
   {
     period: {
-      id: "November 2025 - Agustus 2026",
-      en: "November 2025 - August 2026"
+      id: "November 2025 – Agustus 2026",
+      en: "Nov 2025 – Aug 2026"
     },
-    role: "Administrative Officer",
+    role: {
+      id: "Spesialis Administrasi & Kontrol Dokumen",
+      en: "Administrative & Document Control Specialist"
+    },
     company: "PT Syahrendra Megawatt Indonesia",
+    description: {
+      id: "Mengelola pemrosesan administrasi SLO & NIDI, pencatatan operasional, validasi database pelanggan, dan pelaporan eksekutif.",
+      en: "Managed SLO & NIDI administration, operational logging, customer database validation, and executive reporting."
+    },
     highlights: {
       id: [
-        "Mengelola administrasi instalasi tenaga listrik mulai dari pengajuan Sertifikat Laik Operasi (SLO) dan Nomor Identitas Instalasi Tenaga Listrik (NIDI).",
-        "Melakukan verifikasi kelengkapan dokumen pelanggan, menyusun invoice, dan mengelola database operasional.",
-        "Membuat laporan administrasi, memonitor progres pekerjaan, dan meningkatkan efisiensi operasional melalui otomasi Microsoft Excel."
+        "Mengelola administrasi instalasi tenaga listrik (SLO & NIDI).",
+        "Verifikasi dokumen pelanggan, pembuatan invoice, dan database operasional.",
+        "Penyusunan laporan operasional dan otomasi data dengan Microsoft Excel."
       ],
       en: [
-        "Managed power installation administration from application for Operation Worthiness Certificate (SLO) and Power Installation Identity Number (NIDI).",
-        "Verified customer document completeness, created invoices, and managed operational databases.",
-        "Prepared administrative reports, monitored work progress, and improved operational efficiency through Microsoft Excel automation."
+        "Managed power installation administration (SLO & NIDI).",
+        "Customer document verification, invoicing, and database management.",
+        "Operational reporting and data automation using Microsoft Excel."
       ]
-    }
+    },
+    tags: ["SLO & NIDI", "Excel Advanced", "Document Control", "Operational Reporting"]
   },
   {
     period: {
-      id: "September 2025 - Oktober 2025",
-      en: "September 2025 - October 2025"
+      id: "September 2025 – Oktober 2025",
+      en: "Sep 2025 – Oct 2025"
     },
-    role: "Operator Cutting Laser",
+    role: {
+      id: "Operator Cutting Laser",
+      en: "Laser Cutting Operator"
+    },
     company: "PT Garyman Kreasi Indonesia",
+    description: {
+      id: "Mengoperasikan mesin cutting laser sesuai SOP, mengatur parameter presisi material, serta melakukan kontrol kualitas (QC) dan perawatan berkala mesin.",
+      en: "Operated laser cutting machinery according to SOPs, adjusted material precision parameters, and conducted quality control (QC) and maintenance."
+    },
     highlights: {
       id: [
-        "Mengoperasikan mesin cutting laser sesuai SOP perusahaan dan mengatur parameter mesin sesuai spesifikasi.",
-        "Menyiapkan material presisi serta melakukan pemeriksaan kualitas (Quality Control) hasil pemotongan.",
-        "Menjaga kebersihan area kerja, melakukan perawatan ringan mesin, dan berkolaborasi dengan tim produksi untuk mencapai target harian."
+        "Mengoperasikan mesin cutting laser sesuai SOP perusahaan.",
+        "Menyiapkan material dan mengatur parameter mesin sesuai spesifikasi.",
+        "Melakukan pemeriksaan kualitas (QC) hasil pemotongan.",
+        "Menjaga kebersihan area kerja dan perawatan ringan mesin.",
+        "Berkolaborasi dengan tim produksi untuk mencapai target harian."
       ],
       en: [
-        "Operated laser cutting machinery according to company SOPs and adjusted machine parameters to specification.",
-        "Prepared materials and performed Quality Control (QC) inspections on cut results.",
-        "Maintained work area cleanliness, performed routine light maintenance, and collaborated with production team to achieve daily targets."
+        "Operated laser cutting machinery according to company SOPs.",
+        "Prepared materials and adjusted machine parameters to specification.",
+        "Conducted Quality Control (QC) inspections on cut results.",
+        "Maintained work area cleanliness and light machine maintenance.",
+        "Collaborated with production team to achieve daily targets."
       ]
-    }
+    },
+    tags: ["Laser Cutting", "Quality Control", "Preventive Maintenance", "SOP & K3"]
   },
   {
     period: {
-      id: "Maret 2022 - Agustus 2024",
-      en: "March 2022 - August 2024"
+      id: "Maret 2022 – Agustus 2024",
+      en: "Mar 2022 – Aug 2024"
     },
-    role: "Operator Mesin Produksi",
+    role: {
+      id: "Operator Mesin Produksi",
+      en: "Production Machine Operator"
+    },
     company: "UD Sinar Soccer Industries",
+    description: {
+      id: "Mengoperasikan mesin produksi sesuai SOP, mengawasi alur manufaktur, melakukan pengecekan kualitas bertahap, dan menjaga standar K3 serta target harian.",
+      en: "Operated production machinery according to SOPs, monitored manufacturing flow, conducted quality checks, and maintained K3 safety standards."
+    },
     highlights: {
       id: [
-        "Mengoperasikan mesin produksi sesuai SOP serta menyiapkan bahan baku untuk kelancaran proses manufaktur.",
-        "Melakukan pengecekan kualitas produk bertahap dan menjalankan perawatan ringan mesin produksi secara berkala.",
-        "Memastikan target produksi harian tercapai dengan menerapkan standar K3 dan meningkatkan efisiensi bersama tim."
+        "Mengoperasikan mesin produksi sesuai SOP perusahaan.",
+        "Menyiapkan bahan baku dan memastikan proses produksi lancar.",
+        "Melakukan pengecekan kualitas produk secara bertahap.",
+        "Melakukan perawatan ringan dan menjaga kebersihan mesin.",
+        "Memastikan target harian tercapai sesuai standar K3.",
+        "Bekerja sama dengan tim untuk meningkatkan efisiensi kerja."
       ],
       en: [
-        "Operated production machinery in compliance with SOPs and prepared raw materials for smooth processing.",
-        "Conducted step-by-step product quality inspections and carried out routine light maintenance.",
-        "Ensured daily targets were achieved while adhering to safety (K3) standards and driving efficiency with the team."
+        "Operated production machinery according to company SOPs.",
+        "Prepared raw materials and ensured smooth production flow.",
+        "Conducted step-by-step product quality inspections.",
+        "Performed routine light maintenance and machine cleaning.",
+        "Ensured daily targets were met while adhering to K3 standards.",
+        "Collaborated with team to improve workflow efficiency."
       ]
-    }
+    },
+    tags: ["Machine Operation", "Quality Control", "Preventive Maintenance", "SOP & K3 Compliance"]
   },
   {
     period: {
-      id: "Juli 2022 - Desember 2022",
-      en: "July 2022 - December 2022"
+      id: "Juli 2022 – Desember 2022",
+      en: "Jul 2022 – Dec 2022"
     },
-    role: "Waiter & Cashier",
+    role: {
+      id: "Waiter & Kasir",
+      en: "Waiter & Cashier"
+    },
     company: "Kedai Susumurni 26",
+    description: {
+      id: "Memberikan pelayanan responsif kepada pelanggan, mengelola transaksi kasir (POS), dan menjaga kebersihan area operasional.",
+      en: "Provided responsive customer service, managed POS cashier transactions, and maintained operational area cleanliness."
+    },
     highlights: {
       id: [
-        "Memberikan pelayanan responsif kepada pelanggan, mengelola transaksi kasir (POS), dan memproses pesanan.",
-        "Menjaga kebersihan area operasional dan memberikan pengalaman pelayanan yang ramah serta profesional."
+        "Mengelola transaksi kasir (POS) dan memproses pesanan.",
+        "Menjaga kebersihan area operasional dan pelayanan pelanggan."
       ],
       en: [
-        "Provided responsive customer service, managed cashier transactions (POS), and processed orders.",
-        "Maintained operational area cleanliness and provided a friendly, professional service experience."
+        "Managed POS cashier transactions and processed orders.",
+        "Maintained operational cleanliness and customer service."
       ]
-    }
+    },
+    tags: ["POS Cashier", "Customer Service", "Order Processing"]
   }
 ];
 
 export const education = [
   {
     period: {
-      id: "September 2026 - Sekarang",
-      en: "September 2026 - Present"
+      id: "September 2026 – Sekarang",
+      en: "Sep 2026 – Present"
     },
     degree: {
-      id: "S1 Manajemen (Bachelor of Management)",
+      id: "S1 Manajemen",
       en: "Bachelor of Management"
     },
     institution: "Universitas Terbuka",
     description: {
-      id: "Mempelajari Manajemen Operasional, Manajemen SDM, Administrasi Bisnis, Manajemen Risiko, Kepemimpinan, Analisis Organisasi, Pengambilan Keputusan, serta Manajemen Strategis.",
-      en: "Studying Operations Management, HR Management, Business Administration, Risk Management, Leadership, Organizational Analysis, Decision Making, and Strategic Management."
+      id: "Mempelajari Manajemen Operasional, Manajemen SDM, Administrasi Bisnis, Manajemen Risiko, Kepemimpinan, Analisis Organisasi, dan Manajemen Strategis.",
+      en: "Studying Operations Management, HR Management, Business Administration, Risk Management, Leadership, and Strategic Management."
     }
   },
   {
     period: {
-      id: "Juli 2020 - Mei 2023",
-      en: "July 2020 - May 2023"
+      id: "Juli 2020 – Mei 2023",
+      en: "Jul 2020 – May 2023"
     },
     degree: {
-      id: "SMA - IPA (Senior High School - Science)",
+      id: "SMA - IPA",
       en: "Senior High School - Science"
     },
     institution: "SMAN 1 Garut",
     description: {
-      id: "Lulus dari jurusan Ilmu Pengetahuan Alam (IPA) dengan fokus pada kemampuan analitis, logika, matematika, dan pemecahan masalah.",
-      en: "Graduated with a major in Natural Sciences (IPA), focusing on analytical skills, logic, mathematics, and problem-solving."
+      id: "Lulus dari jurusan Ilmu Pengetahuan Alam (IPA) dengan fokus pada kemampuan analitis, logika, dan pemecahan masalah.",
+      en: "Graduated with a major in Natural Sciences (IPA), focusing on analytical skills and problem-solving."
     }
   }
 ];
@@ -142,9 +184,7 @@ export const skills = [
   "Data Validation & Reporting",
   "SLO & NIDI Administration",
   "Invoice Management",
-  "Operational Reporting",
   "Microsoft Excel (Advanced)",
-  "Microsoft Word & PowerPoint",
   "HTML5 & CSS3",
   "JavaScript (ES6+)",
   "React.js & Vite",
@@ -159,8 +199,8 @@ export const projects = [
       en: "Web Application"
     },
     description: {
-      id: "Dashboard administrasi berbasis React yang dirancang untuk memantau proses pengajuan Sertifikat Laik Operasi (SLO) dan Nomor Identitas Instalasi Tenaga Listrik (NIDI). Memiliki fitur pencarian dan pencatatan operasional.",
-      en: "React-based administration dashboard designed to monitor the application process for Operation Worthiness Certificate (SLO) and Power Installation Identity Number (NIDI). Features search and operational logging."
+      id: "Dashboard administrasi berbasis React yang dirancang untuk memantau proses pengajuan SLO dan NIDI.",
+      en: "React-based administration dashboard designed to monitor SLO and NIDI applications."
     },
     tech: ["React", "Vite", "JavaScript", "CSS3"],
     link: "https://github.com/jembargelar/jembar-portfolio"
@@ -172,8 +212,8 @@ export const projects = [
       en: "Microsoft Excel Automation"
     },
     description: {
-      id: "Sistem otomasi administrasi menggunakan Microsoft Excel untuk mempercepat proses rekapitulasi data pelanggan, validasi data, pembuatan invoice, serta penyusunan laporan operasional.",
-      en: "Administrative automation system using Microsoft Excel to accelerate customer data recapitulation, data validation, invoice generation, and operational report synthesis."
+      id: "Sistem otomasi administrasi menggunakan Microsoft Excel untuk mempercepat rekapitulasi data dan laporan.",
+      en: "Administrative automation system using Microsoft Excel to accelerate data recapitulation."
     },
     tech: ["Microsoft Excel", "Excel Formula", "Data Processing"],
     link: "#"
@@ -185,10 +225,11 @@ export const projects = [
       en: "Frontend Development"
     },
     description: {
-      id: "Website portofolio profesional yang dibangun menggunakan React dan Vite untuk menampilkan profil, pengalaman kerja, pendidikan, keterampilan, proyek, dan kontak.",
-      en: "Professional portfolio website built using React and Vite to showcase profile, work experience, education, skills, projects, and contact info."
+      id: "Website portofolio profesional yang dibangun menggunakan React dan Vite.",
+      en: "Professional portfolio website built using React and Vite."
     },
     tech: ["React", "Vite", "JavaScript", "CSS3"],
     link: "https://github.com/jembargelar/jembar-portfolio"
   }
 ];
+
