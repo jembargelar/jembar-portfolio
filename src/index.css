@@ -60,13 +60,27 @@ section, header, footer, main, div[id] {
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px) !important;
 }
 
-/* Universal Typography Fix */
+/* Typography Rules Fix (Warna Adaptif Sesuai Theme) */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary) !important;
+  color: var(--text-primary);
 }
 
 p, span:not(.btn-gradient span) {
   color: var(--text-secondary);
+}
+
+/* Khusus saat Light Mode Aktif */
+.light-mode h1, 
+.light-mode h2, 
+.light-mode h3, 
+.light-mode h4, 
+.light-mode h5, 
+.light-mode h6 {
+  color: #0f172a !important;
+}
+
+.light-mode p {
+  color: #475569 !important;
 }
 
 /* Navbar & Mobile Dropdown Sync */
@@ -76,11 +90,6 @@ p, span:not(.btn-gradient span) {
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--card-border) !important;
   box-shadow: 0 4px 20px var(--shadow-color) !important;
-}
-
-/* Mobile Dropdown Menu Container Fix */
-div[class*="mobile-menu"], div[style*="position: absolute"] {
-  color: var(--text-primary);
 }
 
 /* Cards Styling */
@@ -117,3 +126,4 @@ button:not(.btn-gradient), a:not(.btn-gradient) {
 .light-mode .aurora-glow-2 {
   opacity: 0.25;
 }
+
