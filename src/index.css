@@ -1,25 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* =========================================================
-   1. COLOR VARIABLES
+   1. SYSTEM THEME VARIABLES (OBSIDIAN DARK & CLEAN LIGHT)
    ========================================================= */
 
-/* --- DARK MODE (OBSIDIAN BLUE NIGHT) --- */
+/* --- DARK MODE / NIGHT MODE (DEFAULT) --- */
 :root {
   --bg-color: #0b0f19;
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
   --card-bg: #111827;
   --card-border: rgba(255, 255, 255, 0.12);
   --nav-bg: rgba(11, 15, 25, 0.9);
-  --tag-bg: rgba(59, 130, 246, 0.18);
-  --tag-text: #93c5fd;
-  --tag-border: rgba(59, 130, 246, 0.35);
+  --tag-bg: rgba(59, 130, 246, 0.15);
+  --tag-text: #60a5fa;
+  --tag-border: rgba(59, 130, 246, 0.3);
   --accent-blue: #3b82f6;
   --shadow-color: rgba(0, 0, 0, 0.5);
+  --stat-num: #60a5fa;
 }
 
-/* --- LIGHT MODE (SLATE CLEAN) --- */
+/* --- LIGHT MODE (SLATE PREMIUM) --- */
 .light-mode, [data-theme="light"], html.light-mode, body.light-mode {
   --bg-color: #f8fafc !important;
   --text-primary: #0f172a !important;
@@ -32,6 +33,7 @@
   --tag-border: #bfdbfe !important;
   --accent-blue: #2563eb !important;
   --shadow-color: rgba(15, 23, 42, 0.06) !important;
+  --stat-num: #2563eb !important;
 }
 
 /* =========================================================
@@ -43,7 +45,7 @@
   box-sizing: border-box;
   font-family: 'Plus Jakarta Sans', sans-serif;
   scroll-behavior: smooth;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 html, body {
@@ -57,10 +59,10 @@ section, header, main, footer, div[id] {
 }
 
 /* =========================================================
-   3. PERBAIKAN TOTAL NIGHT MODE (MODE GELAP 100% PASTI TERBACA)
+   3. OVERRIDE TOTAL NIGHT MODE (PERBAIKAN HERO & SEMUA SECTION)
    ========================================================= */
 
-/* --- PAKSA WARNA SEMUA TEKS DI NIGHT MODE --- */
+/* --- TEKS MODE GELAP (NIGHT MODE) --- */
 :not(.light-mode) h1, :not(.light-mode) h1 *,
 :not(.light-mode) h2, :not(.light-mode) h2 *,
 :not(.light-mode) h3, :not(.light-mode) h3 *,
@@ -68,17 +70,17 @@ section, header, main, footer, div[id] {
 :not(.light-mode) h5, :not(.light-mode) h5 *,
 :not(.light-mode) h6, :not(.light-mode) h6 *,
 :not(.light-mode) strong, :not(.light-mode) b {
-  color: #f8fafc !important;
-  -webkit-text-fill-color: #f8fafc !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 :not(.light-mode) p, :not(.light-mode) p *,
 :not(.light-mode) li, :not(.light-mode) li *,
 :not(.light-mode) small, :not(.light-mode) small * {
-  color: #cbd5e1 !important;
+  color: #94a3b8 !important;
 }
 
-/* Fix Card & Tag di Night Mode */
+/* Fix Kartu & Tag di Night Mode */
 :not(.light-mode) .glass-card,
 :not(.light-mode) [class*="card"] {
   background-color: #111827 !important;
@@ -87,33 +89,44 @@ section, header, main, footer, div[id] {
 }
 
 :not(.light-mode) span:not(.btn-gradient span) {
-  background-color: rgba(59, 130, 246, 0.18) !important;
-  color: #93c5fd !important;
-  border-color: rgba(59, 130, 246, 0.35) !important;
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
 }
 
 /* =========================================================
-   4. PERBAIKAN LIGHT MODE (MODE TERANG)
+   4. OVERRIDE TOTAL LIGHT MODE (MODE TERANG)
    ========================================================= */
+
 .light-mode h1, .light-mode h1 *,
 .light-mode h2, .light-mode h2 *,
 .light-mode h3, .light-mode h3 *,
 .light-mode h4, .light-mode h4 *,
 .light-mode h5, .light-mode h5 *,
 .light-mode h6, .light-mode h6 *,
-.light-mode strong, .light-mode b, .light-mode label {
+.light-mode strong, .light-mode b, .light-mode label,
+.light-mode [class*="text-white"],
+.light-mode [class*="text-slate-100"],
+.light-mode [class*="text-slate-200"] {
   color: #0f172a !important;
   -webkit-text-fill-color: #0f172a !important;
 }
 
 .light-mode p, .light-mode p *,
-.light-mode li, .light-mode li * {
+.light-mode li, .light-mode li *,
+.light-mode small, .light-mode small *,
+.light-mode [class*="text-slate-300"],
+.light-mode [class*="text-slate-400"] {
   color: #334155 !important;
 }
 
-.light-mode .glass-card {
+.light-mode .glass-card,
+.light-mode [class*="card"],
+.light-mode [class*="bg-slate-800"],
+.light-mode [class*="bg-slate-900"] {
   background-color: #ffffff !important;
   border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
 }
 
 .light-mode span:not(.btn-gradient span) {
@@ -123,8 +136,16 @@ section, header, main, footer, div[id] {
 }
 
 /* =========================================================
-   5. NAVBAR & BUTTONS
+   5. SPECIAL HERO STATS & BUTTONS
    ========================================================= */
+
+/* Angka Statistik (3+, 10+, 100%) */
+div[style*="font-size"] span, 
+.stat-number {
+  color: var(--stat-num) !important;
+}
+
+/* Navbar */
 .glass-navbar {
   background: var(--nav-bg) !important;
   backdrop-filter: blur(16px);
@@ -133,10 +154,12 @@ section, header, main, footer, div[id] {
   box-shadow: 0 4px 20px var(--shadow-color) !important;
 }
 
+/* Glass Card Radius */
 .glass-card {
-  border-radius: 16px;
+  border-radius: 16px !important;
 }
 
+/* Tombol Utama (Hubungi Saya / Kirim Email) */
 .btn-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
