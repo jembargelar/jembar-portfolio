@@ -16,8 +16,8 @@
   --shadow-color: rgba(0, 0, 0, 0.5);
 }
 
-/* --- LIGHT MODE (CLEAN & MODERN) --- */
-.light-mode, [data-theme="light"] {
+/* --- LIGHT MODE (CLEAN & HIGH CONTRAST) --- */
+.light-mode, [data-theme="light"], html.light-mode, body.light-mode {
   --bg-color: #f8fafc !important;
   --text-primary: #0f172a !important;
   --text-secondary: #475569 !important;
@@ -41,18 +41,18 @@
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-body {
+html, body {
   background-color: var(--bg-color) !important;
   color: var(--text-primary) !important;
   overflow-x: hidden;
 }
 
-/* Force All Section Backgrounds to Follow Global Body Theme */
+/* Paksa seluruh bagian menggunakan latar transparan agar mengikuti warna tema utama */
 section, header, footer, main, div[id] {
   background-color: transparent !important;
 }
 
-/* Grid Pattern Dynamics */
+/* Pola Grid Adaptif */
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image:
@@ -60,30 +60,16 @@ section, header, footer, main, div[id] {
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px) !important;
 }
 
-/* Typography Rules Fix (Warna Adaptif Sesuai Theme) */
+/* Aturan Tipografi Utama */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary);
+  color: var(--text-primary) !important;
 }
 
-p, span:not(.btn-gradient span) {
-  color: var(--text-secondary);
+p {
+  color: var(--text-secondary) !important;
 }
 
-/* Khusus saat Light Mode Aktif */
-.light-mode h1, 
-.light-mode h2, 
-.light-mode h3, 
-.light-mode h4, 
-.light-mode h5, 
-.light-mode h6 {
-  color: #0f172a !important;
-}
-
-.light-mode p {
-  color: #475569 !important;
-}
-
-/* Navbar & Mobile Dropdown Sync */
+/* Navbar & Card Fixes */
 .glass-navbar {
   background: var(--nav-bg) !important;
   backdrop-filter: blur(16px);
@@ -92,7 +78,6 @@ p, span:not(.btn-gradient span) {
   box-shadow: 0 4px 20px var(--shadow-color) !important;
 }
 
-/* Cards Styling */
 .glass-card {
   background: var(--card-bg) !important;
   backdrop-filter: blur(12px);
@@ -107,23 +92,15 @@ p, span:not(.btn-gradient span) {
   box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2) !important;
 }
 
-/* Primary Button (Hubungi Saya) */
+/* Tombol Utama */
 .btn-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
 }
 
-/* Secondary Button (Unduh CV) Fix */
-button:not(.btn-gradient), a:not(.btn-gradient) {
-  background-color: var(--btn-secondary-bg);
-  border: 1px solid var(--btn-secondary-border);
-  color: var(--btn-secondary-text) !important;
-}
-
-/* Glow Accent Softener in Light Mode */
+/* Reduksi Cahaya Aurora di Light Mode */
 .light-mode .aurora-glow-1,
 .light-mode .aurora-glow-2 {
-  opacity: 0.25;
+  opacity: 0.15;
 }
-
