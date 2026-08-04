@@ -1,3 +1,4 @@
+import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -9,17 +10,15 @@ import Contact from "./components/Contact";
 
 export default function App() {
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#030712", color: "#f9fafb" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "#030712", color: "#ffffff" }}>
       <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Education />
-        <Contact />
-      </main>
+      <Hero />
+      <About />
+      <Experience />
+      <Skills />
+      <Projects />
+      <Education />
+      <Contact />
     </div>
   );
 }
