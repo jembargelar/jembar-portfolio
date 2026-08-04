@@ -37,14 +37,14 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: t("navAbout"), href: "#about" },
-    { name: t("navExperience"), href: "#experience" },
-    { name: t("navSkills"), href: "#skills" },
-    { name: t("navProjects"), href: "#projects" },
-    { name: t("navEducation"), href: "#education" },
-    { name: t("navContact"), href: "#contact" },
+    { name: isEn ? "About" : "Tentang", href: "#about" },
+    { name: isEn ? "Experience" : "Pengalaman", href: "#experience" },
+    { name: isEn ? "Skills" : "Keahlian", href: "#skills" },
+    { name: isEn ? "Projects" : "Proyek", href: "#projects" },
+    { name: isEn ? "Certificates" : "Sertifikat", href: "#certificates" }, // <-- Menu baru ditambahkan di sini
+    { name: isEn ? "Education" : "Pendidikan", href: "#education" },
+    { name: isEn ? "Contact" : "Kontak", href: "#contact" },
   ];
-
   return (
     <header style={{
       position: "fixed",

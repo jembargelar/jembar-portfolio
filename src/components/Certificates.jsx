@@ -12,8 +12,8 @@ export default function Certificates() {
       issuer: "PT Syahrendra Megawatt Indonesia",
       date: "05 Agustus 2026",
       desc: isEn 
-        ? "Official work experience letter as Administration Staff managing SLO/NIDI data and document control."
-        : "Surat keterangan resmi pengalaman kerja sebagai Staf Administrasi (Admin) dan Kontrol Dokumen[span_0](start_span)[span_0](end_span).",
+        ? "Official work experience letter verifying role as Administration Staff managing SLO/NIDI data and document control."
+        : "Surat keterangan resmi pengalaman kerja sebagai Staf Administrasi dan Kontrol Dokumen, mengelola permohonan SLO/NIDI[span_0](start_span)[span_0](end_span).",
       tag: "Professional Experience",
       fileUrl: "/paklaring.pdf"
     },
@@ -22,8 +22,8 @@ export default function Certificates() {
       issuer: "SMA Negeri 1 Garut",
       date: "05 Mei 2023",
       desc: isEn 
-        ? "Graduated from MIPA (Science) major with great academic records."
-        : "Kelulusan jenjang pendidikan menengah atas Jurusan MIPA dengan nilai rata-rata sangat memuaskan[span_1](start_span)[span_1](end_span).",
+        ? "Official graduation document from MIPA (Science) major with excellent academic performance."
+        : "Surat keterangan kelulusan jenjang SMA Jurusan MIPA dengan daftar nilai mata pelajaran yang sangat memuaskan[span_1](start_span)[span_1](end_span).",
       tag: "Education",
       fileUrl: "/KELULUSAN.pdf"
     },
@@ -32,7 +32,7 @@ export default function Certificates() {
       issuer: "SMA Negeri 1 Garut (Lab Komputer)",
       date: "08 Mei 2023",
       desc: isEn 
-        ? "Completed computer coursework focusing on Office Integration, Data Analysis, and Programming."
+        ? "Competency certificate focusing on Office Integration, Data Analysis, Computer Networks, and Programming."
         : "Sertifikat kompetensi mata pelajaran Informatika dengan fokus Integrasi Office, Analisis Data, dan Algoritma Pemrograman[span_2](start_span)[span_2](end_span).",
       tag: "Technical Skill",
       fileUrl: "/SERTIFIKAT.pdf"
@@ -42,8 +42,8 @@ export default function Certificates() {
       issuer: "SMA Negeri 1 Garut",
       date: "03 Februari 2023",
       desc: isEn 
-        ? "Awarded 'Sangat Memuaskan' (86) for scientific research paper titled 'Pengaruh Game Online Terhadap Sikap Belajar Siswa'."
-        : "Meraih predikat Sangat Memuaskan (86) untuk Uji Karya Tulis Ilmiah tentang Pengaruh Game Online Terhadap Sikap Belajar[span_3](start_span)[span_3](end_span).",
+        ? "Awarded 'Sangat Memuaskan' (Score: 86) for scientific research paper titled 'Pengaruh Game Online Terhadap Sikap Belajar'."
+        : "Meraih predikat Sangat Memuaskan dengan nilai 86 untuk Uji Karya Tulis Ilmiah tentang Pengaruh Game Online Terhadap Sikap Belajar[span_3](start_span)[span_3](end_span).",
       tag: "Achievement",
       fileUrl: "/PIAGAN%20PENGHARGAAN.pdf"
     }
@@ -145,4 +145,3 @@ export default function Certificates() {
     </section>
   );
 }
-
