@@ -1,41 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* =========================================================
-   1. ELEGANT OBSIDIAN PALETTE (GELAP MEWAH & TIDAK NORAK)
+   1. COLOR VARIABLES (CLEAN & PROFESSIONAL)
    ========================================================= */
 
-/* --- DARK MODE (MINIMALIS FUTURISTIK) --- */
+/* --- DARK MODE (OBSIDIAN BLUE) --- */
 :root {
   --bg-color: #0b0f19;
-  --text-heading: #f8fafc;
-  --text-body: #94a3b8;
-  --card-bg: rgba(17, 24, 39, 0.75);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --nav-bg: rgba(11, 15, 25, 0.9);
-  --tag-bg: rgba(59, 130, 246, 0.1);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --card-bg: #111827;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(11, 15, 25, 0.85);
+  --tag-bg: rgba(59, 130, 246, 0.12);
   --tag-text: #60a5fa;
   --tag-border: rgba(59, 130, 246, 0.25);
-  --accent-color: #3b82f6;
+  --accent-blue: #3b82f6;
   --shadow-color: rgba(0, 0, 0, 0.4);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
+  --btn-secondary-text: #f8fafc;
 }
 
-/* --- LIGHT MODE (CLEAN PREMIER) --- */
+/* --- LIGHT MODE (CLEAN SLATE & HIGH CONTRAST) --- */
 .light-mode, [data-theme="light"], html.light-mode, body.light-mode {
   --bg-color: #f8fafc !important;
-  --text-heading: #0f172a !important;
-  --text-body: #334155 !important;
+  --text-primary: #0f172a !important;
+  --text-secondary: #475569 !important;
   --card-bg: #ffffff !important;
   --card-border: #e2e8f0 !important;
-  --nav-bg: rgba(255, 255, 255, 0.95) !important;
-  --tag-bg: #f1f5f9 !important;
+  --nav-bg: rgba(255, 255, 255, 0.9) !important;
+  --tag-bg: #eff6ff !important;
   --tag-text: #1d4ed8 !important;
-  --tag-border: #cbd5e1 !important;
-  --accent-color: #2563eb !important;
+  --tag-border: #bfdbfe !important;
+  --accent-blue: #2563eb !important;
   --shadow-color: rgba(15, 23, 42, 0.06) !important;
+  --btn-secondary-bg: #f1f5f9 !important;
+  --btn-secondary-text: #0f172a !important;
 }
 
 /* =========================================================
-   2. GLOBAL RESET & BASE STYLES
+   2. GLOBAL RESET
    ========================================================= */
 * {
   margin: 0;
@@ -48,53 +52,30 @@
 
 html, body {
   background-color: var(--bg-color) !important;
-  color: var(--text-body) !important;
+  color: var(--text-primary) !important;
   overflow-x: hidden;
 }
 
 section, header, main, footer, div[id] {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 /* =========================================================
-   3. TYPOGRAPHY (DIJAMIN 100% TERBACA DI KEDUA MODE)
+   3. TYPOGRAPHY & HEADINGS FIX
    ========================================================= */
-
-/* Headings Utama (Judul Besar) */
-h1, h2, h3, h4, h5, h6, 
-h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
-  font-weight: 700 !important;
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--text-heading) !important;
-  text-shadow: none !important;
 }
 
-.light-mode h1, .light-mode h2, .light-mode h3, 
-.light-mode h4, .light-mode h5, .light-mode h6,
-.light-mode h1 *, .light-mode h2 *, .light-mode h3 * {
-  color: #0f172a !important;
-}
-
-/* Paragraf & Deskripsi Teks */
-p, li, p *, li * {
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
-  color: var(--text-body) !important;
-  font-size: 0.95rem;
+p, li {
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
-.light-mode p, .light-mode li, .light-mode p *, .light-mode li * {
-  color: #334155 !important;
-}
-
-/* Highlight Text */
-span.text-accent, strong, b {
-  color: var(--accent-color) !important;
-}
-
 /* =========================================================
-   4. CARDS & NAVBAR (SIMPLE, ELEGANT GLASS)
+   4. COMPONENTS (NAVBAR, CARDS, BADGES)
    ========================================================= */
 
 /* Glass Navbar */
@@ -109,49 +90,42 @@ span.text-accent, strong, b {
 /* Glass Card Container */
 .glass-card {
   background: var(--card-bg) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border) !important;
-  border-radius: 16px !important;
+  border-radius: 16px;
   box-shadow: 0 4px 20px var(--shadow-color) !important;
 }
 
 .glass-card:hover {
-  border-color: var(--accent-color) !important;
-  transform: translateY(-3px);
+  border-color: var(--accent-blue) !important;
 }
 
-/* Tag / Badge Keahlian & Tech Stack */
+/* Tags / Badges */
 .glass-card span, 
 div span:not(.btn-gradient span) {
   background-color: var(--tag-bg) !important;
   color: var(--tag-text) !important;
   border: 1px solid var(--tag-border) !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 0.78rem !important;
-  font-weight: 600 !important;
-  padding: 4px 10px !important;
-  border-radius: 8px !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
 }
 
-/* =========================================================
-   5. BUTTONS & ACCENTS
-   ========================================================= */
-
+/* Primary Button (Hubungi Saya / Kirim Email) */
 .btn-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
   border: none !important;
-  border-radius: 10px !important;
-  font-weight: 600 !important;
+  border-radius: 10px;
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
-}
-
-.btn-gradient:hover {
-  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
-  transform: translateY(-2px);
 }
 
 .btn-gradient span, .btn-gradient svg, .btn-gradient * {
   color: #ffffff !important;
+}
+
+/* Secondary Button (Unduh CV / GitHub) */
+button:not(.btn-gradient), a:not(.btn-gradient) {
+  color: var(--text-primary);
 }

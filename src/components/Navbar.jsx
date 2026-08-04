@@ -9,7 +9,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Toggle Dark / Light Mode secara presisi ke html & body
+  // Sinkronisasi tema ke html & body
   useEffect(() => {
     const root = document.documentElement;
     const body = document.body;
@@ -99,7 +99,7 @@ export default function Navbar() {
             letterSpacing: "-0.02em"
           }}
         >
-          {personal.name.split(" ")[0]}<span style={{ color: "#3B82F6" }}>.dev</span>
+          {personal.name.split(" ")[0]}<span style={{ color: "var(--accent-blue, #3b82f6)" }}>.dev</span>
         </button>
 
         {/* Menu Desktop Horizontal */}
@@ -129,17 +129,18 @@ export default function Navbar() {
               background: "var(--btn-secondary-bg)",
               border: "1px solid var(--card-border)",
               borderRadius: "50%",
-              width: "34px",
-              height: "34px",
+              width: "36px",
+              height: "36px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              color: "var(--text-primary)"
+              color: "var(--text-primary)",
+              transition: "transform 0.2s ease"
             }}
             title="Toggle Dark/Light Mode"
           >
-            {isDarkMode ? <Sun size={16} color="#f59e0b" /> : <Moon size={16} color="#3b82f6" />}
+            {isDarkMode ? <Sun size={17} color="#f59e0b" /> : <Moon size={17} color="#3b82f6" />}
           </button>
 
           {/* Switcher Bahasa */}
@@ -148,30 +149,34 @@ export default function Navbar() {
             alignItems: "center",
             gap: "4px",
             backgroundColor: "var(--btn-secondary-bg)",
-            padding: "4px 8px",
+            padding: "4px 10px",
             borderRadius: "20px",
             border: "1px solid var(--card-border)"
           }}>
-            <Globe size={13} color="#60a5fa" />
+            <Globe size={13} color="var(--accent-blue, #60a5fa)" />
             <button
               onClick={() => changeLanguage('id')}
               style={{
-                background: "none", border: "none",
-                color: i18n.language === 'id' ? '#60a5fa' : 'var(--text-secondary)',
-                fontWeight: i18n.language === 'id' ? '700' : '400',
-                cursor: "pointer", fontSize: "0.75rem"
+                background: "none",
+                border: "none",
+                color: i18n.language === 'id' ? 'var(--accent-blue, #3b82f6)' : 'var(--text-secondary)',
+                fontWeight: i18n.language === 'id' ? '700' : '500',
+                cursor: "pointer",
+                fontSize: "0.75rem"
               }}
             >
               ID
             </button>
-            <span style={{ color: "var(--text-secondary)", fontSize: "0.75rem" }}>|</span>
+            <span style={{ color: "var(--text-secondary)", fontSize: "0.75rem", opacity: 0.5 }}>|</span>
             <button
               onClick={() => changeLanguage('en')}
               style={{
-                background: "none", border: "none",
-                color: i18n.language === 'en' ? '#60a5fa' : 'var(--text-secondary)',
-                fontWeight: i18n.language === 'en' ? '700' : '400',
-                cursor: "pointer", fontSize: "0.75rem"
+                background: "none",
+                border: "none",
+                color: i18n.language === 'en' ? 'var(--accent-blue, #3b82f6)' : 'var(--text-secondary)',
+                fontWeight: i18n.language === 'en' ? '700' : '500',
+                cursor: "pointer",
+                fontSize: "0.75rem"
               }}
             >
               EN
@@ -186,8 +191,8 @@ export default function Navbar() {
               background: "var(--btn-secondary-bg)",
               border: "1px solid var(--card-border)",
               borderRadius: "50%",
-              width: "34px",
-              height: "34px",
+              width: "36px",
+              height: "36px",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
@@ -211,14 +216,15 @@ export default function Navbar() {
                 top: "65px",
                 right: "0",
                 width: "220px",
-                backgroundColor: "var(--dropdown-bg)",
+                backgroundColor: "var(--card-bg)",
                 backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
                 border: "1px solid var(--card-border)",
                 borderRadius: "16px",
-                padding: "16px",
+                padding: "12px",
                 display: "flex",
                 flexDirection: "column",
-                gap: "8px",
+                gap: "4px",
                 boxShadow: "0 10px 30px var(--shadow-color)",
                 zIndex: 101
               }}
@@ -233,8 +239,9 @@ export default function Navbar() {
                     textDecoration: "none",
                     fontSize: "0.9rem",
                     fontWeight: "500",
-                    padding: "8px 12px",
-                    borderRadius: "8px"
+                    padding: "10px 14px",
+                    borderRadius: "10px",
+                    transition: "background 0.2s ease"
                   }}
                 >
                   {link.name}
