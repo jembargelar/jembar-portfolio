@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { personal } from "../data/portfolio";
 
 export default function Hero() {
@@ -26,7 +26,7 @@ export default function Hero() {
           }}
         >
           <img
-            src="/jem.jpg?v=2"
+            src="/jem.webp?v=2"
             alt={personal.name}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
