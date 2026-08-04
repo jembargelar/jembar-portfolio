@@ -1,19 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import CountUp from "react-countup";
 import { personal } from "../data/portfolio";
 
 export default function Hero() {
   const { t } = useTranslation();
 
   return (
-    <section 
-      id="hero" 
+    <section
+      id="hero"
       className="bg-grid-pattern"
-      style={{ 
+      style={{
         position: "relative",
-        paddingTop: "130px", 
-        paddingBottom: "80px", 
+        paddingTop: "130px",
+        paddingBottom: "80px",
         paddingLeft: "20px",
         paddingRight: "20px",
         minHeight: "100vh",
@@ -27,7 +26,7 @@ export default function Hero() {
       <div className="aurora-glow-2" />
 
       <div style={{ maxWidth: "1150px", margin: "0 auto", width: "100%", zIndex: 1 }}>
-        
+
         {/* LAYOUT GRID 60 : 40 */}
         <div style={{
           display: "grid",
@@ -35,7 +34,7 @@ export default function Hero() {
           gap: "48px",
           alignItems: "center"
         }}>
-          
+
           {/* KOLOM KIRI: TEKS 60% */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -66,7 +65,7 @@ export default function Hero() {
               <span>{t("available")}</span>
             </div>
 
-            {/* Nama Raksasa Typography (Up to 72px) */}
+            {/* Nama Raksasa Typography */}
             <h1 style={{
               fontSize: "clamp(2.5rem, 5.5vw, 4.2rem)",
               fontWeight: "900",
@@ -87,9 +86,9 @@ export default function Hero() {
             </h1>
 
             {/* Roles */}
-            <p style={{ 
-              color: "#38bdf8", 
-              fontWeight: "500", 
+            <p style={{
+              color: "#38bdf8",
+              fontWeight: "500",
               fontSize: "1rem",
               marginBottom: "20px",
               lineHeight: "1.5"
@@ -110,7 +109,7 @@ export default function Hero() {
 
             {/* Tombol Gradient & Outline */}
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "48px" }}>
-              <motion.a 
+              <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="#contact"
@@ -130,7 +129,7 @@ export default function Hero() {
                 {t("hireMe")} ➔
               </motion.a>
 
-              <motion.a 
+              <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href={personal.cvUrl}
@@ -153,7 +152,7 @@ export default function Hero() {
               </motion.a>
             </div>
 
-            {/* Stats Bar dengan Counter Animation */}
+            {/* Stats Bar Tanpa Dependency Crash */}
             <div style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
@@ -163,21 +162,21 @@ export default function Hero() {
             }}>
               <div>
                 <h3 style={{ fontSize: "1.8rem", fontWeight: "800", color: "#60a5fa" }}>
-                  <CountUp end={2} duration={2.5} suffix="+" />
+                  3+
                 </h3>
                 <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)" }}>{t("yearsExp")}</p>
               </div>
 
               <div>
                 <h3 style={{ fontSize: "1.8rem", fontWeight: "800", color: "#60a5fa" }}>
-                  <CountUp end={20} duration={2.5} suffix="+" />
+                  10+
                 </h3>
                 <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)" }}>{t("projectsDone")}</p>
               </div>
 
               <div>
                 <h3 style={{ fontSize: "1.8rem", fontWeight: "800", color: "#10b981" }}>
-                  <CountUp end={100} duration={2.5} suffix="%" />
+                  100%
                 </h3>
                 <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)" }}>{t("commitment")}</p>
               </div>
@@ -185,7 +184,7 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* KOLOM KANAN: FOTO BESAR 420PX + GLOW AURA 40% */}
+          {/* KOLOM KANAN: FOTO */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -213,7 +212,7 @@ export default function Hero() {
                   objectPosition: "center"
                 }}
               />
-              
+
               {/* Badge Social Proof */}
               <div style={{
                 position: "absolute",
@@ -231,7 +230,7 @@ export default function Hero() {
               }}>
                 <div style={{ fontSize: "1.2rem" }}>✨</div>
                 <div>
-                  <div style={{ color: "#f59e0b", fontSize: "0.8rem", marginBottom: "2px" }}>⭐⭐⭐⭐⭐</div>
+                  <div style={{ color: "#f59e0b", fontSize: "0.8rem", marginBottom: "2px" }}>⭐ ⭐⭐⭐⭐</div>
                   <p style={{ fontSize: "0.8rem", color: "#e5e7eb", fontWeight: "600", margin: 0 }}>Trusted & High Quality Solutions</p>
                 </div>
               </div>
@@ -244,4 +243,3 @@ export default function Hero() {
     </section>
   );
 }
-
