@@ -4,29 +4,29 @@
    1. COLOR SYSTEM VARIABLES
    ========================================================= */
 
-/* --- NIGHT MODE (DEFAULT) --- */
+/* --- NIGHT MODE (PREMIUM OBSIDIAN & HIGH CONTRAST) --- */
 :root {
-  --bg-color: #0b0f19;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --card-bg: rgba(17, 24, 39, 0.85);
-  --card-border: rgba(255, 255, 255, 0.12);
-  --nav-bg: rgba(11, 15, 25, 0.9);
-  --tag-bg: rgba(59, 130, 246, 0.15);
-  --tag-text: #60a5fa;
-  --tag-border: rgba(59, 130, 246, 0.3);
+  --bg-color: #030712;                   /* Black Onyx Pekat */
+  --text-primary: #ffffff;               /* Putih Murni Tajam */
+  --text-secondary: #94a3b8;             /* Slate Grey Terbaca Jelas */
+  --card-bg: #111827;                    /* Solid Dark Card */
+  --card-border: rgba(255, 255, 255, 0.15); /* Border Kartu Jelas */
+  --nav-bg: rgba(3, 7, 18, 0.9);
+  --tag-bg: rgba(59, 130, 246, 0.18);
+  --tag-text: #60a5fa;                   /* Biru Menyala */
+  --tag-border: rgba(96, 165, 250, 0.35);
   --accent-blue: #3b82f6;
-  --subheading-color: #38bdf8;
-  --shadow-color: rgba(0, 0, 0, 0.5);
-  --btn-sec-bg: rgba(255, 255, 255, 0.06);
+  --subheading-color: #38bdf8;            /* Cyan Terang */
+  --shadow-color: rgba(0, 0, 0, 0.8);
+  --btn-sec-bg: #1f2937;
   --map-filter: grayscale(80%) invert(90%) contrast(120%);
 }
 
-/* --- LIGHT MODE --- */
+/* --- LIGHT MODE (SLATE CLEAN & CRISP) --- */
 .light-mode {
   --bg-color: #f8fafc;
   --text-primary: #0f172a;
-  --text-secondary: #475569;
+  --text-secondary: #334155;
   --card-bg: #ffffff;
   --card-border: #cbd5e1;
   --nav-bg: rgba(255, 255, 255, 0.95);
@@ -34,9 +34,9 @@
   --tag-text: #1d4ed8;
   --tag-border: #bfdbfe;
   --accent-blue: #2563eb;
-  --subheading-color: #2563eb;
+  --subheading-color: #1d4ed8;
   --shadow-color: rgba(15, 23, 42, 0.08);
-  --btn-sec-bg: #f1f5f9;
+  --btn-sec-bg: #e2e8f0;
   --map-filter: none;
 }
 
@@ -53,8 +53,8 @@
 }
 
 html, body {
-  background-color: var(--bg-color);
-  color: var(--text-primary);
+  background-color: var(--bg-color) !important;
+  color: var(--text-primary) !important;
   overflow-x: hidden;
 }
 
@@ -82,17 +82,18 @@ p, li, div, small, label {
 }
 
 .glass-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
   border-radius: 16px;
-  box-shadow: 0 4px 20px var(--shadow-color);
+  box-shadow: 0 8px 30px var(--shadow-color);
 }
 
 .glass-card:hover {
-  border-color: var(--accent-blue);
+  border-color: var(--accent-blue) !important;
+  transform: translateY(-2px);
 }
 
-/* Style Terpusat Badge Tech Stack & Tags */
+/* Badge Tech Stack & Tags */
 .glass-card span:not(.status-dot),
 span.tech-badge {
   background-color: var(--tag-bg) !important;
@@ -108,13 +109,14 @@ span.tech-badge {
 
 /* Tombol Gradient Utama */
 .btn-gradient {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
   border: none;
   border-radius: 10px;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
 }
 
 .btn-gradient span, .btn-gradient svg, .btn-gradient * {
   color: #ffffff !important;
 }
+
