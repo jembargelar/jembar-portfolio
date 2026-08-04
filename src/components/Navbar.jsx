@@ -9,6 +9,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
 
+  // Cek bahasa aktif (Inggris atau Indonesia)
+  const isEn = i18n.language === 'en';
+
   // Sinkronisasi tema ke html & body
   useEffect(() => {
     const root = document.documentElement;
@@ -41,10 +44,11 @@ export default function Navbar() {
     { name: isEn ? "Experience" : "Pengalaman", href: "#experience" },
     { name: isEn ? "Skills" : "Keahlian", href: "#skills" },
     { name: isEn ? "Projects" : "Proyek", href: "#projects" },
-    { name: isEn ? "Certificates" : "Sertifikat", href: "#certificates" }, // <-- Menu baru ditambahkan di sini
+    { name: isEn ? "Certificates" : "Sertifikat", href: "#certificates" },
     { name: isEn ? "Education" : "Pendidikan", href: "#education" },
     { name: isEn ? "Contact" : "Kontak", href: "#contact" },
   ];
+
   return (
     <header style={{
       position: "fixed",
