@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Mail, MapPin, ExternalLink, Github, Linkedin } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin } from "lucide-react";
 import { personal } from "../data/portfolio";
 
 export default function Contact() {
@@ -10,7 +10,7 @@ export default function Contact() {
     <section id="contact" style={{ padding: "80px 20px" }}>
       <div style={{ maxWidth: "950px", margin: "0 auto" }}>
         
-        {/* Title */}
+        {/* Judul Dinamis */}
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,7 +22,7 @@ export default function Contact() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "28px" }}>
           
-          {/* Main Action Glass Card */}
+          {/* Card Aksi Utama */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -31,17 +31,19 @@ export default function Contact() {
             style={{ padding: "36px 28px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
           >
             <div>
+              {/* Lets Build Dinamis */}
               <h3 style={{ fontSize: "1.4rem", fontWeight: "700", color: "var(--text-primary)", marginBottom: "12px" }}>
                 {t("letsBuild")}
               </h3>
 
+              {/* Subtitle Dinamis */}
               <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", lineHeight: "1.6", marginBottom: "28px" }}>
                 {t("contactSubtitle")}
               </p>
             </div>
 
             <div>
-              {/* Tombol Email Utama */}
+              {/* Tombol Email Dinamis */}
               <motion.a 
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
@@ -116,7 +118,7 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Small Interactive Map Card */}
+          {/* Card Map Mini */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -132,7 +134,6 @@ export default function Contact() {
               </span>
             </div>
 
-            {/* Embedded Google Maps Frame */}
             <div style={{
               width: "100%",
               height: "220px",
@@ -154,7 +155,7 @@ export default function Contact() {
 
         </div>
 
-        {/* Footer */}
+        {/* Footer Dinamis */}
         <footer style={{ marginTop: "60px", textAlign: "center", color: "var(--text-secondary)", fontSize: "0.85rem" }}>
           <p>© {new Date().getFullYear()} {personal.name}. {t("copyright")}</p>
         </footer>

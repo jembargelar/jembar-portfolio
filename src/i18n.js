@@ -23,8 +23,8 @@ const resources = {
       yearsExp: "Tahun Pengalaman",
       projectsDone: "Proyek Selesai",
       commitment: "Komitmen",
-      
-      // Legacy Hero Keys (opsional/cadangan)
+
+      // Legacy Hero Keys
       contactBtn: "Hubungi saya",
       downloadCvBtn: "Unduh CV (PDF)",
 
@@ -36,7 +36,10 @@ const resources = {
       sectionEducation: "Pendidikan",
       sectionContact: "Hubungi Saya",
 
-      // Form & Footer
+      // Form, Contact & Footer (TAMBAHAN ADA DI SINI)
+      letsBuild: "Mari Buat Sesuatu yang Luar Biasa Bersama.",
+      contactSubtitle: "Saya terbuka untuk peluang karir, kolaborasi proyek, maupun diskusi mengenai administrasi dan pengembangan web.",
+      sendEmail: "Kirim Email",
       viewProject: "Lihat Proyek",
       sendMessage: "Kirim Pesan",
       copyright: "Hak Cipta Dilindungi."
@@ -63,7 +66,7 @@ const resources = {
       projectsDone: "Projects Done",
       commitment: "Commitment",
 
-      // Legacy Hero Keys (optional fallback)
+      // Legacy Hero Keys
       contactBtn: "Contact me",
       downloadCvBtn: "Download CV (PDF)",
 
@@ -75,7 +78,10 @@ const resources = {
       sectionEducation: "Education",
       sectionContact: "Contact Me",
 
-      // Form & Footer
+      // Form, Contact & Footer (TAMBAHAN ADA DI SINI)
+      letsBuild: "Let's Build Something Amazing Together.",
+      contactSubtitle: "I am open to career opportunities, project collaborations, or discussions about administration and web development.",
+      sendEmail: "Send Email",
       viewProject: "View Project",
       sendMessage: "Send Message",
       copyright: "All Rights Reserved."
