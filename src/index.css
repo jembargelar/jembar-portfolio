@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* =========================================================
-   1. COLOR VARIABLES (CLEAN & PROFESSIONAL)
+   1. COLOR VARIABLES
    ========================================================= */
 
 /* --- DARK MODE (OBSIDIAN BLUE) --- */
@@ -17,25 +17,21 @@
   --tag-border: rgba(59, 130, 246, 0.25);
   --accent-blue: #3b82f6;
   --shadow-color: rgba(0, 0, 0, 0.4);
-  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
-  --btn-secondary-text: #f8fafc;
 }
 
-/* --- LIGHT MODE (CLEAN SLATE & HIGH CONTRAST) --- */
+/* --- LIGHT MODE (SLATE CLEAN & HIGH CONTRAST) --- */
 .light-mode, [data-theme="light"], html.light-mode, body.light-mode {
   --bg-color: #f8fafc !important;
   --text-primary: #0f172a !important;
-  --text-secondary: #475569 !important;
+  --text-secondary: #334155 !important;
   --card-bg: #ffffff !important;
-  --card-border: #e2e8f0 !important;
+  --card-border: #cbd5e1 !important;
   --nav-bg: rgba(255, 255, 255, 0.9) !important;
   --tag-bg: #eff6ff !important;
   --tag-text: #1d4ed8 !important;
   --tag-border: #bfdbfe !important;
   --accent-blue: #2563eb !important;
   --shadow-color: rgba(15, 23, 42, 0.06) !important;
-  --btn-secondary-bg: #f1f5f9 !important;
-  --btn-secondary-text: #0f172a !important;
 }
 
 /* =========================================================
@@ -47,7 +43,7 @@
   box-sizing: border-box;
   font-family: 'Plus Jakarta Sans', sans-serif;
   scroll-behavior: smooth;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 html, body {
@@ -57,25 +53,60 @@ html, body {
 }
 
 section, header, main, footer, div[id] {
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 /* =========================================================
-   3. TYPOGRAPHY & HEADINGS FIX
+   3. OVERRIDE FORCE TAILWIND & INLINE STYLES DI LIGHT MODE
    ========================================================= */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+
+/* Paksa SEMUA Elemen Teks Utama & Judul Jadi Dark Slate */
+.light-mode h1, .light-mode h1 *,
+.light-mode h2, .light-mode h2 *,
+.light-mode h3, .light-mode h3 *,
+.light-mode h4, .light-mode h4 *,
+.light-mode h5, .light-mode h5 *,
+.light-mode h6, .light-mode h6 *,
+.light-mode strong, .light-mode b, .light-mode label,
+.light-mode [class*="text-white"],
+.light-mode [class*="text-slate-100"],
+.light-mode [class*="text-slate-200"],
+.light-mode [class*="text-gray-100"],
+.light-mode [class*="text-gray-200"] {
+  color: #0f172a !important;
+  -webkit-text-fill-color: initial !important;
 }
 
-p, li {
-  color: var(--text-secondary);
-  line-height: 1.6;
+/* Paksa Paragraf & Deskripsi Jadi Slate Dark Medium */
+.light-mode p, .light-mode p *,
+.light-mode li, .light-mode li *,
+.light-mode [class*="text-slate-300"],
+.light-mode [class*="text-slate-400"],
+.light-mode [class*="text-gray-300"],
+.light-mode [class*="text-gray-400"] {
+  color: #334155 !important;
+}
+
+/* Paksa Background Card Tailwind di Light Mode */
+.light-mode [class*="bg-slate-800"],
+.light-mode [class*="bg-slate-900"],
+.light-mode [class*="bg-gray-800"],
+.light-mode [class*="bg-gray-900"],
+.light-mode .glass-card {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Fix Khusus Tag / Tech Stack Badge */
+.light-mode span:not(.btn-gradient span) {
+  background-color: #eff6ff !important;
+  color: #1d4ed8 !important;
+  border-color: #bfdbfe !important;
 }
 
 /* =========================================================
-   4. COMPONENTS (NAVBAR, CARDS, BADGES)
+   4. COMPONENTS & BUTTONS
    ========================================================= */
 
 /* Glass Navbar */
@@ -87,45 +118,16 @@ p, li {
   box-shadow: 0 4px 20px var(--shadow-color) !important;
 }
 
-/* Glass Card Container */
-.glass-card {
-  background: var(--card-bg) !important;
-  border: 1px solid var(--card-border) !important;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px var(--shadow-color) !important;
-}
-
-.glass-card:hover {
-  border-color: var(--accent-blue) !important;
-}
-
-/* Tags / Badges */
-.glass-card span, 
-div span:not(.btn-gradient span) {
-  background-color: var(--tag-bg) !important;
-  color: var(--tag-text) !important;
-  border: 1px solid var(--tag-border) !important;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 8px;
-}
-
-/* Primary Button (Hubungi Saya / Kirim Email) */
+/* Tombol Utama (Gradient Blue) */
 .btn-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
   border: none !important;
-  border-radius: 10px;
+  border-radius: 10px !important;
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
 }
 
 .btn-gradient span, .btn-gradient svg, .btn-gradient * {
   color: #ffffff !important;
-}
-
-/* Secondary Button (Unduh CV / GitHub) */
-button:not(.btn-gradient), a:not(.btn-gradient) {
-  color: var(--text-primary);
+  -webkit-text-fill-color: #ffffff !important;
 }
