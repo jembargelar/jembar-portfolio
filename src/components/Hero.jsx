@@ -1,49 +1,95 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { personal } from "../data/portfolio";
 
 export default function Hero() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEn = i18n.language === 'en';
 
   return (
-    <section id="hero" style={{ paddingTop: "130px", paddingBottom: "80px", paddingLeft: "20px", paddingRight: "20px", minHeight: "100vh", display: "flex", alignItems: "center" }}>
-      <div style={{ maxWidth: "1150px", margin: "0 auto", width: "100%" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "48px", alignItems: "center" }}>
+    <section id="about" style={{ padding: "120px 20px 80px 20px", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "90vh" }}>
+      <div style={{ maxWidth: "920px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "30px" }}>
+        
+        {/* Foto Profil Lingkaran */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          style={{
+            width: "180px",
+            height: "180px",
+            borderRadius: "50%",
+            overflow: "hidden",
+            border: "4px solid var(--accent)",
+            boxShadow: "0 10px 30px var(--shadow-color)"
+          }}
+        >
+          <img 
+            src="/jem.jpg" 
+            alt={personal.name} 
+            style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+          />
+        </motion.div>
+
+        {/* Teks Perkenalan */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: "800", color: "var(--text-primary)", marginBottom: "12px" }}>
+            {personal.name} <span style={{ color: "var(--accent)" }}>.</span>
+          </h1>
+          <p style={{ fontSize: "1.1rem", color: "var(--accent)", fontWeight: "600", marginBottom: "16px" }}>
+            {isEn ? personal.roleEn : personal.roleId}
+          </p>
+          <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", maxWidth: "600px", margin: "0 auto", lineHeight: "1.6" }}>
+            {isEn ? personal.aboutEn : personal.aboutId}
+          </p>
+        </motion.div>
+
+        {/* Tombol Aksi */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          style={{ display: "flex", gap: "14px", flexWrap: "wrap", justifyContent: "center" }}
+        >
+          <a
+            href="#projects"
+            style={{
+              backgroundColor: "var(--accent)",
+              color: "#fff",
+              padding: "12px 24px",
+              borderRadius: "12px",
+              fontWeight: "700",
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px"
+            }}
+          >
+            <span>{isEn ? "View Projects" : "Lihat Proyek"}</span>
+            <ArrowRight size={16} />
+          </a>
           
-          <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: "rgba(34, 211, 238, 0.1)", border: "1px solid rgba(34, 211, 238, 0.3)", padding: "6px 16px", borderRadius: "999px", fontSize: "0.82rem", fontWeight: "600", color: "var(--accent)", marginBottom: "24px" }}>
-              <span style={{ width: "8px", height: "8px", backgroundColor: "var(--accent)", borderRadius: "50%", boxShadow: "0 0 10px var(--accent)" }} />
-              <span>{t("available")}</span>
-            </div>
+          <a
+            href="#contact"
+            style={{
+              backgroundColor: "var(--btn-sec-bg)",
+              color: "var(--text-primary)",
+              border: "1px solid var(--card-border)",
+              padding: "12px 24px",
+              borderRadius: "12px",
+              fontWeight: "700",
+              textDecoration: "none"
+            }}
+          >
+            {isEn ? "Contact Me" : "Hubungi Saya"}
+          </a>
+        </motion.div>
 
-            <h1 style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.2rem)", fontWeight: "900", lineHeight: "1.05", letterSpacing: "-0.03em", color: "var(--text-primary)", marginBottom: "18px" }}>
-              JEMBAR <br />
-              <span style={{ background: "linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                GELAR KUSUMAH
-              </span> <br />
-              WIBAWA
-            </h1>
-
-            <p style={{ color: "var(--accent)", fontWeight: "600", fontSize: "1rem", marginBottom: "20px" }}>{t("roles")}</p>
-            <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: "1.7", maxWidth: "540px", marginBottom: "36px" }}>{t("heroDesc")}</p>
-
-            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "48px" }}>
-              <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="#contact" className="btn-gradient" style={{ padding: "14px 28px", display: "inline-flex", alignItems: "center" }}>
-                {t("hireMe")} ➔
-              </motion.a>
-              <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href={personal.cvUrl} download style={{ display: "inline-flex", alignItems: "center", color: "var(--text-primary)", backgroundColor: "var(--btn-sec-bg)", border: "1px solid var(--card-border)", padding: "14px 28px", borderRadius: "14px", fontWeight: "600", textDecoration: "none" }}>
-                📥 {t("downloadCv")}
-              </motion.a>
-            </div>
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} style={{ display: "flex", justifyContent: "center" }}>
-            <div style={{ position: "relative", width: "100%", maxWidth: "360px", height: "420px", borderRadius: "20px", overflow: "hidden", border: "1px solid var(--card-border)", boxShadow: "0 20px 60px rgba(59, 130, 246, 0.2)" }}>
-              <img src="/profile.jpg" alt={personal.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </div>
-          </motion.div>
-
-        </div>
       </div>
     </section>
   );
