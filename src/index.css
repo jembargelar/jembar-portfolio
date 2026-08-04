@@ -3,42 +3,33 @@
 /* --- DARK MODE (DEFAULT) --- */
 :root {
   --bg-color: #030712;
-  --text-primary: #f9fafb;
+  --text-primary: #ffffff;
   --text-secondary: #9ca3af;
   --card-bg: rgba(17, 24, 39, 0.7);
   --card-border: rgba(255, 255, 255, 0.1);
   --nav-bg: rgba(3, 7, 18, 0.85);
   --dropdown-bg: #0f172a;
-  --grid-line: rgba(255, 255, 255, 0.04);
-  --btn-secondary-bg: rgba(255, 255, 255, 0.08);
-  --btn-secondary-border: rgba(255, 255, 255, 0.15);
-  --btn-secondary-text: #f3f4f6;
   --shadow-color: rgba(0, 0, 0, 0.5);
 }
 
-/* --- LIGHT MODE (CLEAN & HIGH CONTRAST) --- */
-.light-mode, [data-theme="light"], html.light-mode, body.light-mode {
+/* --- LIGHT MODE (SANGAT KONTRAST) --- */
+.light-mode {
   --bg-color: #f8fafc !important;
   --text-primary: #0f172a !important;
-  --text-secondary: #475569 !important;
+  --text-secondary: #334155 !important;
   --card-bg: #ffffff !important;
   --card-border: #e2e8f0 !important;
-  --nav-bg: rgba(255, 255, 255, 0.95) !important;
+  --nav-bg: rgba(255, 255, 255, 0.9) !important;
   --dropdown-bg: #ffffff !important;
-  --grid-line: rgba(15, 23, 42, 0.05) !important;
-  --btn-secondary-bg: #e2e8f0 !important;
-  --btn-secondary-border: #cbd5e1 !important;
-  --btn-secondary-text: #0f172a !important;
-  --shadow-color: rgba(15, 23, 42, 0.08) !important;
+  --shadow-color: rgba(0, 0, 0, 0.08) !important;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  scroll-behavior: smooth;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 html, body {
@@ -47,60 +38,32 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Paksa seluruh bagian menggunakan latar transparan agar mengikuti warna tema utama */
-section, header, footer, main, div[id] {
-  background-color: transparent !important;
+section, header, main, footer, div {
+  background-color: transparent;
 }
 
-/* Pola Grid Adaptif */
-.bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px) !important;
-}
-
-/* Aturan Tipografi Utama */
+/* PAKSA SEMUA JUDUL MENGIKUTI WARNA UTAMA THEME */
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary) !important;
 }
 
-p {
-  color: var(--text-secondary) !important;
-}
-
-/* Navbar & Card Fixes */
-.glass-navbar {
-  background: var(--nav-bg) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--card-border) !important;
-  box-shadow: 0 4px 20px var(--shadow-color) !important;
+p, span:not(.btn-gradient span) {
+  color: var(--text-secondary);
 }
 
 .glass-card {
   background: var(--card-bg) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border) !important;
   border-radius: 20px;
   box-shadow: 0 4px 20px var(--shadow-color) !important;
 }
 
-.glass-card:hover {
-  border-color: #3b82f6 !important;
-  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2) !important;
+.glass-navbar {
+  background: var(--nav-bg) !important;
+  border-bottom: 1px solid var(--card-border) !important;
 }
 
-/* Tombol Utama */
 .btn-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
-}
-
-/* Reduksi Cahaya Aurora di Light Mode */
-.light-mode .aurora-glow-1,
-.light-mode .aurora-glow-2 {
-  opacity: 0.15;
 }

@@ -9,14 +9,19 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Toggle Dark / Light Mode secara sinkron ke <body> & <html>
+  // Toggle Dark / Light Mode secara presisi ke html & body
   useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+
     if (isDarkMode) {
-      document.documentElement.classList.remove("light-mode");
-      document.body.classList.remove("light-mode");
+      root.classList.remove("light-mode");
+      body.classList.remove("light-mode");
+      root.removeAttribute("data-theme");
     } else {
-      document.documentElement.classList.add("light-mode");
-      document.body.classList.add("light-mode");
+      root.classList.add("light-mode");
+      body.classList.add("light-mode");
+      root.setAttribute("data-theme", "light");
     }
   }, [isDarkMode]);
 
@@ -193,7 +198,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Dropdown Mobile Bersih & Adaptif Tema */}
+        {/* Dropdown Mobile */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
