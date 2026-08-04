@@ -1,54 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 /* =========================================================
-   1. SYSTEM THEME VARIABLES
+   1. SYSTEM THEME VARIABLES (MODERN, CLEAN & ELEGANT)
    ========================================================= */
 
-/* --- DARK MODE (DEFAULT) --- */
+/* --- DARK MODE (OBSIDIAN BLUE NIGHT) --- */
 :root {
-  --bg-color: #090d16;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --card-bg: rgba(15, 23, 42, 0.7);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --nav-bg: rgba(9, 13, 22, 0.85);
+  --bg-color: #030712;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --card-bg: rgba(17, 24, 39, 0.75);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --nav-bg: rgba(3, 7, 18, 0.85);
   --dropdown-bg: #0f172a;
-  --tag-bg: rgba(255, 255, 255, 0.05);
-  --tag-text: #cbd5e1;
-  --tag-border: rgba(255, 255, 255, 0.1);
-  --shadow-color: rgba(0, 0, 0, 0.4);
-  --accent-color: #3b82f6;
-  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
-  --btn-secondary-border: rgba(255, 255, 255, 0.12);
+  --tag-bg: rgba(59, 130, 246, 0.12);
+  --tag-text: #60a5fa;
+  --tag-border: rgba(59, 130, 246, 0.25);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --glow-color: rgba(59, 130, 246, 0.35);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.08);
+  --btn-secondary-border: rgba(255, 255, 255, 0.15);
 }
 
-/* --- LIGHT MODE (MINIMALIS & ELEGAN) --- */
+/* --- LIGHT MODE (FRESH SLATE & SHARP CONTRAST) --- */
 .light-mode, [data-theme="light"], html.light-mode, body.light-mode {
   --bg-color: #f8fafc !important;
   --text-primary: #0f172a !important;
-  --text-secondary: #475569 !important;
+  --text-secondary: #334155 !important;
   --card-bg: #ffffff !important;
   --card-border: #cbd5e1 !important;
-  --nav-bg: rgba(255, 255, 255, 0.95) !important;
+  --nav-bg: rgba(255, 255, 255, 0.92) !important;
   --dropdown-bg: #ffffff !important;
-  --tag-bg: #f1f5f9 !important;
-  --tag-text: #334155 !important;
-  --tag-border: #e2e8f0 !important;
-  --shadow-color: rgba(15, 23, 42, 0.06) !important;
-  --accent-color: #2563eb !important;
+  --tag-bg: #e0f2fe !important;
+  --tag-text: #0369a1 !important;
+  --tag-border: #bae6fd !important;
+  --shadow-color: rgba(15, 23, 42, 0.08) !important;
+  --glow-color: rgba(37, 99, 235, 0.2) !important;
   --btn-secondary-bg: #f1f5f9 !important;
   --btn-secondary-border: #cbd5e1 !important;
 }
 
 /* =========================================================
-   2. GLOBAL RESET
+   2. GLOBAL RESET & SMOOTH ANIMATIONS
    ========================================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 html, body {
@@ -62,10 +63,9 @@ section, header, main, footer, div[id] {
 }
 
 /* =========================================================
-   3. OVERRIDE FORCE UNTUK INLINE STYLE DI LIGHT MODE
+   3. PAKSA WARNA SEMUA TEKS DI LIGHT MODE (PASTI MUNCUL 100%)
    ========================================================= */
 
-/* Memaksa SEMUA Teks Utama di Light Mode Jadi Hitam / Slate Pekat */
 .light-mode h1, .light-mode h1 *,
 .light-mode h2, .light-mode h2 *,
 .light-mode h3, .light-mode h3 *,
@@ -74,43 +74,41 @@ section, header, main, footer, div[id] {
 .light-mode h6, .light-mode h6 *,
 .light-mode strong, .light-mode b, .light-mode label {
   color: #0f172a !important;
+  -webkit-text-fill-color: initial !important;
 }
 
-/* Memaksa Paragraf & Teks Deskripsi di Light Mode */
 .light-mode p, .light-mode p *,
-.light-mode li, .light-mode li * {
-  color: #475569 !important;
+.light-mode li, .light-mode li *,
+.light-mode small {
+  color: #334155 !important;
 }
 
-/* Memaksa Elemen Span / Teks Kecil (Kecuali Tombol Utamanya) */
-.light-mode span:not(.btn-gradient *), 
-.light-mode div:not(.glass-card):not(.btn-gradient) {
-  color: inherit;
+.light-mode a:not(.btn-gradient) {
+  color: #0f172a !important;
 }
 
-/* Memaksa Teks di Dalam Card */
-.light-mode .glass-card h1,
-.light-mode .glass-card h2,
-.light-mode .glass-card h3,
-.light-mode .glass-card h4,
-.light-mode .glass-card div {
+/* Paksa Teks di Dalam Card */
+.light-mode .glass-card,
+.light-mode .glass-card *,
+.light-mode div[class*="card"] * {
   color: #0f172a !important;
 }
 
 .light-mode .glass-card p,
-.light-mode .glass-card span {
-  color: #475569 !important;
+.light-mode .glass-card p * {
+  color: #334155 !important;
 }
 
-/* Fix Khusus Tag / Badge Keahlian di Dalam Card */
-.light-mode .glass-card div span {
-  background-color: #f1f5f9 !important;
-  color: #1e293b !important;
-  border-color: #cbd5e1 !important;
+/* Fix Tag / Badge di Dalam Card */
+.light-mode .glass-card span,
+.light-mode span:not(.btn-gradient span) {
+  background-color: var(--tag-bg) !important;
+  color: var(--tag-text) !important;
+  border: 1px solid var(--tag-border) !important;
 }
 
 /* =========================================================
-   4. COMPONENTS & BUTTONS
+   4. EFEK DYNAMIC & MODERN CARD HOVER (ANIMASI MEWAH)
    ========================================================= */
 
 /* Glass Navbar */
@@ -119,32 +117,70 @@ section, header, main, footer, div[id] {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--card-border) !important;
-  box-shadow: 0 4px 20px var(--shadow-color) !important;
+  box-shadow: 0 8px 32px var(--shadow-color) !important;
 }
 
-/* Glass Card */
+/* Glass Card dengan Efek Floating & Glowing Border */
 .glass-card {
   background: var(--card-bg) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--card-border) !important;
   border-radius: 20px;
-  box-shadow: 0 4px 25px var(--shadow-color) !important;
+  box-shadow: 0 4px 20px var(--shadow-color) !important;
+  position: relative;
+  overflow: hidden;
 }
 
 .glass-card:hover {
-  border-color: var(--accent-color) !important;
+  transform: translateY(-6px) scale(1.01);
+  border-color: #3b82f6 !important;
+  box-shadow: 0 12px 30px -5px var(--glow-color) !important;
 }
 
-/* Tombol Gradient Utama */
-.btn-gradient, .btn-gradient * {
+/* Shimmer Line Animation di Atas Card */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  transition: 0.5s;
+}
+
+.glass-card:hover::before {
+  left: 100%;
+}
+
+/* Tombol Gradient Utama (Glow on Hover) */
+.btn-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
   border: none !important;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
+  border-radius: 12px;
 }
 
-/* Reduksi Cahaya Aurora Glow di Mode Terang */
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6) !important;
+}
+
+.btn-gradient span, .btn-gradient svg, .btn-gradient * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Aurora Glow Accent di Background */
+.aurora-glow-1, .aurora-glow-2 {
+  filter: blur(90px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
 .light-mode .aurora-glow-1,
 .light-mode .aurora-glow-2 {
-  opacity: 0.08 !important;
+  opacity: 0.12 !important;
 }
