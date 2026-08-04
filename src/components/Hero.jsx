@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section id="about" style={{ padding: "120px 20px 80px 20px", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "90vh" }}>
       <div style={{ maxWidth: "920px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "30px" }}>
-        
+
         {/* Foto Profil Lingkaran */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
@@ -25,10 +25,10 @@ export default function Hero() {
             boxShadow: "0 10px 30px var(--shadow-color)"
           }}
         >
-          <img 
-            src="/jem.jpg" 
-            alt={personal.name} 
-            style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+          <img
+            src="/jem.jpg?v=2"
+            alt={personal.name}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         </motion.div>
 
@@ -73,7 +73,7 @@ export default function Hero() {
             <span>{isEn ? "View Projects" : "Lihat Proyek"}</span>
             <ArrowRight size={16} />
           </a>
-          
+
           <a
             href="#contact"
             style={{
