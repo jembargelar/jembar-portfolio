@@ -245,4 +245,3 @@ export const projects = [
     link: "https://github.com/jembargelar/jembar-portfolio"
   }
 ];
-
