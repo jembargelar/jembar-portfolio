@@ -193,6 +193,14 @@ export const skills = [
 
 export const projects = [
   {
+    title: "Core Eatery - Premium Fine Dining & Cafe",
+    category: "WEB DEVELOPMENT & RESTORAN",
+    description: "Website reservasi dan galeri menu interaktif dengan konsep Cianjur Premium Fine Dining & Cafe yang elegan dan responsif.",
+    tags: ["React", "Tailwind CSS", "Vite", "UI/UX"],
+    link: "https://coreeatery.vercel.app"
+  },
+
+  {
     title: "SLO & NIDI Administration Dashboard",
     category: {
       id: "Aplikasi Web",
