@@ -58,6 +58,32 @@ export default function Contact() {
                 <span>{t("sendEmail")} ({personal.email})</span>
               </motion.a>
 
+              <motion.a
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                href="https://wa.me/6285119779156"
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "10px",
+                  padding: "14px 24px",
+                  width: "100%",
+                  marginBottom: "20px",
+                  borderRadius: "14px",
+                  textDecoration: "none",
+                  fontWeight: "700",
+                  color: "var(--text-primary)",
+                  backgroundColor: "var(--btn-sec-bg)",
+                  border: "1px solid var(--card-border)"
+                }}
+              >
+                <span>💬</span>
+                <span>Chat WhatsApp</span>
+              </motion.a>
+
               <div style={{ display: "flex", gap: "16px" }}>
                 <a
                   href={personal.github}
