@@ -78,6 +78,36 @@ export default function Hero() {
           </a>
         </motion.div>
 
+        {/* Video Showcase Hero */}
+        <motion.div
+          initial={{ opacity: 0, y: 20, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          style={{
+            width: "100%",
+            maxWidth: "720px",
+            position: "relative"
+          }}
+        >
+          <video
+            src="/effect.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            controls
+            style={{
+              width: "100%",
+              display: "block",
+              borderRadius: "20px",
+              border: "1px solid var(--card-border)",
+              boxShadow: "0 15px 40px var(--shadow-color)",
+              backgroundColor: "var(--card-bg)"
+            }}
+          />
+        </motion.div>
+
         {/* Teks Perkenalan Lengkap */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
