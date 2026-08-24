@@ -78,6 +78,36 @@ export default function Hero() {
           </a>
         </motion.div>
 
+        {/* Teks Perkenalan Lengkap */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "center" }}
+        >
+          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", fontWeight: "500", margin: 0 }}>
+            {isEn ? "Hello, I am" : "Halo, Saya"}
+          </p>
+
+          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: "800", color: "var(--text-primary)", margin: 0 }}>
+            {personal.name} <span style={{ color: "var(--accent)" }}>.</span>
+          </h1>
+
+          {/* Badge Peran / Keahlian */}
+          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center", marginTop: "4px" }}>
+            <span style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", padding: "6px 14px", borderRadius: "20px", fontSize: "0.85rem", color: "var(--accent)", fontWeight: "600" }}>Administrative Professional</span>
+            <span style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", padding: "6px 14px", borderRadius: "20px", fontSize: "0.85rem", color: "var(--accent)", fontWeight: "600" }}>Web Developer</span>
+            <span style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", padding: "6px 14px", borderRadius: "20px", fontSize: "0.85rem", color: "var(--accent)", fontWeight: "600" }}>Management Student</span>
+          </div>
+
+          <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", maxWidth: "700px", margin: "10px auto 0 auto", lineHeight: "1.7", textAlign: "center" }}>
+            {isEn 
+              ? "Experienced in administration, manufacturing, and data processing through PT Syahrendra Megawatt Indonesia, PT Garyman Kreasi Indonesia, and UD Sinar Soccer Industries. Currently developing expertise as a Web Developer focusing on modern, responsive, and SEO-friendly websites." 
+              : "Memiliki pengalaman di bidang administrasi, manufaktur, dan pengolahan data melalui PT Syahrendra Megawatt Indonesia, PT Garyman Kreasi Indonesia, serta UD Sinar Soccer Industries. Saat ini saya juga mengembangkan keahlian sebagai Web Developer dengan fokus pada website modern, responsif, dan SEO Friendly."
+            }
+          </p>
+        </motion.div>
+
         {/* Video Showcase Hero */}
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.98 }}
@@ -108,35 +138,6 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Teks Perkenalan Lengkap */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "center" }}
-        >
-          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", fontWeight: "500", margin: 0 }}>
-            {isEn ? "Hello, I am" : "Halo, Saya"}
-          </p>
-
-          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: "800", color: "var(--text-primary)", margin: 0 }}>
-            {personal.name} <span style={{ color: "var(--accent)" }}>.</span>
-          </h1>
-
-          {/* Badge Peran / Keahlian */}
-          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center", marginTop: "4px" }}>
-            <span style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", padding: "6px 14px", borderRadius: "20px", fontSize: "0.85rem", color: "var(--accent)", fontWeight: "600" }}>Administrative Professional</span>
-            <span style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", padding: "6px 14px", borderRadius: "20px", fontSize: "0.85rem", color: "var(--accent)", fontWeight: "600" }}>Web Developer</span>
-            <span style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", padding: "6px 14px", borderRadius: "20px", fontSize: "0.85rem", color: "var(--accent)", fontWeight: "600" }}>Management Student</span>
-          </div>
-
-          <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", maxWidth: "700px", margin: "10px auto 0 auto", lineHeight: "1.7", textAlign: "center" }}>
-            {isEn 
-              ? "Experienced in administration, manufacturing, and data processing through PT Syahrendra Megawatt Indonesia, PT Garyman Kreasi Indonesia, and UD Sinar Soccer Industries. Currently developing expertise as a Web Developer focusing on modern, responsive, and SEO-friendly websites." 
-              : "Memiliki pengalaman di bidang administrasi, manufaktur, dan pengolahan data melalui PT Syahrendra Megawatt Indonesia, PT Garyman Kreasi Indonesia, serta UD Sinar Soccer Industries. Saat ini saya juga mengembangkan keahlian sebagai Web Developer dengan fokus pada website modern, responsif, dan SEO Friendly."
-            }
-          </p>
-        </motion.div>
 
         {/* Statistik / Counter Section */}
         <motion.div
