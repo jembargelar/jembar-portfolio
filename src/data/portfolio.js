@@ -203,7 +203,7 @@ export const projects = [
       en: "Interactive reservation website and menu gallery featuring an elegant and responsive Cianjur Premium Fine Dining & Cafe concept."
     },
     tech: ["React", "Tailwind CSS", "Vite", "UI/UX"],
-    link: "https://coreeatery.vercel.app"
+    link: "https://coreeatery-v2.vercel.app"
   },
   {
     title: "SLO & NIDI Administration Dashboard",
