@@ -1,3 +1,4 @@
+
 export const personal = {
   name: "Jembar Gelar Kusumah Wibawa",
   role: {
@@ -193,6 +194,19 @@ export const skills = [
 
 export const projects = [
   {
+    title: "Difa Portfolio Website",
+    category: {
+      id: "Pengembangan Frontend & Portofolio",
+      en: "Frontend Development & Portfolio"
+    },
+    description: {
+      id: "Website portofolio pribadi yang interaktif dan modern menampilkan karya kreatif, desain UI/UX, serta proyek web responsif.",
+      en: "Modern and interactive personal portfolio showcasing creative works, UI/UX design, and responsive web projects."
+    },
+    tech: ["React", "Vite", "Tailwind CSS", "UI/UX"],
+    link: "https://difa-portfolio.vercel.app/"
+  },
+  {
     title: "Core Eatery - Premium Fine Dining & Cafe",
     category: {
       id: "Web Development & Restoran",
@@ -245,3 +259,4 @@ export const projects = [
     link: "https://github.com/jembargelar/jembar-portfolio"
   }
 ];
+
