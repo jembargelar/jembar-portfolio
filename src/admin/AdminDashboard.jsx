@@ -228,7 +228,7 @@ export default function AdminDashboard() {
       const filePath = `projects/${fileName}`;
 
       const { error: uploadError } = await supabase.storage
-        .from("PROJECT-IMAGES")
+        .from("project-images")
         .upload(filePath, imageFile, {
           cacheControl: "3600",
           upsert: false,
@@ -244,7 +244,7 @@ export default function AdminDashboard() {
       const {
         data: { publicUrl },
       } = supabase.storage
-        .from("PROJECT-IMAGES")
+        .from("project-images")
         .getPublicUrl(filePath);
 
       const techArray = form.tech
@@ -268,7 +268,7 @@ export default function AdminDashboard() {
 
       if (insertError) {
         await supabase.storage
-          .from("PROJECT-IMAGES")
+          .from("project-images")
           .remove([filePath]);
 
         throw new Error(
@@ -304,7 +304,7 @@ export default function AdminDashboard() {
     try {
       if (project.image_url) {
         const marker =
-          "/storage/v1/object/public/PROJECT-IMAGES/";
+          "/storage/v1/object/public/project-images/";
 
         if (project.image_url.includes(marker)) {
           const path = decodeURIComponent(
@@ -313,7 +313,7 @@ export default function AdminDashboard() {
 
           const { error: storageError } =
             await supabase.storage
-              .from("PROJECT-IMAGES")
+              .from("project-images")
               .remove([path]);
 
           if (storageError) {
