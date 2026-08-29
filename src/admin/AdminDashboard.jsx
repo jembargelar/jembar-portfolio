@@ -11,6 +11,7 @@ import {
   Menu,
   LogOut,
   ArrowUpRight,
+  LockKeyhole,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
 
@@ -39,6 +40,14 @@ const emptyForm = {
 };
 
 export default function AdminDashboard() {
+  const [session, setSession] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [loginError, setLoginError] = useState("");
+
   const [activeMenu, setActiveMenu] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -56,10 +65,70 @@ export default function AdminDashboard() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (activeMenu === "projects") {
+    let mounted = true;
+
+    async function getSession() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (mounted) {
+        setSession(session);
+        setAuthLoading(false);
+      }
+    }
+
+    getSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      setAuthLoading(false);
+    });
+
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (session && activeMenu === "projects") {
       loadProjects();
     }
-  }, [activeMenu]);
+  }, [session, activeMenu]);
+
+  async function login(e) {
+    e.preventDefault();
+
+    setLoginError("");
+
+    if (!email.trim() || !password) {
+      setLoginError("Email dan password wajib diisi.");
+      return;
+    }
+
+    setLoginLoading(true);
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email.trim(),
+      password,
+    });
+
+    if (error) {
+      console.error(error);
+      setLoginError("Login gagal: " + error.message);
+    }
+
+    setLoginLoading(false);
+  }
+
+  async function logout() {
+    await supabase.auth.signOut();
+    setSession(null);
+    setActiveMenu("dashboard");
+  }
 
   async function loadProjects() {
     setLoadingProjects(true);
@@ -149,13 +218,13 @@ export default function AdminDashboard() {
       const extension =
         imageFile.name.split(".").pop()?.toLowerCase() || "jpg";
 
-      const safeName = form.title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-|-$/g, "");
+      const safeName =
+        form.title
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "") || "project";
 
       const fileName = `${Date.now()}-${safeName}.${extension}`;
-
       const filePath = `projects/${fileName}`;
 
       const { error: uploadError } = await supabase.storage
@@ -167,7 +236,6 @@ export default function AdminDashboard() {
         });
 
       if (uploadError) {
-        console.error(uploadError);
         throw new Error(
           "Upload gambar gagal: " + uploadError.message
         );
@@ -199,8 +267,6 @@ export default function AdminDashboard() {
         });
 
       if (insertError) {
-        console.error(insertError);
-
         await supabase.storage
           .from("PROJECT-IMAGES")
           .remove([filePath]);
@@ -237,16 +303,25 @@ export default function AdminDashboard() {
 
     try {
       if (project.image_url) {
-        const marker = "/storage/v1/object/public/PROJECT-IMAGES/";
+        const marker =
+          "/storage/v1/object/public/PROJECT-IMAGES/";
 
         if (project.image_url.includes(marker)) {
           const path = decodeURIComponent(
             project.image_url.split(marker)[1]
           );
 
-          await supabase.storage
-            .from("PROJECT-IMAGES")
-            .remove([path]);
+          const { error: storageError } =
+            await supabase.storage
+              .from("PROJECT-IMAGES")
+              .remove([path]);
+
+          if (storageError) {
+            console.warn(
+              "Gambar gagal dihapus:",
+              storageError
+            );
+          }
         }
       }
 
@@ -263,8 +338,90 @@ export default function AdminDashboard() {
       await loadProjects();
     } catch (err) {
       console.error(err);
-      setError("Gagal menghapus project: " + err.message);
+      setError(
+        "Gagal menghapus project: " + err.message
+      );
     }
+  }
+
+  if (authLoading) {
+    return (
+      <div className="auth-page">
+        <div className="auth-card">
+          <LockKeyhole size={38} />
+          <h1>Memeriksa akses...</h1>
+          <p>Menyiapkan Admin Panel.</p>
+        </div>
+
+        <style>{authStyles}</style>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return (
+      <div className="auth-page">
+        <div className="auth-card">
+          <div className="auth-icon">
+            <LockKeyhole size={28} />
+          </div>
+
+          <div className="auth-eyebrow">
+            JEMBAR.DEV
+          </div>
+
+          <h1>Admin Login</h1>
+
+          <p className="auth-description">
+            Login untuk mengelola portfolio.
+          </p>
+
+          {loginError && (
+            <div className="auth-error">
+              {loginError}
+            </div>
+          )}
+
+          <form onSubmit={login}>
+            <label className="auth-label">
+              Email
+            </label>
+
+            <input
+              className="auth-input"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="admin@email.com"
+              autoComplete="email"
+            />
+
+            <label className="auth-label">
+              Password
+            </label>
+
+            <input
+              className="auth-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              autoComplete="current-password"
+            />
+
+            <button
+              className="auth-button"
+              type="submit"
+              disabled={loginLoading}
+            >
+              {loginLoading ? "Memproses..." : "Login Admin"}
+            </button>
+          </form>
+        </div>
+
+        <style>{authStyles}</style>
+      </div>
+    );
   }
 
   return (
@@ -289,7 +446,7 @@ export default function AdminDashboard() {
           top: 0;
           bottom: 0;
           padding: 24px 16px;
-          background: rgba(8,11,17,.9);
+          background: rgba(8,11,17,.92);
           border-right: 1px solid rgba(255,255,255,.08);
           backdrop-filter: blur(24px);
           z-index: 50;
@@ -353,6 +510,7 @@ export default function AdminDashboard() {
           justify-content: space-between;
           align-items: center;
           margin-bottom: 30px;
+          gap: 20px;
         }
 
         .admin-eyebrow {
@@ -769,7 +927,11 @@ export default function AdminDashboard() {
         </button>
       </div>
 
-      <aside className={`admin-sidebar ${sidebarOpen ? "open" : ""}`}>
+      <aside
+        className={`admin-sidebar ${
+          sidebarOpen ? "open" : ""
+        }`}
+      >
         <div className="admin-logo">
           JEMBAR<span>.dev</span>
         </div>
@@ -804,7 +966,10 @@ export default function AdminDashboard() {
             bottom: 20,
           }}
         >
-          <button className="admin-menu-button">
+          <button
+            className="admin-menu-button"
+            onClick={logout}
+          >
             <LogOut size={17} />
             Logout
           </button>
@@ -909,7 +1074,9 @@ export default function AdminDashboard() {
 
                   <button
                     className="admin-add-button"
-                    onClick={() => setActiveMenu("projects")}
+                    onClick={() =>
+                      setActiveMenu("projects")
+                    }
                   >
                     <FolderKanban size={15} />
                     Manage Projects
@@ -959,12 +1126,13 @@ export default function AdminDashboard() {
                 <div className="empty-state">
                   <ImageIcon
                     size={35}
-                    style={{ opacity: 0.4, marginBottom: 10 }}
+                    style={{
+                      opacity: 0.4,
+                      marginBottom: 10,
+                    }}
                   />
 
-                  <div>
-                    Belum ada project.
-                  </div>
+                  <div>Belum ada project.</div>
                 </div>
               ) : (
                 <div className="project-list">
@@ -986,7 +1154,8 @@ export default function AdminDashboard() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            background: "rgba(255,255,255,.04)",
+                            background:
+                              "rgba(255,255,255,.04)",
                           }}
                         >
                           <ImageIcon />
@@ -1251,3 +1420,118 @@ export default function AdminDashboard() {
     </div>
   );
 }
+
+const authStyles = `
+  * {
+    box-sizing: border-box;
+  }
+
+  .auth-page {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(34,211,238,.1), transparent 35%),
+      radial-gradient(circle at 80% 80%, rgba(139,92,246,.09), transparent 35%),
+      #05070b;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .auth-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 32px;
+    border-radius: 24px;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.09);
+    backdrop-filter: blur(24px);
+    box-shadow: 0 25px 80px rgba(0,0,0,.35);
+  }
+
+  .auth-icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: rgba(34,211,238,.1);
+    color: #22d3ee;
+    margin-bottom: 22px;
+  }
+
+  .auth-eyebrow {
+    color: #22d3ee;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    margin-bottom: 7px;
+  }
+
+  .auth-card h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 900;
+  }
+
+  .auth-description {
+    color: rgba(255,255,255,.5);
+    font-size: .88rem;
+    margin: 8px 0 25px;
+  }
+
+  .auth-label {
+    display: block;
+    color: rgba(255,255,255,.65);
+    font-size: .76rem;
+    font-weight: 700;
+    margin: 0 0 7px;
+  }
+
+  .auth-input {
+    width: 100%;
+    border: 1px solid rgba(255,255,255,.1);
+    background: rgba(255,255,255,.045);
+    color: #fff;
+    border-radius: 11px;
+    padding: 12px;
+    margin-bottom: 15px;
+    outline: none;
+    font-family: inherit;
+  }
+
+  .auth-input:focus {
+    border-color: rgba(34,211,238,.55);
+  }
+
+  .auth-button {
+    width: 100%;
+    border: none;
+    border-radius: 11px;
+    padding: 13px;
+    margin-top: 4px;
+    background: #22d3ee;
+    color: #031018;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .auth-button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+  }
+
+  .auth-error {
+    padding: 11px 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: rgba(239,68,68,.08);
+    border: 1px solid rgba(239,68,68,.15);
+    color: #fca5a5;
+    font-size: .78rem;
+    line-height: 1.5;
+  }
+`;
