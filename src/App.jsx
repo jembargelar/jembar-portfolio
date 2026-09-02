@@ -12,6 +12,7 @@ import Certificates from "./components/Certificates";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import AdminDashboard from "./admin/AdminDashboard";
+import EntryExperience from "./components/EntryExperience";
 
 function Portfolio() {
   return (
@@ -40,7 +41,6 @@ function Portfolio() {
     </div>
   );
 }
-
 function AdminPlaceholder() {
   return (
     <div
@@ -98,10 +98,24 @@ function AdminPlaceholder() {
 }
 
 export default function App() {
+  const [entered, setEntered] = React.useState(false);
+
   return (
-    <Routes>
-      <Route path="/" element={<Portfolio />} />
-      <Route path="/admin" element={<AdminDashboard />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            entered ? (
+              <Portfolio />
+            ) : (
+              <EntryExperience onEnter={() => setEntered(true)} />
+            )
+          }
+        />
+
+        <Route path="/admin" element={<AdminDashboard />} />
+      </Routes>
+    </>
   );
 }
