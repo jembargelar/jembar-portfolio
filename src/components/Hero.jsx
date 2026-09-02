@@ -288,7 +288,7 @@ export default function Hero() {
           }}
         >
           <video
-            src="/effect.mp4"
+            src=""
             autoPlay
             muted
             loop
