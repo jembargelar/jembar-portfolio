@@ -12,6 +12,7 @@ import {
   LogOut,
   ArrowUpRight,
   LockKeyhole,
+  Pencil,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
 
@@ -56,6 +57,7 @@ export default function AdminDashboard() {
 
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState(emptyForm);
+  const [editingProject, setEditingProject] = useState(null);
 
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState("");
@@ -151,9 +153,35 @@ export default function AdminDashboard() {
   }
 
   function openAddProject() {
+    setEditingProject(null);
     setForm(emptyForm);
     setImageFile(null);
     setImagePreview("");
+    setMessage("");
+    setError("");
+    setShowForm(true);
+  }
+
+  function openEditProject(project) {
+    setEditingProject(project);
+    setForm({
+      title: project.title || "",
+      description_id: project.description_id || "",
+      description_en: project.description_en || "",
+      category_id: project.category_id || "",
+      category_en: project.category_en || "",
+      tech: Array.isArray(project.tech)
+        ? project.tech.join(", ")
+        : project.tech || "",
+      project_url:
+        project.project_url && project.project_url !== "#"
+          ? project.project_url
+          : "",
+      featured: Boolean(project.featured),
+    });
+
+    setImageFile(null);
+    setImagePreview(project.image_url || "");
     setMessage("");
     setError("");
     setShowForm(true);
@@ -163,6 +191,7 @@ export default function AdminDashboard() {
     if (saving) return;
 
     setShowForm(false);
+    setEditingProject(null);
     setForm(emptyForm);
     setImageFile(null);
     setImagePreview("");
@@ -205,7 +234,7 @@ export default function AdminDashboard() {
       return;
     }
 
-    if (!imageFile) {
+    if (!editingProject && !imageFile) {
       setError("Pilih foto project terlebih dahulu.");
       return;
     }
@@ -214,70 +243,181 @@ export default function AdminDashboard() {
     setError("");
     setMessage("");
 
+    let uploadedPath = null;
+
     try {
-      const extension =
-        imageFile.name.split(".").pop()?.toLowerCase() || "jpg";
-
-      const safeName =
-        form.title
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-|-$/g, "") || "project";
-
-      const fileName = `${Date.now()}-${safeName}.${extension}`;
-      const filePath = `projects/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from("project-images")
-        .upload(filePath, imageFile, {
-          cacheControl: "3600",
-          upsert: false,
-          contentType: imageFile.type,
-        });
-
-      if (uploadError) {
-        throw new Error(
-          "Upload gambar gagal: " + uploadError.message
-        );
-      }
-
-      const {
-        data: { publicUrl },
-      } = supabase.storage
-        .from("project-images")
-        .getPublicUrl(filePath);
-
       const techArray = form.tech
         .split(",")
         .map((item) => item.trim())
         .filter(Boolean);
 
-      const { error: insertError } = await supabase
-        .from("projects")
-        .insert({
-          title: form.title.trim(),
-          description_id: form.description_id.trim(),
-          description_en: form.description_en.trim(),
-          category_id: form.category_id.trim(),
-          category_en: form.category_en.trim(),
-          tech: techArray,
-          image_url: publicUrl,
-          project_url: form.project_url.trim() || "#",
-          featured: form.featured,
-        });
+      // =====================================================
+      // EDIT PROJECT
+      // =====================================================
 
-      if (insertError) {
-        await supabase.storage
-          .from("project-images")
-          .remove([filePath]);
+      if (editingProject) {
+        let imageUrl = editingProject.image_url || "";
 
-        throw new Error(
-          "Data project gagal disimpan: " + insertError.message
-        );
+        // Upload foto baru hanya jika admin memilih foto baru.
+        if (imageFile) {
+          const extension =
+            imageFile.name.split(".").pop()?.toLowerCase() || "jpg";
+
+          const safeName =
+            form.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-|-$/g, "") || "project";
+
+          const fileName = `${Date.now()}-${safeName}.${extension}`;
+          uploadedPath = `projects/${fileName}`;
+
+          const { error: uploadError } = await supabase.storage
+            .from("project-images")
+            .upload(uploadedPath, imageFile, {
+              cacheControl: "3600",
+              upsert: false,
+              contentType: imageFile.type,
+            });
+
+          if (uploadError) {
+            throw new Error(
+              "Upload gambar baru gagal: " + uploadError.message
+            );
+          }
+
+          const {
+            data: { publicUrl },
+          } = supabase.storage
+            .from("project-images")
+            .getPublicUrl(uploadedPath);
+
+          imageUrl = publicUrl;
+        }
+
+        const { error: updateError } = await supabase
+          .from("projects")
+          .update({
+            title: form.title.trim(),
+            description_id: form.description_id.trim(),
+            description_en: form.description_en.trim(),
+            category_id: form.category_id.trim(),
+            category_en: form.category_en.trim(),
+            tech: techArray,
+            image_url: imageUrl,
+            project_url: form.project_url.trim() || "#",
+            featured: form.featured,
+          })
+          .eq("id", editingProject.id);
+
+        if (updateError) {
+          // Kalau DB gagal, foto baru yang tadi diupload dibersihkan.
+          if (uploadedPath) {
+            await supabase.storage
+              .from("project-images")
+              .remove([uploadedPath]);
+          }
+
+          throw new Error(
+            "Data project gagal diperbarui: " + updateError.message
+          );
+        }
+
+        // Hapus foto lama hanya setelah database berhasil diperbarui.
+        if (imageFile && editingProject.image_url) {
+          const marker =
+            "/storage/v1/object/public/project-images/";
+
+          if (editingProject.image_url.includes(marker)) {
+            const oldPath = decodeURIComponent(
+              editingProject.image_url.split(marker)[1]
+            );
+
+            if (oldPath && oldPath !== uploadedPath) {
+              const { error: oldImageError } =
+                await supabase.storage
+                  .from("project-images")
+                  .remove([oldPath]);
+
+              if (oldImageError) {
+                console.warn(
+                  "Foto lama gagal dihapus:",
+                  oldImageError
+                );
+              }
+            }
+          }
+        }
+
+        setMessage("Project berhasil diperbarui.");
       }
 
-      setMessage("Project berhasil ditambahkan.");
+      // =====================================================
+      // ADD PROJECT
+      // =====================================================
+
+      else {
+        const extension =
+          imageFile.name.split(".").pop()?.toLowerCase() || "jpg";
+
+        const safeName =
+          form.title
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "") || "project";
+
+        const fileName = `${Date.now()}-${safeName}.${extension}`;
+        uploadedPath = `projects/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from("project-images")
+          .upload(uploadedPath, imageFile, {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: imageFile.type,
+          });
+
+        if (uploadError) {
+          throw new Error(
+            "Upload gambar gagal: " + uploadError.message
+          );
+        }
+
+        const {
+          data: { publicUrl },
+        } = supabase.storage
+          .from("project-images")
+          .getPublicUrl(uploadedPath);
+
+        const { error: insertError } = await supabase
+          .from("projects")
+          .insert({
+            title: form.title.trim(),
+            description_id: form.description_id.trim(),
+            description_en: form.description_en.trim(),
+            category_id: form.category_id.trim(),
+            category_en: form.category_en.trim(),
+            tech: techArray,
+            image_url: publicUrl,
+            project_url: form.project_url.trim() || "#",
+            featured: form.featured,
+          });
+
+        if (insertError) {
+          await supabase.storage
+            .from("project-images")
+            .remove([uploadedPath]);
+
+          throw new Error(
+            "Data project gagal disimpan: " + insertError.message
+          );
+        }
+
+        setMessage("Project berhasil ditambahkan.");
+      }
+
       setShowForm(false);
+      setEditingProject(null);
       setForm(emptyForm);
       setImageFile(null);
       setImagePreview("");
@@ -1191,6 +1331,18 @@ export default function AdminDashboard() {
                             )}
 
                           <button
+                            type="button"
+                            className="project-action"
+                            onClick={() =>
+                              openEditProject(project)
+                            }
+                          >
+                            <Pencil size={14} />
+                            Edit
+                          </button>
+
+                          <button
+                            type="button"
                             className="project-action delete"
                             onClick={() =>
                               deleteProject(project)
@@ -1214,7 +1366,9 @@ export default function AdminDashboard() {
         <div className="modal-overlay">
           <div className="modal">
             <div className="modal-header">
-              <h2>Tambah Project</h2>
+              <h2>
+                {editingProject ? "Edit Project" : "Tambah Project"}
+              </h2>
 
               <button
                 className="close-button"
@@ -1228,7 +1382,9 @@ export default function AdminDashboard() {
               <div className="form-grid">
                 <div className="form-group full">
                   <label className="form-label">
-                    Foto Project *
+                    {editingProject
+                      ? "Foto Project"
+                      : "Foto Project *"}
                   </label>
 
                   <label className="upload-box">
@@ -1244,7 +1400,9 @@ export default function AdminDashboard() {
                     />
 
                     <div className="upload-text">
-                      Tap untuk pilih foto dari Galeri
+                      {editingProject
+                        ? "Tap untuk ganti foto dari Galeri"
+                        : "Tap untuk pilih foto dari Galeri"}
                     </div>
 
                     <div
@@ -1404,11 +1562,22 @@ export default function AdminDashboard() {
                   disabled={saving}
                 >
                   {saving ? (
-                    "Mengupload..."
+                    editingProject
+                      ? "Menyimpan perubahan..."
+                      : "Mengupload..."
                   ) : (
                     <>
-                      <Upload size={15} />
-                      Upload & Simpan
+                      {editingProject ? (
+                        <>
+                          <Pencil size={15} />
+                          Simpan Perubahan
+                        </>
+                      ) : (
+                        <>
+                          <Upload size={15} />
+                          Upload & Simpan
+                        </>
+                      )}
                     </>
                   )}
                 </button>
