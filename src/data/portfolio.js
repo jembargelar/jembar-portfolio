@@ -5,7 +5,7 @@ export const personal = {
     id: "Profesional Administrasi | Spesialis Manajemen Data | Penggemar Pengembangan Web Front-End",
     en: "Administrative Professional | Data Management Specialist | Front-End Web Developer Enthusiast"
   },
-  location: "Cianjur, Jawa Barat, Indonesia",
+  location: "Garut, Jawa Barat, Indonesia",
   bio: {
     id: "Administrative professional dengan pengalaman dalam administrasi operasional, pengelolaan dokumen kelistrikan, validasi data, penyusunan laporan, serta pengolahan database perusahaan. Memiliki ketertarikan tinggi pada pengembangan web dan teknologi.",
     en: "Administrative professional with experience in operational administration, electrical document management, data validation, report preparation, and company database processing. Strongly passionate about web development and technology."
