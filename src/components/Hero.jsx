@@ -1,14 +1,20 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { ArrowRight, MapPin, Sparkles, Play } from "lucide-react";
+import {
+  ArrowRight,
+  Download,
+  MapPin,
+  Sparkles,
+  ExternalLink,
+} from "lucide-react";
 import { personal } from "../data/portfolio";
 
 const container = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15,
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
     },
   },
 };
@@ -16,28 +22,34 @@ const container = {
 const item = {
   hidden: {
     opacity: 0,
-    y: 28,
-    filter: "blur(10px)",
+    y: 24,
+    filter: "blur(8px)",
   },
   show: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
     transition: {
-      duration: 0.75,
+      duration: 0.7,
       ease: [0.22, 1, 0.36, 1],
     },
   },
 };
 
-const floating = {
-  animate: {
-    y: [0, -10, 0],
+const photoReveal = {
+  hidden: {
+    opacity: 0,
+    scale: 0.88,
+    y: 18,
   },
-  transition: {
-    duration: 5,
-    repeat: Infinity,
-    ease: "easeInOut",
+  show: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
+    },
   },
 };
 
@@ -45,9 +57,13 @@ export default function Hero() {
   const { i18n } = useTranslation();
   const isEn = i18n.language === "en";
 
+  const name = personal?.name || "Jembar Gelar Kusumah Wibawa";
+  const location = personal?.location || "Garut, Indonesia";
+  const cvUrl = "/Jembar_CV.pdf";
+
   return (
     <section
-      id="about"
+      id="home"
       className="hero-v2"
       style={{
         position: "relative",
@@ -55,27 +71,66 @@ export default function Hero() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "130px 20px 80px",
+        padding: "120px 20px 90px",
         overflow: "hidden",
       }}
     >
-      {/* Ambient glow */}
+      {/* Ambient background */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
-          width: "520px",
-          height: "520px",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(34,211,238,.13), transparent 68%)",
-          top: "-180px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          filter: "blur(10px)",
+          inset: 0,
           pointerEvents: "none",
+          overflow: "hidden",
         }}
-      />
+      >
+        <div
+          style={{
+            position: "absolute",
+            width: "min(75vw, 720px)",
+            height: "min(75vw, 720px)",
+            top: "-25%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(34,211,238,.12), transparent 68%)",
+            filter: "blur(20px)",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            width: "360px",
+            height: "360px",
+            right: "-180px",
+            bottom: "-120px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(59,130,246,.10), transparent 70%)",
+            filter: "blur(30px)",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            opacity: 0.13,
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px)
+            `,
+            backgroundSize: "48px 48px",
+            maskImage:
+              "radial-gradient(circle at center, black 10%, transparent 78%)",
+            WebkitMaskImage:
+              "radial-gradient(circle at center, black 10%, transparent 78%)",
+          }}
+        />
+      </div>
 
       <motion.div
         variants={container}
@@ -85,355 +140,445 @@ export default function Hero() {
           position: "relative",
           zIndex: 2,
           width: "100%",
-          maxWidth: "1050px",
-          display: "flex",
-          flexDirection: "column",
+          maxWidth: "1120px",
+          display: "grid",
+          gridTemplateColumns: "minmax(0, 1.15fr) minmax(300px, .85fr)",
           alignItems: "center",
-          textAlign: "center",
+          gap: "70px",
         }}
       >
-        {/* Status badge */}
-        <motion.div variants={item}>
-          <motion.div
-            {...floating}
+        {/* Content */}
+        <div>
+          {/* Availability */}
+          <motion.div variants={item}>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "9px",
+                padding: "8px 13px",
+                borderRadius: "999px",
+                background: "rgba(15,23,42,.5)",
+                border: "1px solid rgba(34,211,238,.22)",
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
+                color: "var(--accent)",
+                fontSize: ".76rem",
+                fontWeight: 700,
+                letterSpacing: ".02em",
+              }}
+            >
+              <span
+                style={{
+                  width: "7px",
+                  height: "7px",
+                  borderRadius: "50%",
+                  background: "var(--accent)",
+                  boxShadow: "0 0 12px rgba(34,211,238,.7)",
+                }}
+              />
+              <Sparkles size={14} />
+              {isEn
+                ? "Available for opportunities"
+                : "Terbuka untuk peluang baru"}
+            </div>
+          </motion.div>
+
+          {/* Eyebrow */}
+          <motion.p
+            variants={item}
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              padding: "8px 14px",
-              borderRadius: "999px",
-              background: "rgba(15,23,42,.58)",
-              border: "1px solid rgba(34,211,238,.24)",
-              backdropFilter: "blur(16px)",
-              color: "var(--accent)",
-              fontSize: ".78rem",
-              fontWeight: 700,
-              letterSpacing: ".02em",
-              boxShadow: "0 10px 35px rgba(34,211,238,.08)",
+              margin: "28px 0 0",
+              color: "var(--text-secondary)",
+              fontSize: "clamp(.95rem, 2vw, 1.1rem)",
+              fontWeight: 500,
             }}
           >
-            <Sparkles size={14} />
-            {isEn ? "Available for opportunities" : "Terbuka untuk peluang baru"}
-          </motion.div>
-        </motion.div>
+            {isEn ? "Hello, I'm" : "Halo, saya"}
+          </motion.p>
 
-        {/* Profile */}
+          {/* Name */}
+          <motion.h1
+            variants={item}
+            className="glow-text"
+            style={{
+              margin: "10px 0 0",
+              fontSize: "clamp(2.8rem, 6.2vw, 5.8rem)",
+              lineHeight: 0.98,
+              fontWeight: 850,
+              letterSpacing: "-.065em",
+              color: "var(--text-primary)",
+            }}
+          >
+            Jembar Gelar
+            <br />
+            <span
+              className="text-shimmer"
+              style={{
+                display: "inline-block",
+              }}
+            >
+              Kusumah Wibawa
+            </span>
+            <span style={{ color: "var(--accent)" }}>.</span>
+          </motion.h1>
+
+          {/* Role */}
+          <motion.div
+            variants={item}
+            style={{
+              marginTop: "22px",
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
+                fontWeight: 700,
+                color: "var(--text-primary)",
+              }}
+            >
+              Administrative Professional
+            </span>
+
+            <span
+              aria-hidden="true"
+              style={{
+                color: "var(--accent)",
+                fontWeight: 800,
+              }}
+            >
+              ×
+            </span>
+
+            <span
+              style={{
+                fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
+                fontWeight: 700,
+                color: "var(--text-primary)",
+              }}
+            >
+              Web Developer
+            </span>
+          </motion.div>
+
+          {/* Tagline */}
+          <motion.p
+            variants={item}
+            style={{
+              margin: "20px 0 0",
+              maxWidth: "680px",
+              fontSize: "clamp(1rem, 2vw, 1.18rem)",
+              lineHeight: 1.75,
+              color: "var(--text-secondary)",
+            }}
+          >
+            Building digital solutions for modern business operations.
+          </motion.p>
+
+          {/* Description */}
+          <motion.p
+            variants={item}
+            style={{
+              margin: "15px 0 0",
+              maxWidth: "700px",
+              fontSize: "clamp(.9rem, 1.8vw, 1rem)",
+              lineHeight: 1.8,
+              color: "var(--text-secondary)",
+              opacity: 0.86,
+            }}
+          >
+            {isEn
+              ? "Experienced in administration, data processing, and business operations, while developing modern, responsive, and practical digital solutions."
+              : "Berpengalaman dalam administrasi, pengolahan data, dan operasional bisnis, sambil mengembangkan solusi digital yang modern, responsif, dan praktis."}
+          </motion.p>
+
+          {/* Location */}
+          <motion.div
+            variants={item}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "7px",
+              marginTop: "20px",
+              color: "var(--text-secondary)",
+              fontSize: ".84rem",
+            }}
+          >
+            <MapPin size={15} />
+            <span>{location}</span>
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div
+            variants={item}
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "12px",
+              marginTop: "30px",
+            }}
+          >
+            <motion.a
+              href="#projects"
+              whileHover={{
+                y: -3,
+                scale: 1.025,
+              }}
+              whileTap={{
+                scale: 0.97,
+              }}
+              className="btn-gradient premium-button"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "9px",
+                padding: "14px 21px",
+                borderRadius: "14px",
+                textDecoration: "none",
+              }}
+            >
+              {isEn ? "View Projects" : "Lihat Proyek"}
+              <ArrowRight size={17} />
+            </motion.a>
+
+            <motion.a
+              href={cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{
+                y: -3,
+                scale: 1.025,
+              }}
+              whileTap={{
+                scale: 0.97,
+              }}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "9px",
+                padding: "14px 21px",
+                borderRadius: "14px",
+                textDecoration: "none",
+                background: "var(--btn-sec-bg)",
+                border: "1px solid var(--card-border)",
+                color: "var(--text-primary)",
+                fontWeight: 700,
+                backdropFilter: "blur(14px)",
+                WebkitBackdropFilter: "blur(14px)",
+              }}
+            >
+              <Download size={17} />
+              {isEn ? "Download CV" : "Download CV"}
+            </motion.a>
+          </motion.div>
+        </div>
+
+        {/* Profile visual */}
         <motion.div
-          variants={item}
+          variants={photoReveal}
           style={{
-            marginTop: "28px",
-            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <motion.a
             href="/jem.webp"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.045 }}
-            whileTap={{ scale: 0.97 }}
+            aria-label={isEn ? "Open profile photo" : "Buka foto profil"}
+            whileHover={{
+              scale: 1.025,
+              y: -5,
+            }}
+            whileTap={{
+              scale: 0.98,
+            }}
             style={{
               position: "relative",
               display: "block",
-              width: "190px",
-              height: "190px",
-              borderRadius: "50%",
-              padding: "5px",
+              width: "min(72vw, 390px)",
+              aspectRatio: "1 / 1",
+              padding: "6px",
+              borderRadius: "34px",
+              textDecoration: "none",
               background:
-                "linear-gradient(135deg, var(--accent), var(--primary), transparent)",
+                "linear-gradient(145deg, rgba(34,211,238,.8), rgba(59,130,246,.55), rgba(255,255,255,.08))",
               boxShadow:
-                "0 0 0 1px rgba(255,255,255,.06), 0 25px 70px rgba(34,211,238,.16)",
+                "0 30px 100px rgba(34,211,238,.13), 0 0 0 1px rgba(255,255,255,.05)",
             }}
           >
             <div
               style={{
+                position: "relative",
                 width: "100%",
                 height: "100%",
                 overflow: "hidden",
-                borderRadius: "50%",
-                border: "4px solid var(--bg-color)",
+                borderRadius: "29px",
                 background: "var(--card-bg)",
+                border: "1px solid rgba(255,255,255,.08)",
               }}
             >
               <img
-                src="/jem.webp?v=3"
-                alt={personal.name}
+                src="/jem.webp"
+                alt={name}
+                loading="eager"
+                decoding="async"
                 style={{
                   width: "100%",
                   height: "100%",
+                  display: "block",
                   objectFit: "cover",
+                  objectPosition: "center",
                 }}
               />
-            </div>
 
-            <span
-              style={{
-                position: "absolute",
-                right: "-8px",
-                bottom: "12px",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "5px",
-                padding: "7px 10px",
-                borderRadius: "999px",
-                background: "var(--accent)",
-                color: "#fff",
-                fontSize: ".68rem",
-                fontWeight: 800,
-                boxShadow: "0 8px 25px rgba(34,211,238,.3)",
-              }}
-            >
-              <Play size={11} fill="currentColor" />
-              VIEW
-            </span>
-          </motion.a>
-        </motion.div>
-
-        {/* Location */}
-        <motion.div
-          variants={item}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            marginTop: "25px",
-            color: "var(--text-secondary)",
-            fontSize: ".82rem",
-          }}
-        >
-          <MapPin size={14} />
-          {personal.location || "Indonesia"}
-        </motion.div>
-
-        {/* Heading */}
-        <motion.div variants={item} style={{ marginTop: "12px" }}>
-          <p
-            style={{
-              margin: 0,
-              color: "var(--text-secondary)",
-              fontSize: "clamp(1rem, 2vw, 1.2rem)",
-              fontWeight: 500,
-            }}
-          >
-            {isEn ? "Hello, I am" : "Halo, Saya"}
-          </p>
-
-          <h1
-            className="glow-text"
-            style={{
-              margin: "8px 0 0",
-              fontSize: "clamp(2.35rem, 7vw, 5.3rem)",
-              lineHeight: 1.02,
-              fontWeight: 800,
-              letterSpacing: "-.055em",
-              color: "var(--text-primary)",
-            }}
-          >
-            Jembar Gelar
-            <br />
-            <span className="text-shimmer">
-              Kusumah Wibawa
-            </span>
-            <span style={{ color: "var(--accent)" }}>.</span>
-          </h1>
-        </motion.div>
-
-        {/* Roles */}
-        <motion.div
-          variants={item}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "9px",
-            marginTop: "24px",
-          }}
-        >
-          {[
-            "Administrative Professional",
-            "Web Developer",
-            "Management Student",
-          ].map((role) => (
-            <span key={role} className="tech-pill">
-              {role}
-            </span>
-          ))}
-        </motion.div>
-
-        {/* Description */}
-        <motion.p
-          variants={item}
-          style={{
-            maxWidth: "760px",
-            margin: "25px auto 0",
-            color: "var(--text-secondary)",
-            fontSize: "clamp(.9rem, 2vw, 1rem)",
-            lineHeight: 1.85,
-          }}
-        >
-          {isEn
-            ? "Experienced in administration, manufacturing, and data processing. Currently developing expertise as a Web Developer focused on modern, responsive, and SEO-friendly digital experiences."
-            : "Berpengalaman di bidang administrasi, manufaktur, dan pengolahan data. Saat ini mengembangkan keahlian sebagai Web Developer dengan fokus pada website modern, responsif, dan SEO Friendly."}
-        </motion.p>
-
-        {/* Video */}
-        <motion.div
-          variants={item}
-          className="glass-premium image-hover"
-          style={{
-            width: "100%",
-            maxWidth: "820px",
-            marginTop: "38px",
-            padding: "7px",
-            borderRadius: "24px",
-          }}
-        >
-          <video
-            src=""
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            controls
-            style={{
-              width: "100%",
-              display: "block",
-              borderRadius: "18px",
-              background: "#000",
-            }}
-          />
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          variants={item}
-          className="glass-premium"
-          style={{
-            width: "100%",
-            maxWidth: "650px",
-            marginTop: "28px",
-            padding: "6px",
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            borderRadius: "20px",
-          }}
-        >
-          {[
-            ["500+", "Project"],
-            ["3+", "Experience"],
-            ["100%", "Commitment"],
-          ].map(([value, label], index) => (
-            <div
-              key={label}
-              style={{
-                padding: "18px 10px",
-                borderRight:
-                  index < 2
-                    ? "1px solid var(--card-border)"
-                    : "none",
-              }}
-            >
               <div
+                aria-hidden="true"
                 style={{
-                  fontSize: "clamp(1.45rem, 4vw, 2rem)",
-                  fontWeight: 800,
-                  color: "var(--accent)",
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(180deg, transparent 55%, rgba(2,6,23,.48))",
+                  pointerEvents: "none",
                 }}
-              >
-                {value}
-              </div>
+              />
 
               <div
                 style={{
-                  marginTop: "4px",
-                  fontSize: ".75rem",
-                  color: "var(--text-secondary)",
-                  fontWeight: 600,
+                  position: "absolute",
+                  left: "18px",
+                  right: "18px",
+                  bottom: "18px",
+                  padding: "12px 14px",
+                  borderRadius: "15px",
+                  background: "rgba(2,6,23,.58)",
+                  border: "1px solid rgba(255,255,255,.1)",
+                  backdropFilter: "blur(14px)",
+                  WebkitBackdropFilter: "blur(14px)",
+                  color: "#fff",
                 }}
               >
-                {label}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "10px",
+                  }}
+                >
+                  <div>
+                    <div
+                      style={{
+                        fontSize: ".75rem",
+                        color: "rgba(255,255,255,.62)",
+                        marginBottom: "3px",
+                      }}
+                    >
+                      JEMBAR.DEV
+                    </div>
+
+                    <div
+                      style={{
+                        fontSize: ".9rem",
+                        fontWeight: 750,
+                      }}
+                    >
+                      Digital Portfolio
+                    </div>
+                  </div>
+
+                  <ExternalLink size={17} />
+                </div>
               </div>
             </div>
-          ))}
-        </motion.div>
-
-        {/* CTA */}
-        <motion.div
-          variants={item}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "12px",
-            marginTop: "30px",
-          }}
-        >
-          <motion.a
-            href="#projects"
-            whileHover={{
-              scale: 1.035,
-              y: -3,
-            }}
-            whileTap={{ scale: 0.97 }}
-            className="btn-gradient premium-button"
-            style={{
-              padding: "13px 22px",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "9px",
-            }}
-          >
-            {isEn ? "View Projects" : "Lihat Proyek"}
-            <ArrowRight size={17} />
-          </motion.a>
-
-          <motion.a
-            href="#contact"
-            whileHover={{
-              scale: 1.035,
-              y: -3,
-            }}
-            whileTap={{ scale: 0.97 }}
-            style={{
-              padding: "13px 22px",
-              display: "inline-flex",
-              alignItems: "center",
-              borderRadius: "14px",
-              background: "var(--btn-sec-bg)",
-              border: "1px solid var(--card-border)",
-              color: "var(--text-primary)",
-              textDecoration: "none",
-              fontWeight: 700,
-              backdropFilter: "blur(14px)",
-            }}
-          >
-            {isEn ? "Contact Me" : "Hubungi Saya"}
           </motion.a>
         </motion.div>
+      </motion.div>
 
-        {/* Scroll hint */}
-        <motion.div
-          variants={item}
+      {/* Bottom scroll hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.55 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
+        style={{
+          position: "absolute",
+          bottom: "24px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "7px",
+          color: "var(--text-secondary)",
+          fontSize: ".68rem",
+          letterSpacing: ".14em",
+          textTransform: "uppercase",
+        }}
+      >
+        <span>{isEn ? "Scroll to explore" : "Scroll untuk menjelajah"}</span>
+
+        <motion.span
           animate={{
-            y: [0, 7, 0],
-            opacity: [0.5, 1, 0.5],
+            y: [0, 5, 0],
           }}
           transition={{
-            duration: 2.4,
+            duration: 1.8,
             repeat: Infinity,
             ease: "easeInOut",
           }}
           style={{
-            marginTop: "42px",
-            fontSize: ".7rem",
-            letterSpacing: ".18em",
-            textTransform: "uppercase",
-            color: "var(--text-secondary)",
+            width: "1px",
+            height: "28px",
+            background:
+              "linear-gradient(to bottom, var(--accent), transparent)",
           }}
-        >
-          Scroll to explore
-        </motion.div>
+        />
       </motion.div>
+
+      {/* Responsive override */}
+      <style>{`
+        @media (max-width: 820px) {
+          .hero-v2 > div {
+            grid-template-columns: 1fr !important;
+            gap: 42px !important;
+            text-align: center;
+          }
+
+          .hero-v2 > div > div:first-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .hero-v2 {
+            padding-top: 110px !important;
+            padding-bottom: 80px !important;
+          }
+        }
+
+        @media (max-width: 520px) {
+          .hero-v2 {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-v2 *,
+          .hero-v2 *::before,
+          .hero-v2 *::after {
+            scroll-behavior: auto !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
