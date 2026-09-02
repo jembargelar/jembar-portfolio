@@ -5,7 +5,7 @@ export const personal = {
     id: "Profesional Administrasi | Spesialis Manajemen Data | Penggemar Pengembangan Web Front-End",
     en: "Administrative Professional | Data Management Specialist | Front-End Web Developer Enthusiast"
   },
-  location: "Cianjur, Jawa Barat, Indonesia",
+  location: "Garut, Jawa Barat, Indonesia",
   bio: {
     id: "Administrative professional dengan pengalaman dalam administrasi operasional, pengelolaan dokumen kelistrikan, validasi data, penyusunan laporan, serta pengolahan database perusahaan. Memiliki ketertarikan tinggi pada pengembangan web dan teknologi.",
     en: "Administrative professional with experience in operational administration, electrical document management, data validation, report preparation, and company database processing. Strongly passionate about web development and technology."
@@ -24,8 +24,8 @@ export const experiences = [
       en: "Nov 2025 – Aug 2026"
     },
     role: {
-      id: "Spesialis Administrasi & Kontrol Dokumen",
-      en: "Administrative & Document Control Specialist"
+      id: "Admin / Data Entry",
+      en: "Admin / Data Entry"
     },
     company: "PT Syahrendra Megawatt Indonesia",
     description: {
@@ -48,8 +48,8 @@ export const experiences = [
   },
   {
     period: {
-      id: "September 2025 – Oktober 2025",
-      en: "Sep 2025 – Oct 2025"
+      id: "Agustus 2025 – Oktober 2025",
+      en: "Aug 2025 – Oct 2025"
     },
     role: {
       id: "Operator Cutting Laser",
@@ -80,8 +80,8 @@ export const experiences = [
   },
   {
     period: {
-      id: "Maret 2022 – Agustus 2024",
-      en: "Mar 2022 – Aug 2024"
+      id: "Juli 2022 – Desember 2024",
+      en: "Jul 2022 – Dec 2024"
     },
     role: {
       id: "Operator Mesin Produksi",
@@ -114,14 +114,14 @@ export const experiences = [
   },
   {
     period: {
-      id: "Juli 2022 – Desember 2022",
-      en: "Jul 2022 – Dec 2022"
+      id: "Februari 2025 – Juli 2025",
+      en: "Feb 2025 – Jul 2025"
     },
     role: {
       id: "Waiter & Kasir",
       en: "Waiter & Cashier"
     },
-    company: "Kedai Susumurni 26",
+    company: "Kedai Susu Murni 26",
     description: {
       id: "Memberikan pelayanan responsif kepada pelanggan, mengelola transaksi kasir (POS), dan menjaga kebersihan area operasional.",
       en: "Provided responsive customer service, managed POS cashier transactions, and maintained operational area cleanliness."

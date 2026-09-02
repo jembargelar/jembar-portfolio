@@ -10,7 +10,7 @@ export default function About() {
     {
       icon: <MapPin size={22} color="var(--accent)" />,
       title: isEn ? "Location" : "Lokasi",
-      desc: "Cianjur & Garut, West Java, Indonesia",
+      desc: "Garut, West Java, Indonesia",
       highlight: "Open for Remote & Onsite"
     },
     {
@@ -41,7 +41,7 @@ export default function About() {
       icon: <Zap size={22} color="#10B981" />,
       title: isEn ? "Work Ethic" : "Etos Kerja",
       desc: isEn ? "Fast Learner, Detail-Oriented, High Dedication" : "Pembelajar Cepat, Detail, Dedikasi Tinggi",
-      highlight: "100% Commitment"
+      highlight: isEn ? "Reliable & Detail-Oriented" : "Teliti & Dapat Diandalkan"
     }
   ];
 
