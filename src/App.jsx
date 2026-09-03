@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import VisualEffects from "./components/VisualEffects";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import WhatIBuild from "./components/WhatIBuild";
 import Skills from "./components/Skills";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
@@ -32,6 +33,7 @@ function Portfolio() {
         <Navbar />
         <Hero />
         <About />
+        <WhatIBuild />
         <Experience />
         <Skills />
         <Projects />

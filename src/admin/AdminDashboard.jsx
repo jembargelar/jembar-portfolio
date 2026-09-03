@@ -20,6 +20,7 @@ import { supabase } from "../api/supabaseClient";
 import GalleryManager from "./GalleryManager";
 import HeroManager from "./HeroManager";
 import AboutManager from "./AboutManager";
+import WhatIBuildManager from "./WhatIBuildManager";
 
 const menuItems = [
   {
@@ -36,6 +37,11 @@ const menuItems = [
     id: "about",
     label: "About",
     icon: UserRound,
+  },
+  {
+    id: "what-i-build",
+    label: "What I Build",
+    icon: Sparkles,
   },
   {
     id: "projects",
@@ -1210,6 +1216,10 @@ export default function AdminDashboard() {
 
       {activeMenu === "about" && (
         <AboutManager />
+      )}
+
+      {activeMenu === "what-i-build" && (
+        <WhatIBuildManager />
       )}
 
       {activeMenu === "projects" && (
