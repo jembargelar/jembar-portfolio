@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import {
@@ -7,7 +8,7 @@ import {
   Sparkles,
   ExternalLink,
 } from "lucide-react";
-import { personal } from "../data/portfolio";
+import { supabase } from "../api/supabaseClient";
 
 const container = {
   hidden: {},
@@ -53,13 +54,104 @@ const photoReveal = {
   },
 };
 
+const fallbackHero = {
+  name: "Jembar Gelar Kusumah Wibawa",
+  role_id: "Administrative Professional × Web Developer",
+  role_en: "Administrative Professional × Web Developer",
+  tagline_id: "Building digital solutions for modern business operations.",
+  tagline_en: "Building digital solutions for modern business operations.",
+  description_id:
+    "Saya menggabungkan pengalaman administrasi, pengelolaan data, dan teknologi untuk membangun solusi digital yang praktis dan dapat digunakan oleh bisnis.",
+  description_en:
+    "I combine administrative experience, data management, and technology to build practical digital solutions for modern businesses.",
+  location_id: "Garut, Indonesia",
+  location_en: "Garut, Indonesia",
+  profile_image_url: "/jem.webp",
+  cv_url: "/Jembar_CV.pdf",
+  primary_cta_id: "Lihat Proyek",
+  primary_cta_en: "View Projects",
+  secondary_cta_id: "Download CV",
+  secondary_cta_en: "Download CV",
+};
+
 export default function Hero() {
   const { i18n } = useTranslation();
   const isEn = i18n.language === "en";
 
-  const name = personal?.name || "Jembar Gelar Kusumah Wibawa";
-  const location = personal?.location || "Garut, Indonesia";
-  const cvUrl = "/Jembar_CV.pdf";
+  const [hero, setHero] = useState(fallbackHero);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const loadHero = async () => {
+      const { data, error } = await supabase
+        .from("hero_content")
+        .select("*")
+        .eq("is_active", true)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (error) {
+        console.error("Failed to load hero content:", error);
+        return;
+      }
+
+      if (data && mounted) {
+        setHero({
+          ...fallbackHero,
+          ...data,
+        });
+      }
+    };
+
+    loadHero();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const name = hero.name || fallbackHero.name;
+
+  const role = isEn
+    ? hero.role_en || hero.role_id || fallbackHero.role_en
+    : hero.role_id || hero.role_en || fallbackHero.role_id;
+
+  const tagline = isEn
+    ? hero.tagline_en || hero.tagline_id || fallbackHero.tagline_en
+    : hero.tagline_id || hero.tagline_en || fallbackHero.tagline_id;
+
+  const description = isEn
+    ? hero.description_en ||
+      hero.description_id ||
+      fallbackHero.description_en
+    : hero.description_id ||
+      hero.description_en ||
+      fallbackHero.description_id;
+
+  const location = isEn
+    ? hero.location_en || hero.location_id || fallbackHero.location_en
+    : hero.location_id || hero.location_en || fallbackHero.location_id;
+
+  const profileImageUrl =
+    hero.profile_image_url || fallbackHero.profile_image_url;
+
+  const cvUrl = hero.cv_url || fallbackHero.cv_url;
+
+  const primaryCta = isEn
+    ? hero.primary_cta_en || hero.primary_cta_id || fallbackHero.primary_cta_en
+    : hero.primary_cta_id || hero.primary_cta_en || fallbackHero.primary_cta_id;
+
+  const secondaryCta = isEn
+    ? hero.secondary_cta_en ||
+      hero.secondary_cta_id ||
+      fallbackHero.secondary_cta_en
+    : hero.secondary_cta_id ||
+      hero.secondary_cta_en ||
+      fallbackHero.secondary_cta_id;
+
+  const roleParts = role.split("×").map((part) => part.trim());
 
   return (
     <section
@@ -142,7 +234,8 @@ export default function Hero() {
           width: "100%",
           maxWidth: "1120px",
           display: "grid",
-          gridTemplateColumns: "minmax(0, 1.15fr) minmax(300px, .85fr)",
+          gridTemplateColumns:
+            "minmax(0, 1.15fr) minmax(300px, .85fr)",
           alignItems: "center",
           gap: "70px",
         }}
@@ -210,7 +303,7 @@ export default function Hero() {
               color: "var(--text-primary)",
             }}
           >
-            Jembar Gelar
+            {name.split(" ").slice(0, 2).join(" ")}
             <br />
             <span
               className="text-shimmer"
@@ -218,7 +311,7 @@ export default function Hero() {
                 display: "inline-block",
               }}
             >
-              Kusumah Wibawa
+              {name.split(" ").slice(2).join(" ") || name}
             </span>
             <span style={{ color: "var(--accent)" }}>.</span>
           </motion.h1>
@@ -234,35 +327,32 @@ export default function Hero() {
               gap: "10px",
             }}
           >
-            <span
-              style={{
-                fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
-                fontWeight: 700,
-                color: "var(--text-primary)",
-              }}
-            >
-              Administrative Professional
-            </span>
-
-            <span
-              aria-hidden="true"
-              style={{
-                color: "var(--accent)",
-                fontWeight: 800,
-              }}
-            >
-              ×
-            </span>
-
-            <span
-              style={{
-                fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
-                fontWeight: 700,
-                color: "var(--text-primary)",
-              }}
-            >
-              Web Developer
-            </span>
+            {roleParts.map((part, index) => (
+              <span
+                key={`${part}-${index}`}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
+                  fontWeight: 700,
+                  color: "var(--text-primary)",
+                }}
+              >
+                {index > 0 && (
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      color: "var(--accent)",
+                      fontWeight: 800,
+                    }}
+                  >
+                    ×
+                  </span>
+                )}
+                {part}
+              </span>
+            ))}
           </motion.div>
 
           {/* Tagline */}
@@ -276,7 +366,7 @@ export default function Hero() {
               color: "var(--text-secondary)",
             }}
           >
-            Building digital solutions for modern business operations.
+            {tagline}
           </motion.p>
 
           {/* Description */}
@@ -291,9 +381,7 @@ export default function Hero() {
               opacity: 0.86,
             }}
           >
-            {isEn
-              ? "Experienced in administration, data processing, and business operations, while developing modern, responsive, and practical digital solutions."
-              : "Berpengalaman dalam administrasi, pengolahan data, dan operasional bisnis, sambil mengembangkan solusi digital yang modern, responsif, dan praktis."}
+            {description}
           </motion.p>
 
           {/* Location */}
@@ -342,7 +430,7 @@ export default function Hero() {
                 textDecoration: "none",
               }}
             >
-              {isEn ? "View Projects" : "Lihat Proyek"}
+              {primaryCta}
               <ArrowRight size={17} />
             </motion.a>
 
@@ -374,7 +462,7 @@ export default function Hero() {
               }}
             >
               <Download size={17} />
-              {isEn ? "Download CV" : "Download CV"}
+              {secondaryCta}
             </motion.a>
           </motion.div>
         </div>
@@ -389,10 +477,12 @@ export default function Hero() {
           }}
         >
           <motion.a
-            href="/jem.webp"
+            href={profileImageUrl}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={isEn ? "Open profile photo" : "Buka foto profil"}
+            aria-label={
+              isEn ? "Open profile photo" : "Buka foto profil"
+            }
             whileHover={{
               scale: 1.025,
               y: -5,
@@ -426,7 +516,7 @@ export default function Hero() {
               }}
             >
               <img
-                src="/jem.webp"
+                src={profileImageUrl}
                 alt={name}
                 loading="eager"
                 decoding="async"
@@ -523,7 +613,9 @@ export default function Hero() {
           textTransform: "uppercase",
         }}
       >
-        <span>{isEn ? "Scroll to explore" : "Scroll untuk menjelajah"}</span>
+        <span>
+          {isEn ? "Scroll to explore" : "Scroll untuk menjelajah"}
+        </span>
 
         <motion.span
           animate={{

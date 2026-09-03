@@ -13,15 +13,22 @@ import {
   ArrowUpRight,
   LockKeyhole,
   Pencil,
+  Sparkles,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
 import GalleryManager from "./GalleryManager";
+import HeroManager from "./HeroManager";
 
 const menuItems = [
   {
     id: "dashboard",
     label: "Dashboard",
     icon: LayoutDashboard,
+  },
+  {
+    id: "hero",
+    label: "Hero",
+    icon: Sparkles,
   },
   {
     id: "projects",
@@ -1190,7 +1197,11 @@ export default function AdminDashboard() {
               </p>
             </div>
 
-            {activeMenu === "projects" && (
+            {activeMenu === "hero" && (
+        <HeroManager />
+      )}
+
+      {activeMenu === "projects" && (
               <button
                 className="admin-add-button"
                 onClick={openAddProject}
