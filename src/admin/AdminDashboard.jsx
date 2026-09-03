@@ -14,10 +14,12 @@ import {
   LockKeyhole,
   Pencil,
   Sparkles,
+  UserRound,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
 import GalleryManager from "./GalleryManager";
 import HeroManager from "./HeroManager";
+import AboutManager from "./AboutManager";
 
 const menuItems = [
   {
@@ -29,6 +31,11 @@ const menuItems = [
     id: "hero",
     label: "Hero",
     icon: Sparkles,
+  },
+  {
+    id: "about",
+    label: "About",
+    icon: UserRound,
   },
   {
     id: "projects",
@@ -1199,6 +1206,10 @@ export default function AdminDashboard() {
 
             {activeMenu === "hero" && (
         <HeroManager />
+      )}
+
+      {activeMenu === "about" && (
+        <AboutManager />
       )}
 
       {activeMenu === "projects" && (
