@@ -15,6 +15,7 @@ import {
   Pencil,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
+import GalleryManager from "./GalleryManager";
 
 const menuItems = [
   {
@@ -38,6 +39,16 @@ const emptyForm = {
   tech: "",
   project_url: "",
   featured: false,
+
+  // Case Study
+  problem_id: "",
+  problem_en: "",
+  solution_id: "",
+  solution_en: "",
+  features_id: "",
+  features_en: "",
+  result_id: "",
+  result_en: "",
 };
 
 export default function AdminDashboard() {
@@ -178,6 +189,20 @@ export default function AdminDashboard() {
           ? project.project_url
           : "",
       featured: Boolean(project.featured),
+
+      // Case Study
+      problem_id: project.problem_id || "",
+      problem_en: project.problem_en || "",
+      solution_id: project.solution_id || "",
+      solution_en: project.solution_en || "",
+      features_id: Array.isArray(project.features_id)
+        ? project.features_id.join("\n")
+        : project.features_id || "",
+      features_en: Array.isArray(project.features_en)
+        ? project.features_en.join("\n")
+        : project.features_en || "",
+      result_id: project.result_id || "",
+      result_en: project.result_en || "",
     });
 
     setImageFile(null);
@@ -251,6 +276,16 @@ export default function AdminDashboard() {
         .map((item) => item.trim())
         .filter(Boolean);
 
+      const featuresIdArray = form.features_id
+        .split("\n")
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+      const featuresEnArray = form.features_en
+        .split("\n")
+        .map((item) => item.trim())
+        .filter(Boolean);
+
       // =====================================================
       // EDIT PROJECT
       // =====================================================
@@ -307,6 +342,16 @@ export default function AdminDashboard() {
             image_url: imageUrl,
             project_url: form.project_url.trim() || "#",
             featured: form.featured,
+
+            // Case Study
+            problem_id: form.problem_id.trim(),
+            problem_en: form.problem_en.trim(),
+            solution_id: form.solution_id.trim(),
+            solution_en: form.solution_en.trim(),
+            features_id: featuresIdArray,
+            features_en: featuresEnArray,
+            result_id: form.result_id.trim(),
+            result_en: form.result_en.trim(),
           })
           .eq("id", editingProject.id);
 
@@ -401,6 +446,16 @@ export default function AdminDashboard() {
             image_url: publicUrl,
             project_url: form.project_url.trim() || "#",
             featured: form.featured,
+
+            // Case Study
+            problem_id: form.problem_id.trim(),
+            problem_en: form.problem_en.trim(),
+            solution_id: form.solution_id.trim(),
+            solution_en: form.solution_en.trim(),
+            features_id: featuresIdArray,
+            features_en: featuresEnArray,
+            result_id: form.result_id.trim(),
+            result_en: form.result_en.trim(),
           });
 
         if (insertError) {
@@ -1543,6 +1598,277 @@ export default function AdminDashboard() {
                     />
                     Jadikan project unggulan
                   </label>
+                </div>
+
+                {/* =====================================================
+                    PROJECT GALLERY
+                    ===================================================== */}
+
+                {editingProject?.id && (
+                  <GalleryManager
+                    projectId={editingProject.id}
+                  />
+                )}
+
+                {/* =====================================================
+                    CASE STUDY
+                    ===================================================== */}
+
+                <div
+                  className="form-group full"
+                  style={{
+                    marginTop: "1.5rem",
+                    paddingTop: "1.5rem",
+                    borderTop: "1px solid rgba(255,255,255,.08)",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: ".65rem",
+                      marginBottom: ".35rem",
+                    }}
+                  >
+                    <span style={{ fontSize: "1.1rem" }}>📋</span>
+
+                    <label
+                      className="form-label"
+                      style={{
+                        margin: 0,
+                        fontSize: "1rem",
+                        fontWeight: 700,
+                      }}
+                    >
+                      Case Study
+                    </label>
+                  </div>
+
+                  <p
+                    style={{
+                      margin: 0,
+                      fontSize: ".72rem",
+                      lineHeight: 1.6,
+                      color: "rgba(255,255,255,.42)",
+                    }}
+                  >
+                    Isi detail project agar halaman detail project memiliki
+                    Problem, Solution, Features, dan Result.
+                  </p>
+                </div>
+
+                {/* Bahasa Indonesia */}
+
+                <div
+                  className="form-group full"
+                  style={{
+                    marginTop: "1rem",
+                    padding: "1rem",
+                    borderRadius: "14px",
+                    background: "rgba(0,220,255,.035)",
+                    border: "1px solid rgba(0,220,255,.1)",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: ".8rem",
+                      fontWeight: 700,
+                      marginBottom: "1rem",
+                      color: "#67e8f9",
+                    }}
+                  >
+                    🇮🇩 Bahasa Indonesia
+                  </div>
+
+                  <div className="form-group full">
+                    <label className="form-label">
+                      Problem / Masalah
+                    </label>
+
+                    <textarea
+                      className="form-input"
+                      name="problem_id"
+                      value={form.problem_id}
+                      onChange={handleInput}
+                      placeholder="Contoh: Proses pencatatan pesanan masih manual sehingga rawan kesalahan."
+                      rows="4"
+                    />
+                  </div>
+
+                  <div
+                    className="form-group full"
+                    style={{ marginTop: "1rem" }}
+                  >
+                    <label className="form-label">
+                      Solution / Solusi
+                    </label>
+
+                    <textarea
+                      className="form-input"
+                      name="solution_id"
+                      value={form.solution_id}
+                      onChange={handleInput}
+                      placeholder="Contoh: Membangun sistem digital untuk mengelola menu, pesanan, dan operasional."
+                      rows="4"
+                    />
+                  </div>
+
+                  <div
+                    className="form-group full"
+                    style={{ marginTop: "1rem" }}
+                  >
+                    <label className="form-label">
+                      Features / Fitur Utama
+                    </label>
+
+                    <textarea
+                      className="form-input"
+                      name="features_id"
+                      value={form.features_id}
+                      onChange={handleInput}
+                      placeholder={`Satu fitur per baris.
+Contoh:
+Manajemen menu
+Manajemen pesanan
+Dashboard operasional
+Integrasi Supabase`}
+                      rows="6"
+                    />
+
+                    <span
+                      style={{
+                        fontSize: ".68rem",
+                        color: "rgba(255,255,255,.35)",
+                      }}
+                    >
+                      Satu fitur per baris.
+                    </span>
+                  </div>
+
+                  <div
+                    className="form-group full"
+                    style={{ marginTop: "1rem" }}
+                  >
+                    <label className="form-label">
+                      Result / Hasil
+                    </label>
+
+                    <textarea
+                      className="form-input"
+                      name="result_id"
+                      value={form.result_id}
+                      onChange={handleInput}
+                      placeholder="Contoh: Operasional menjadi lebih terstruktur dan informasi pesanan lebih mudah dipantau."
+                      rows="4"
+                    />
+                  </div>
+                </div>
+
+                {/* English */}
+
+                <div
+                  className="form-group full"
+                  style={{
+                    marginTop: "1rem",
+                    padding: "1rem",
+                    borderRadius: "14px",
+                    background: "rgba(255,255,255,.025)",
+                    border: "1px solid rgba(255,255,255,.08)",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: ".8rem",
+                      fontWeight: 700,
+                      marginBottom: "1rem",
+                      color: "rgba(255,255,255,.75)",
+                    }}
+                  >
+                    🇬🇧 English
+                  </div>
+
+                  <div className="form-group full">
+                    <label className="form-label">
+                      Problem
+                    </label>
+
+                    <textarea
+                      className="form-input"
+                      name="problem_en"
+                      value={form.problem_en}
+                      onChange={handleInput}
+                      placeholder="Example: The restaurant still relied on manual order recording, increasing the risk of errors."
+                      rows="4"
+                    />
+                  </div>
+
+                  <div
+                    className="form-group full"
+                    style={{ marginTop: "1rem" }}
+                  >
+                    <label className="form-label">
+                      Solution
+                    </label>
+
+                    <textarea
+                      className="form-input"
+                      name="solution_en"
+                      value={form.solution_en}
+                      onChange={handleInput}
+                      placeholder="Example: Built a digital system to manage menus, orders, and restaurant operations."
+                      rows="4"
+                    />
+                  </div>
+
+                  <div
+                    className="form-group full"
+                    style={{ marginTop: "1rem" }}
+                  >
+                    <label className="form-label">
+                      Features
+                    </label>
+
+                    <textarea
+                      className="form-input"
+                      name="features_en"
+                      value={form.features_en}
+                      onChange={handleInput}
+                      placeholder={`One feature per line.
+Example:
+Menu management
+Order management
+Operations dashboard
+Supabase integration`}
+                      rows="6"
+                    />
+
+                    <span
+                      style={{
+                        fontSize: ".68rem",
+                        color: "rgba(255,255,255,.35)",
+                      }}
+                    >
+                      One feature per line.
+                    </span>
+                  </div>
+
+                  <div
+                    className="form-group full"
+                    style={{ marginTop: "1rem" }}
+                  >
+                    <label className="form-label">
+                      Result
+                    </label>
+
+                    <textarea
+                      className="form-input"
+                      name="result_en"
+                      value={form.result_en}
+                      onChange={handleInput}
+                      placeholder="Example: Operations became more structured and order information became easier to monitor."
+                      rows="4"
+                    />
+                  </div>
                 </div>
               </div>
 

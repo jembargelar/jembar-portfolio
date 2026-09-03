@@ -13,6 +13,7 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import AdminDashboard from "./admin/AdminDashboard";
 import EntryExperience from "./components/EntryExperience";
+import ProjectDetail from "./components/ProjectDetail";
 
 function Portfolio() {
   return (
@@ -113,6 +114,8 @@ export default function App() {
             )
           }
         />
+
+        <Route path="/projects/:id" element={<ProjectDetail />} />
 
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -11,6 +12,7 @@ import { supabase } from "../api/supabaseClient";
 
 export default function Projects() {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -110,11 +112,17 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="glass-card"
+                onClick={() => {
+                  if (proj.id) {
+                    navigate(`/projects/${proj.id}`);
+                  }
+                }}
                 style={{
                   padding: "28px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
+                  cursor: proj.id ? "pointer" : "default",
                 }}
               >
                 <div>
@@ -155,6 +163,7 @@ export default function Projects() {
                     {proj.project_url &&
                       proj.project_url !== "#" && (
                         <a
+                          onClick={(event) => event.stopPropagation()}
                           href={proj.project_url}
                           target="_blank"
                           rel="noreferrer"
@@ -171,12 +180,13 @@ export default function Projects() {
                   {proj.image_url && (
                     <button
                       type="button"
-                      onClick={() =>
+                      onClick={(event) => {
+                        event.stopPropagation();
                         setSelectedImage({
                           src: proj.image_url,
                           title: proj.title,
-                        })
-                      }
+                        });
+                      }}
                       aria-label={`View ${proj.title} image fullscreen`}
                       style={{
                         position: "relative",
