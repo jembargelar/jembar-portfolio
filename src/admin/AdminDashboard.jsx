@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  BriefcaseBusiness,
   LayoutDashboard,
   FolderKanban,
   Plus,
@@ -21,6 +22,7 @@ import GalleryManager from "./GalleryManager";
 import HeroManager from "./HeroManager";
 import AboutManager from "./AboutManager";
 import WhatIBuildManager from "./WhatIBuildManager";
+import ExperienceManager from "./ExperienceManager";
 
 const menuItems = [
   {
@@ -42,6 +44,11 @@ const menuItems = [
     id: "what-i-build",
     label: "What I Build",
     icon: Sparkles,
+  },
+  {
+    id: "experience",
+    label: "Experience",
+    icon: BriefcaseBusiness,
   },
   {
     id: "projects",
@@ -1220,6 +1227,10 @@ export default function AdminDashboard() {
 
       {activeMenu === "what-i-build" && (
         <WhatIBuildManager />
+      )}
+
+      {activeMenu === "experience" && (
+        <ExperienceManager />
       )}
 
       {activeMenu === "projects" && (
