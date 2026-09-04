@@ -23,6 +23,7 @@ import HeroManager from "./HeroManager";
 import AboutManager from "./AboutManager";
 import WhatIBuildManager from "./WhatIBuildManager";
 import ExperienceManager from "./ExperienceManager";
+import SkillsManager from "./SkillsManager";
 
 const menuItems = [
   {
@@ -49,6 +50,11 @@ const menuItems = [
     id: "experience",
     label: "Experience",
     icon: BriefcaseBusiness,
+  },
+  {
+    id: "skills",
+    label: "Skills",
+    icon: Sparkles,
   },
   {
     id: "projects",
@@ -1207,9 +1213,15 @@ export default function AdminDashboard() {
               </div>
 
               <h1 className="admin-title">
-                {activeMenu === "dashboard"
-                  ? "Dashboard"
-                  : "Projects"}
+                {{
+                  dashboard: "Dashboard",
+                  hero: "Hero",
+                  about: "About",
+                  "what-i-build": "What I Build",
+                  experience: "Experience",
+                  skills: "Skills",
+                  projects: "Projects",
+                }[activeMenu] || "Dashboard"}
               </h1>
 
               <p className="admin-subtitle">
@@ -1218,20 +1230,26 @@ export default function AdminDashboard() {
             </div>
 
             {activeMenu === "hero" && (
-        <HeroManager />
-      )}
+              <HeroManager />
+            )}
 
-      {activeMenu === "about" && (
-        <AboutManager />
-      )}
+            {activeMenu === "about" && (
+              <AboutManager />
+            )}
 
-      {activeMenu === "what-i-build" && (
-        <WhatIBuildManager />
-      )}
+            {activeMenu === "what-i-build" && (
+              <WhatIBuildManager />
+            )}
 
-      {activeMenu === "experience" && (
-        <ExperienceManager />
-      )}
+            {activeMenu === "experience" && (
+              <ExperienceManager />
+            )}
+
+            {activeMenu === "skills" && (
+              <SkillsManager />
+            )}
+
+
 
       {activeMenu === "projects" && (
               <button

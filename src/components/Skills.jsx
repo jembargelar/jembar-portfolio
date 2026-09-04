@@ -1,81 +1,201 @@
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { skills } from "../data/portfolio";
+import { supabase } from "../api/supabaseClient";
 
-const technicalKeywords = [
-  "Microsoft Excel",
-  "HTML5 & CSS3",
-  "JavaScript",
-  "React.js & Vite",
-  "Git & GitHub",
+const fallbackSkills = [
+  {
+    id: "fallback-1",
+    name_id: "Microsoft Excel",
+    name_en: "Microsoft Excel",
+    category: "technical",
+    sort_order: 1,
+    is_active: true,
+  },
+  {
+    id: "fallback-2",
+    name_id: "HTML5 & CSS3",
+    name_en: "HTML5 & CSS3",
+    category: "technical",
+    sort_order: 2,
+    is_active: true,
+  },
+  {
+    id: "fallback-3",
+    name_id: "JavaScript",
+    name_en: "JavaScript",
+    category: "technical",
+    sort_order: 3,
+    is_active: true,
+  },
+  {
+    id: "fallback-4",
+    name_id: "React.js & Vite",
+    name_en: "React.js & Vite",
+    category: "technical",
+    sort_order: 4,
+    is_active: true,
+  },
+  {
+    id: "fallback-5",
+    name_id: "Git & GitHub",
+    name_en: "Git & GitHub",
+    category: "technical",
+    sort_order: 5,
+    is_active: true,
+  },
+  {
+    id: "fallback-6",
+    name_id: "Pengoperasian",
+    name_en: "Operations",
+    category: "operational",
+    sort_order: 6,
+    is_active: true,
+  },
+  {
+    id: "fallback-7",
+    name_id: "Quality Control",
+    name_en: "Quality Control",
+    category: "operational",
+    sort_order: 7,
+    is_active: true,
+  },
+  {
+    id: "fallback-8",
+    name_id: "Preventive Maintenance",
+    name_en: "Preventive Maintenance",
+    category: "operational",
+    sort_order: 8,
+    is_active: true,
+  },
+  {
+    id: "fallback-9",
+    name_id: "SOP & K3",
+    name_en: "SOP & Occupational Safety",
+    category: "operational",
+    sort_order: 9,
+    is_active: true,
+  },
+  {
+    id: "fallback-10",
+    name_id: "Administrative",
+    name_en: "Administrative",
+    category: "administration",
+    sort_order: 10,
+    is_active: true,
+  },
+  {
+    id: "fallback-11",
+    name_id: "Office Administration",
+    name_en: "Office Administration",
+    category: "administration",
+    sort_order: 11,
+    is_active: true,
+  },
+  {
+    id: "fallback-12",
+    name_id: "Document Control",
+    name_en: "Document Control",
+    category: "administration",
+    sort_order: 12,
+    is_active: true,
+  },
+  {
+    id: "fallback-13",
+    name_id: "Data Entry",
+    name_en: "Data Entry",
+    category: "administration",
+    sort_order: 13,
+    is_active: true,
+  },
+  {
+    id: "fallback-14",
+    name_id: "Data Validation",
+    name_en: "Data Validation",
+    category: "administration",
+    sort_order: 14,
+    is_active: true,
+  },
+  {
+    id: "fallback-15",
+    name_id: "SLO & NIDI",
+    name_en: "SLO & NIDI",
+    category: "administration",
+    sort_order: 15,
+    is_active: true,
+  },
+  {
+    id: "fallback-16",
+    name_id: "Invoice Management",
+    name_en: "Invoice Management",
+    category: "administration",
+    sort_order: 16,
+    is_active: true,
+  },
 ];
 
-const operationalKeywords = [
-  "Pengoperasian",
-  "Quality Control",
-  "Preventive Maintenance",
-  "SOP & K3",
+const categories = [
+  {
+    key: "administration",
+    title_id: "Administrasi & Data",
+    title_en: "Administration & Data",
+    description_id:
+      "Administrasi bisnis, kontrol dokumen, pengolahan data, dan pelaporan.",
+    description_en:
+      "Business administration, document control, data processing, and reporting.",
+  },
+  {
+    key: "technical",
+    title_id: "Web & Teknologi",
+    title_en: "Web & Technology",
+    description_id:
+      "Pengembangan frontend dan tools yang digunakan untuk membangun pengalaman web modern.",
+    description_en:
+      "Frontend development and the tools used to build modern web experiences.",
+  },
+  {
+    key: "operational",
+    title_id: "Operasional & Produksi",
+    title_en: "Operations & Production",
+    description_id:
+      "Operasional produksi, quality control, maintenance, SOP, dan K3.",
+    description_en:
+      "Production operations, quality control, maintenance, SOP, and K3.",
+  },
 ];
-
-const administrationKeywords = [
-  "Administrative",
-  "Office Administration",
-  "Document Control",
-  "Data Entry",
-  "Data Validation",
-  "SLO & NIDI",
-  "Invoice Management",
-];
-
-function getCategory(skill) {
-  if (
-    technicalKeywords.some((keyword) => skill.includes(keyword))
-  ) {
-    return "technical";
-  }
-
-  if (
-    operationalKeywords.some((keyword) => skill.includes(keyword))
-  ) {
-    return "operational";
-  }
-
-  if (
-    administrationKeywords.some((keyword) => skill.includes(keyword))
-  ) {
-    return "administration";
-  }
-
-  return "other";
-}
 
 export default function Skills() {
   const { t, i18n } = useTranslation();
   const isEn = i18n.language === "en";
 
-  const categories = [
-    {
-      key: "administration",
-      title: isEn ? "Administration & Data" : "Administrasi & Data",
-      description: isEn
-        ? "Business administration, document control, data processing, and reporting."
-        : "Administrasi bisnis, kontrol dokumen, pengolahan data, dan pelaporan.",
-    },
-    {
-      key: "technical",
-      title: isEn ? "Web & Technology" : "Web & Teknologi",
-      description: isEn
-        ? "Frontend development and the tools used to build modern web experiences."
-        : "Pengembangan frontend dan tools yang digunakan untuk membangun pengalaman web modern.",
-    },
-    {
-      key: "operational",
-      title: isEn ? "Operations & Production" : "Operasional & Produksi",
-      description: isEn
-        ? "Production operations, quality control, maintenance, SOP, and K3."
-        : "Operasional produksi, quality control, maintenance, SOP, dan K3.",
-    },
-  ];
+  const [skills, setSkills] = useState(fallbackSkills);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function loadSkills() {
+      const { data, error } = await supabase
+        .from("skills")
+        .select("*")
+        .eq("is_active", true)
+        .order("sort_order", { ascending: true });
+
+      if (error) {
+        console.error("Skills fetch error:", error);
+        return;
+      }
+
+      if (mounted && data) {
+        setSkills(data);
+      }
+    }
+
+    loadSkills();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <section
@@ -156,14 +276,13 @@ export default function Skills() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit, minmax(300px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
             gap: "22px",
           }}
         >
           {categories.map((category, categoryIndex) => {
             const categorySkills = skills.filter(
-              (skill) => getCategory(skill) === category.key
+              (skill) => skill.category === category.key
             );
 
             return (
@@ -196,8 +315,7 @@ export default function Skills() {
                       height: "10px",
                       borderRadius: "50%",
                       background: "var(--accent)",
-                      boxShadow:
-                        "0 0 18px rgba(34,211,238,.45)",
+                      boxShadow: "0 0 18px rgba(34,211,238,.45)",
                       flexShrink: 0,
                     }}
                   />
@@ -210,7 +328,7 @@ export default function Skills() {
                       margin: 0,
                     }}
                   >
-                    {category.title}
+                    {isEn ? category.title_en : category.title_id}
                   </h3>
                 </div>
 
@@ -222,7 +340,9 @@ export default function Skills() {
                     marginBottom: "22px",
                   }}
                 >
-                  {category.description}
+                  {isEn
+                    ? category.description_en
+                    : category.description_id}
                 </p>
 
                 <div
@@ -234,14 +354,16 @@ export default function Skills() {
                 >
                   {categorySkills.map((skill) => (
                     <span
-                      key={skill}
+                      key={skill.id}
                       className="tech-pill"
                       style={{
                         fontSize: "0.82rem",
                         lineHeight: 1.4,
                       }}
                     >
-                      {skill}
+                      {isEn
+                        ? skill.name_en || skill.name_id
+                        : skill.name_id}
                     </span>
                   ))}
                 </div>
