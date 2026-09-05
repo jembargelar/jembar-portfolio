@@ -89,6 +89,8 @@ const emptyForm = {
 export default function AdminDashboard() {
   const [session, setSession] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [authorizationLoading, setAuthorizationLoading] = useState(true);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -142,10 +144,52 @@ export default function AdminDashboard() {
   }, []);
 
   useEffect(() => {
-    if (session && activeMenu === "projects") {
+    let mounted = true;
+
+    async function verifyAdminAccess() {
+      if (!session?.user?.id) {
+        if (mounted) {
+          setIsAdmin(false);
+          setAuthorizationLoading(false);
+        }
+        return;
+      }
+
+      setAuthorizationLoading(true);
+
+      const { data, error } = await supabase.rpc("is_admin");
+
+      if (!mounted) return;
+
+      if (error || data !== true) {
+        console.error(
+          "Admin authorization failed:",
+          error || "User bukan admin."
+        );
+
+        setIsAdmin(false);
+        setAuthorizationLoading(false);
+
+        await supabase.auth.signOut();
+        return;
+      }
+
+      setIsAdmin(true);
+      setAuthorizationLoading(false);
+    }
+
+    verifyAdminAccess();
+
+    return () => {
+      mounted = false;
+    };
+  }, [session]);
+
+  useEffect(() => {
+    if (session && isAdmin && activeMenu === "projects") {
       loadProjects();
     }
-  }, [session, activeMenu]);
+  }, [session, isAdmin, activeMenu]);
 
   async function login(e) {
     e.preventDefault();
@@ -167,6 +211,8 @@ export default function AdminDashboard() {
     if (error) {
       console.error(error);
       setLoginError("Login gagal: " + error.message);
+    } else {
+      setLoginError("");
     }
 
     setLoginLoading(false);
@@ -580,13 +626,17 @@ export default function AdminDashboard() {
     }
   }
 
-  if (authLoading) {
+  if (authLoading || (session && authorizationLoading)) {
     return (
       <div className="auth-page">
         <div className="auth-card">
           <LockKeyhole size={38} />
           <h1>Memeriksa akses...</h1>
-          <p>Menyiapkan Admin Panel.</p>
+          <p>
+            {session
+              ? "Memverifikasi hak akses admin."
+              : "Menyiapkan Admin Panel."}
+          </p>
         </div>
 
         <style>{authStyles}</style>
@@ -594,7 +644,7 @@ export default function AdminDashboard() {
     );
   }
 
-  if (!session) {
+  if (!session || !isAdmin) {
     return (
       <div className="auth-page">
         <div className="auth-card">
