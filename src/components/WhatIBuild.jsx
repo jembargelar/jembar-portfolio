@@ -7,7 +7,7 @@ import {
   PanelsTopLeft,
   ArrowUpRight,
 } from "lucide-react";
-import { supabase } from "../api/supabaseClient";
+import { getBuildServices } from "../api/publicData";
 import { useTranslation } from "react-i18next";
 
 const iconMap = {
@@ -74,13 +74,7 @@ export default function WhatIBuild() {
     let mounted = true;
 
     async function loadServices() {
-      const { data, error } = await supabase
-        .from("build_services")
-        .select(
-          "id,title_id,title_en,description_id,description_en,icon,sort_order,is_active"
-        )
-        .eq("is_active", true)
-        .order("sort_order", { ascending: true });
+      const { data, error } = await getBuildServices();
 
       if (!mounted) return;
 

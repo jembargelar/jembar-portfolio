@@ -9,7 +9,7 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react";
-import { supabase } from "../api/supabaseClient";
+import { getAboutContent } from "../api/publicData";
 
 const fallbackAbout = {
   title_id: "Administrasi × Bisnis × Teknologi",
@@ -33,13 +33,7 @@ export default function About() {
     let mounted = true;
 
     async function loadAbout() {
-      const { data, error } = await supabase
-        .from("about_content")
-        .select("*")
-        .eq("is_active", true)
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle();
+      const { data, error } = await getAboutContent();
 
       if (error) {
         console.error("Failed to load About content:", error);

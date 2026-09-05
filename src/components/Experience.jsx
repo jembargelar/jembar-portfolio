@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Calendar, Building2 } from "lucide-react";
-import { supabase } from "../api/supabaseClient";
+import { getExperiences } from "../api/publicData";
 import { experiences as fallbackExperiences } from "../data/portfolio";
 
 export default function Experience() {
@@ -16,12 +16,7 @@ export default function Experience() {
     let mounted = true;
 
     async function loadExperiences() {
-      const { data, error } = await supabase
-        .from("experiences")
-        .select("*")
-        .eq("is_active", true)
-        .order("sort_order", { ascending: true })
-        .order("created_at", { ascending: true });
+      const { data, error } = await getExperiences();
 
       if (!error && data?.length && mounted) {
         setExperiences(data);

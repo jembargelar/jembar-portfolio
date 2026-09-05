@@ -8,7 +8,7 @@ import {
   X,
   Maximize2,
 } from "lucide-react";
-import { supabase } from "../api/supabaseClient";
+import { getProjects } from "../api/publicData";
 
 export default function Projects() {
   const { t, i18n } = useTranslation();
@@ -25,11 +25,7 @@ export default function Projects() {
       setLoading(true);
       setError(null);
 
-      const { data, error } = await supabase
-        .from("projects")
-        .select("*")
-        .order("featured", { ascending: false })
-        .order("created_at", { ascending: false });
+      const { data, error } = await getProjects();
 
       if (error) {
         console.error("Gagal mengambil projects:", error);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { supabase } from "../api/supabaseClient";
+import { getSkills } from "../api/publicData";
 
 const fallbackSkills = [
   {
@@ -174,11 +174,7 @@ export default function Skills() {
     let mounted = true;
 
     async function loadSkills() {
-      const { data, error } = await supabase
-        .from("skills")
-        .select("*")
-        .eq("is_active", true)
-        .order("sort_order", { ascending: true });
+      const { data, error } = await getSkills();
 
       if (error) {
         console.error("Skills fetch error:", error);

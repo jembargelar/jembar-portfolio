@@ -8,7 +8,7 @@ import {
   Sparkles,
   ExternalLink,
 } from "lucide-react";
-import { supabase } from "../api/supabaseClient";
+import { getHeroContent } from "../api/publicData";
 
 const container = {
   hidden: {},
@@ -84,13 +84,7 @@ export default function Hero() {
     let mounted = true;
 
     const loadHero = async () => {
-      const { data, error } = await supabase
-        .from("hero_content")
-        .select("*")
-        .eq("is_active", true)
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle();
+      const { data, error } = await getHeroContent();
 
       if (error) {
         console.error("Failed to load hero content:", error);

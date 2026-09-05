@@ -13,7 +13,7 @@ import {
   Target,
   Trophy,
 } from "lucide-react";
-import { supabase } from "../api/supabaseClient";
+import { getProjectById, getProjectGallery } from "../api/publicData";
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -35,18 +35,8 @@ export default function ProjectDetail() {
       setGallery([]);
 
       const [projectResult, galleryResult] = await Promise.all([
-        supabase
-          .from("projects")
-          .select("*")
-          .eq("id", id)
-          .single(),
-
-        supabase
-          .from("gallery_items")
-          .select("*")
-          .eq("project_id", id)
-          .order("sort_order", { ascending: true })
-          .order("created_at", { ascending: true }),
+        getProjectById(id),
+        getProjectGallery(id),
       ]);
 
       const { data, error } = projectResult;

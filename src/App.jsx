@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -12,9 +12,10 @@ import Projects from "./components/Projects";
 import Certificates from "./components/Certificates";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
-import AdminDashboard from "./admin/AdminDashboard";
 import EntryExperience from "./components/EntryExperience";
-import ProjectDetail from "./components/ProjectDetail";
+
+const AdminDashboard = lazy(() => import("./admin/AdminDashboard"));
+const ProjectDetail = lazy(() => import("./components/ProjectDetail"));
 
 function Portfolio() {
   return (
@@ -117,9 +118,55 @@ export default function App() {
           }
         />
 
-        <Route path="/projects/:id" element={<ProjectDetail />} />
+        <Route
+          path="/projects/:id"
+          element={
+            <Suspense
+              fallback={
+                <div
+                  style={{
+                    minHeight: "100vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "var(--bg-color)",
+                    color: "var(--text-primary)",
+                    fontFamily: "system-ui, sans-serif",
+                  }}
+                >
+                  Loading Project...
+                </div>
+              }
+            >
+              <ProjectDetail />
+            </Suspense>
+          }
+        />
 
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route
+          path="/admin"
+          element={
+            <Suspense
+              fallback={
+                <div
+                  style={{
+                    minHeight: "100vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "#05070b",
+                    color: "#fff",
+                    fontFamily: "system-ui, sans-serif",
+                  }}
+                >
+                  Loading Admin...
+                </div>
+              }
+            >
+              <AdminDashboard />
+            </Suspense>
+          }
+        />
       </Routes>
     </>
   );
