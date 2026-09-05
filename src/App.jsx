@@ -45,61 +45,6 @@ function Portfolio() {
     </div>
   );
 }
-function AdminPlaceholder() {
-  return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "#05070b",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "30px",
-        fontFamily: "system-ui, sans-serif",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "500px",
-          padding: "35px",
-          borderRadius: "24px",
-          background: "rgba(255,255,255,.05)",
-          border: "1px solid rgba(255,255,255,.1)",
-          backdropFilter: "blur(20px)",
-          textAlign: "center",
-        }}
-      >
-        <div style={{ fontSize: "3rem", marginBottom: "15px" }}>
-          🛠️
-        </div>
-
-        <h1
-          style={{
-            margin: "0 0 10px",
-            fontSize: "2rem",
-          }}
-        >
-          Admin Panel
-        </h1>
-
-        <p
-          style={{
-            margin: 0,
-            color: "rgba(255,255,255,.6)",
-            lineHeight: 1.6,
-          }}
-        >
-          Panel admin sedang kita bangun.
-          <br />
-          Nantinya semua konten portfolio bisa
-          dikelola dari sini tanpa coding.
-        </p>
-      </div>
-    </div>
-  );
-}
 
 export default function App() {
   const [entered, setEntered] = React.useState(false);

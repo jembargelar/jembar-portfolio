@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Award, CheckCircle2, ExternalLink } from "lucide-react";
 
 export default function Certificates() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const isEn = i18n.language === 'en';
 
   const certsList = [

@@ -24,7 +24,7 @@ const fallbackAbout = {
 };
 
 export default function About() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const isEn = i18n.language === "en";
 
   const [content, setContent] = useState(fallbackAbout);

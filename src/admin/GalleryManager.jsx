@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ImagePlus,
   Trash2,
@@ -19,7 +19,7 @@ export default function GalleryManager({ projectId }) {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  async function loadGallery() {
+  const loadGallery = useCallback(async () => {
     if (!projectId) return;
 
     setLoading(true);
@@ -40,16 +40,16 @@ export default function GalleryManager({ projectId }) {
     }
 
     setLoading(false);
-  }
+  }, [projectId]);
 
   useEffect(() => {
     loadGallery();
-  }, [projectId]);
+  }, [loadGallery]);
 
   function getSafeFileName(name) {
     return name
       .normalize("NFKD")
-      .replace(/[^\w.\-]+/g, "-")
+      .replace(/[^\w.-]+/g, "-")
       .replace(/-+/g, "-")
       .replace(/^-|-$/g, "")
       .toLowerCase();
