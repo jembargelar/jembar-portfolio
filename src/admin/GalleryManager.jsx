@@ -7,6 +7,7 @@ import {
   Images,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
+import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
 
 export default function GalleryManager({ projectId }) {
   const inputRef = useRef(null);
@@ -71,24 +72,27 @@ export default function GalleryManager({ projectId }) {
           continue;
         }
 
-        const extension =
-          file.name.split(".").pop()?.toLowerCase() || "jpg";
+        const optimizedImage = await optimizeImage(file);
+
+        console.info(
+          `[Image Optimizer] Gallery: ${formatImageSize(file.size)} → ${formatImageSize(optimizedImage.size)}`
+        );
 
         const safeName = getSafeFileName(
           file.name.replace(/\.[^/.]+$/, "")
         );
 
         const uniqueName =
-          `${Date.now()}-${crypto.randomUUID()}-${safeName}.${extension}`;
+          `${Date.now()}-${crypto.randomUUID()}-${safeName}.webp`;
 
         const storagePath = `projects/gallery/${projectId}/${uniqueName}`;
 
         const { error: uploadError } = await supabase.storage
           .from("project-images")
-          .upload(storagePath, file, {
+          .upload(storagePath, optimizedImage, {
             cacheControl: "31536000",
             upsert: false,
-            contentType: file.type,
+            contentType: "image/webp",
           });
 
         if (uploadError) {

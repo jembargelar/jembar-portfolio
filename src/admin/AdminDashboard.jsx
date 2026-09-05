@@ -19,6 +19,7 @@ import {
   UserRound,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
+import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
 import GalleryManager from "./GalleryManager";
 import HeroManager from "./HeroManager";
 import AboutManager from "./AboutManager";
@@ -329,8 +330,11 @@ export default function AdminDashboard() {
 
         // Upload foto baru hanya jika admin memilih foto baru.
         if (imageFile) {
-          const extension =
-            imageFile.name.split(".").pop()?.toLowerCase() || "jpg";
+          const optimizedImage = await optimizeImage(imageFile);
+
+          console.info(
+            `[Image Optimizer] Project update: ${formatImageSize(imageFile.size)} → ${formatImageSize(optimizedImage.size)}`
+          );
 
           const safeName =
             form.title
@@ -338,15 +342,15 @@ export default function AdminDashboard() {
               .replace(/[^a-z0-9]+/g, "-")
               .replace(/^-|-$/g, "") || "project";
 
-          const fileName = `${Date.now()}-${safeName}.${extension}`;
+          const fileName = `${Date.now()}-${safeName}.webp`;
           uploadedPath = `projects/${fileName}`;
 
           const { error: uploadError } = await supabase.storage
             .from("project-images")
-            .upload(uploadedPath, imageFile, {
+            .upload(uploadedPath, optimizedImage, {
               cacheControl: "3600",
               upsert: false,
-              contentType: imageFile.type,
+              contentType: "image/webp",
             });
 
           if (uploadError) {
@@ -436,8 +440,11 @@ export default function AdminDashboard() {
       // =====================================================
 
       else {
-        const extension =
-          imageFile.name.split(".").pop()?.toLowerCase() || "jpg";
+        const optimizedImage = await optimizeImage(imageFile);
+
+        console.info(
+          `[Image Optimizer] Project: ${formatImageSize(imageFile.size)} → ${formatImageSize(optimizedImage.size)}`
+        );
 
         const safeName =
           form.title
@@ -445,15 +452,15 @@ export default function AdminDashboard() {
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-|-$/g, "") || "project";
 
-        const fileName = `${Date.now()}-${safeName}.${extension}`;
+        const fileName = `${Date.now()}-${safeName}.webp`;
         uploadedPath = `projects/${fileName}`;
 
         const { error: uploadError } = await supabase.storage
           .from("project-images")
-          .upload(uploadedPath, imageFile, {
+          .upload(uploadedPath, optimizedImage, {
             cacheControl: "3600",
             upsert: false,
-            contentType: imageFile.type,
+            contentType: "image/webp",
           });
 
         if (uploadError) {

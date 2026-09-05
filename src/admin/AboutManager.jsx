@@ -8,6 +8,7 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
+import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
 
 const emptyForm = {
   title_id: "Administrasi × Bisnis × Teknologi",
@@ -99,15 +100,20 @@ export default function AboutManager() {
     setError("");
     setMessage("");
 
-    const extension = file.name.split(".").pop()?.toLowerCase() || "jpg";
-    const filePath = `about/${Date.now()}-${crypto.randomUUID()}.${extension}`;
+    const optimizedImage = await optimizeImage(file);
+
+    console.info(
+      `[Image Optimizer] About: ${formatImageSize(file.size)} → ${formatImageSize(optimizedImage.size)}`
+    );
+
+    const filePath = `about/${Date.now()}-${crypto.randomUUID()}.webp`;
 
     const { error: uploadError } = await supabase.storage
       .from("project-images")
-      .upload(filePath, file, {
+      .upload(filePath, optimizedImage, {
         cacheControl: "3600",
         upsert: false,
-        contentType: file.type,
+        contentType: "image/webp",
       });
 
     if (uploadError) {

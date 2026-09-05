@@ -8,6 +8,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
+import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
 
 const emptyHero = {
   id: "",
@@ -113,18 +114,21 @@ export default function HeroManager() {
     let uploadedPath = null;
 
     try {
-      const extension =
-        file.name.split(".").pop()?.toLowerCase() || "jpg";
+      const optimizedImage = await optimizeImage(file);
 
-      const fileName = `${Date.now()}-profile.${extension}`;
+      console.info(
+        `[Image Optimizer] Hero: ${formatImageSize(file.size)} → ${formatImageSize(optimizedImage.size)}`
+      );
+
+      const fileName = `${Date.now()}-profile.webp`;
       uploadedPath = `profile/${fileName}`;
 
       const { error: uploadError } = await supabase.storage
         .from("project-images")
-        .upload(uploadedPath, file, {
+        .upload(uploadedPath, optimizedImage, {
           cacheControl: "3600",
           upsert: false,
-          contentType: file.type,
+          contentType: "image/webp",
         });
 
       if (uploadError) {
