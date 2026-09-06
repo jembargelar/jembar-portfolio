@@ -17,6 +17,10 @@ import {
   Pencil,
   Sparkles,
   UserRound,
+  GraduationCap,
+  Contact,
+  Heart,
+  Settings,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
 import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
@@ -70,7 +74,7 @@ const menuItems = [
   {
     id: "social-contact",
     label: "Social & Contact",
-    icon: ContactIcon,
+    icon: Contact,
   },
   {
     id: "support",
