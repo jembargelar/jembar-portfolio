@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Globe, Sun, Moon } from "lucide-react";
-import { personal } from "../data/portfolio";
+import { getHeroContent } from "../api/publicData";
 
 export default function Navbar() {
   const { i18n } = useTranslation();
@@ -11,8 +11,27 @@ export default function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
+  const [heroName, setHeroName] = useState("Jembar");
 
   const isEn = i18n.language === "en";
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function loadHeroName() {
+      const { data } = await getHeroContent();
+
+      if (mounted && data?.name) {
+        setHeroName(data.name);
+      }
+    }
+
+    loadHeroName();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -323,7 +342,7 @@ export default function Navbar() {
               letterSpacing: "-0.03em",
             }}
           >
-            {personal.name.split(" ")[0]}
+            {heroName.split(" ")[0]}
             <span style={{ color: "var(--accent-blue)" }}>.dev</span>
           </motion.button>
 

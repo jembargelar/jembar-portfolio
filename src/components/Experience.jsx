@@ -3,14 +3,11 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Calendar, Building2 } from "lucide-react";
 import { getExperiences } from "../api/publicData";
-import { experiences as fallbackExperiences } from "../data/portfolio";
 
 export default function Experience() {
   const { t, i18n } = useTranslation();
   const isEn = i18n.language === "en";
-  const [experiences, setExperiences] = useState(
-    fallbackExperiences
-  );
+  const [experiences, setExperiences] = useState([]);
 
   useEffect(() => {
     let mounted = true;

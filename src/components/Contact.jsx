@@ -1,35 +1,50 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Mail, MapPin } from "lucide-react";
-import { personal } from "../data/portfolio";
 import { useEffect, useState } from "react";
-import { getSocialLinks } from "../api/publicData";
+import { getSocialLinks, getHeroContent } from "../api/publicData";
 
 export default function Contact() {
   const { t, i18n } = useTranslation();
   const [social, setSocial] = useState(null);
+  const [heroName, setHeroName] = useState(
+    "Jembar Gelar Kusumah Wibawa"
+  );
 
   useEffect(() => {
     let mounted = true;
 
-    async function load() {
-      const { data } = await getSocialLinks();
-      if (mounted && data) setSocial(data);
+    async function loadContactData() {
+      const [{ data: socialData }, { data: heroData }] =
+        await Promise.all([
+          getSocialLinks(),
+          getHeroContent(),
+        ]);
+
+      if (!mounted) return;
+
+      if (socialData) {
+        setSocial(socialData);
+      }
+
+      if (heroData?.name) {
+        setHeroName(heroData.name);
+      }
     }
 
-    load();
+    loadContactData();
 
     return () => {
       mounted = false;
     };
   }, []);
 
-  const contact = social || personal;
+  const contact = social || {};
   const isEn = i18n.language === "en";
 
-  const email = contact.email || personal.email;
-  const github = contact.github || personal.github;
-  const linkedin = contact.linkedin || personal.linkedin;
+  const email = contact.email || "";
+  const github = contact.github || "";
+  const linkedin = contact.linkedin || "";
   const whatsapp = contact.whatsapp || "";
   const location =
     (isEn
@@ -215,7 +230,7 @@ export default function Contact() {
         </div>
 
         <footer style={{ marginTop: "60px", textAlign: "center", color: "var(--text-secondary)", fontSize: "0.85rem" }}>
-          <p>© {new Date().getFullYear()} {personal.name}. {t("copyright")}</p>
+          <p>© {new Date().getFullYear()} {heroName}. {t("copyright")}</p>
         </footer>
 
       </div>
