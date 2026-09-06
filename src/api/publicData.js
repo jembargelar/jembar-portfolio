@@ -138,3 +138,38 @@ export async function getBuildServices() {
     order: "sort_order.asc",
   });
 }
+
+
+export async function getEducation() {
+  return publicList("education", {
+    select: "*",
+    is_active: "eq.true",
+    order: "sort_order.asc,created_at.asc",
+  });
+}
+
+export async function getSocialLinks() {
+  return publicSingle("social_links", {
+    select: "*",
+    is_active: "eq.true",
+    order: "created_at.desc",
+    limit: "1",
+  });
+}
+
+export async function getSupportContent() {
+  return publicSingle("support_content", {
+    select: "*",
+    is_active: "eq.true",
+    order: "created_at.desc",
+    limit: "1",
+  });
+}
+
+export async function getSiteSettings() {
+  return publicSingle("site_settings", {
+    select: "*",
+    order: "created_at.desc",
+    limit: "1",
+  });
+}

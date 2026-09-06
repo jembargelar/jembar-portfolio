@@ -13,6 +13,8 @@ import Certificates from "./components/Certificates";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import EntryExperience from "./components/EntryExperience";
+import SupportMyWork from "./components/SupportMyWork";
+import SiteMeta from "./components/SiteMeta";
 
 const AdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 const ProjectDetail = lazy(() => import("./components/ProjectDetail"));
@@ -31,6 +33,7 @@ function Portfolio() {
       <VisualEffects />
 
       <div style={{ position: "relative", zIndex: 2 }}>
+        <SiteMeta />
         <Navbar />
         <Hero />
         <About />
@@ -41,6 +44,7 @@ function Portfolio() {
         <Certificates />
         <Education />
         <Contact />
+        <SupportMyWork />
       </div>
     </div>
   );

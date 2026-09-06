@@ -2,9 +2,54 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Mail, MapPin } from "lucide-react";
 import { personal } from "../data/portfolio";
+import { useEffect, useState } from "react";
+import { getSocialLinks } from "../api/publicData";
 
 export default function Contact() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [social, setSocial] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function load() {
+      const { data } = await getSocialLinks();
+      if (mounted && data) setSocial(data);
+    }
+
+    load();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const contact = social || personal;
+  const isEn = i18n.language === "en";
+
+  const email = contact.email || personal.email;
+  const github = contact.github || personal.github;
+  const linkedin = contact.linkedin || personal.linkedin;
+  const whatsapp = contact.whatsapp || "";
+  const location =
+    (isEn
+      ? contact.location_en || contact.location_id
+      : contact.location_id || contact.location_en) ||
+    "Garut, Indonesia";
+
+  const contactTitle =
+    (isEn
+      ? contact.contact_title_en || contact.contact_title_id
+      : contact.contact_title_id || contact.contact_title_en) ||
+    t("letsBuild");
+
+  const contactDescription =
+    (isEn
+      ? contact.contact_description_en ||
+        contact.contact_description_id
+      : contact.contact_description_id ||
+        contact.contact_description_en) ||
+    t("contactSubtitle");
 
   return (
     <section id="contact" style={{ padding: "80px 20px" }}>
@@ -30,11 +75,11 @@ export default function Contact() {
           >
             <div>
               <h3 style={{ fontSize: "1.4rem", fontWeight: "700", color: "var(--text-primary)", marginBottom: "12px" }}>
-                {t("letsBuild")}
+                {contactTitle}
               </h3>
 
               <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", lineHeight: "1.6", marginBottom: "28px" }}>
-                {t("contactSubtitle")}
+                {contactDescription}
               </p>
             </div>
 
@@ -42,7 +87,7 @@ export default function Contact() {
               <motion.a
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                href={`mailto:${personal.email}`}
+                href={`mailto:${email}`}
                 className="btn-gradient"
                 style={{
                   display: "inline-flex",
@@ -55,13 +100,13 @@ export default function Contact() {
                 }}
               >
                 <Mail size={18} />
-                <span>{t("sendEmail")} ({personal.email})</span>
+                <span>{t("sendEmail")} ({email})</span>
               </motion.a>
 
               <motion.a
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                href="https://wa.me/6285119779156"
+                href={whatsapp ? `https://wa.me/${whatsapp.replace(/\D/g, "")}` : "#"}
                 target="_blank"
                 rel="noreferrer"
                 style={{
@@ -86,7 +131,7 @@ export default function Contact() {
 
               <div style={{ display: "flex", gap: "16px" }}>
                 <a
-                  href={personal.github}
+                  href={github}
                   target="_blank"
                   rel="noreferrer"
                   style={{
@@ -108,7 +153,7 @@ export default function Contact() {
                   GitHub ↗
                 </a>
                 <a
-                  href={personal.linkedin}
+                  href={linkedin}
                   target="_blank"
                   rel="noreferrer"
                   style={{
@@ -144,7 +189,7 @@ export default function Contact() {
             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
               <MapPin size={18} color="var(--accent)" />
               <span style={{ fontSize: "0.9rem", fontWeight: "600", color: "var(--text-primary)" }}>
-                Location Base: West Java, Indonesia
+                {location}
               </span>
             </div>
 

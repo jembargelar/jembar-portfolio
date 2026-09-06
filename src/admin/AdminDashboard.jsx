@@ -26,6 +26,10 @@ import AboutManager from "./AboutManager";
 import WhatIBuildManager from "./WhatIBuildManager";
 import ExperienceManager from "./ExperienceManager";
 import SkillsManager from "./SkillsManager";
+import EducationManager from "./EducationManager";
+import SocialContactManager from "./SocialContactManager";
+import SupportManager from "./SupportManager";
+import SiteSettingsManager from "./SiteSettingsManager";
 
 const menuItems = [
   {
@@ -57,6 +61,26 @@ const menuItems = [
     id: "skills",
     label: "Skills",
     icon: Sparkles,
+  },
+  {
+    id: "education",
+    label: "Education",
+    icon: GraduationCap,
+  },
+  {
+    id: "social-contact",
+    label: "Social & Contact",
+    icon: ContactIcon,
+  },
+  {
+    id: "support",
+    label: "Support My Work",
+    icon: Heart,
+  },
+  {
+    id: "settings",
+    label: "Site Settings",
+    icon: Settings,
   },
   {
     id: "projects",
@@ -792,6 +816,10 @@ export default function AdminDashboard() {
                   "what-i-build": "What I Build",
                   experience: "Experience",
                   skills: "Skills",
+                  education: "Education",
+                  "social-contact": "Social & Contact",
+                  support: "Support My Work",
+                  settings: "Site Settings",
                   projects: "Projects",
                 }[activeMenu] || "Dashboard"}
               </h1>
@@ -819,6 +847,22 @@ export default function AdminDashboard() {
 
             {activeMenu === "skills" && (
               <SkillsManager />
+            )}
+
+            {activeMenu === "education" && (
+              <EducationManager />
+            )}
+
+            {activeMenu === "social-contact" && (
+              <SocialContactManager />
+            )}
+
+            {activeMenu === "support" && (
+              <SupportManager />
+            )}
+
+            {activeMenu === "settings" && (
+              <SiteSettingsManager />
             )}
 
 
