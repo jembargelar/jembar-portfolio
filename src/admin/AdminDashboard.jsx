@@ -21,6 +21,8 @@ import {
   Contact,
   Heart,
   Settings,
+  Milestone,
+  Images,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
 import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
@@ -34,6 +36,8 @@ import EducationManager from "./EducationManager";
 import SocialContactManager from "./SocialContactManager";
 import SupportManager from "./SupportManager";
 import SiteSettingsManager from "./SiteSettingsManager";
+import JourneyManager from "./JourneyManager";
+import MediaManager from "./MediaManager";
 
 const menuItems = [
   {
@@ -85,6 +89,16 @@ const menuItems = [
     id: "settings",
     label: "Site Settings",
     icon: Settings,
+  },
+  {
+    id: "journey",
+    label: "Journey",
+    icon: Milestone,
+  },
+  {
+    id: "media",
+    label: "Media Library",
+    icon: Images,
   },
   {
     id: "projects",
@@ -824,6 +838,8 @@ export default function AdminDashboard() {
                   "social-contact": "Social & Contact",
                   support: "Support My Work",
                   settings: "Site Settings",
+                  journey: "Journey",
+                  media: "Media Library",
                   projects: "Projects",
                 }[activeMenu] || "Dashboard"}
               </h1>
@@ -867,6 +883,14 @@ export default function AdminDashboard() {
 
             {activeMenu === "settings" && (
               <SiteSettingsManager />
+            )}
+
+            {activeMenu === "journey" && (
+              <JourneyManager />
+            )}
+
+            {activeMenu === "media" && (
+              <MediaManager />
             )}
 
 

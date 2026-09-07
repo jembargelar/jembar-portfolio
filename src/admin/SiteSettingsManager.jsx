@@ -20,6 +20,20 @@ const emptyForm = {
   favicon_url: "/favicon.svg",
   default_language: "id",
   default_theme: "dark",
+  entry_enabled: true,
+  entry_kicker_id: "Digital Portfolio",
+  entry_kicker_en: "Digital Portfolio",
+  entry_title: "JEMBAR.DEV",
+  entry_tagline_id:
+    "Membangun solusi digital untuk operasional bisnis modern.",
+  entry_tagline_en:
+    "Building digital solutions for modern business operations.",
+  entry_location_id: "GARUT · INDONESIA",
+  entry_location_en: "GARUT · INDONESIA",
+  entry_button_id: "MASUK",
+  entry_button_en: "ENTER",
+  entry_skip_returning: true,
+  entry_transition_ms: 450,
   maintenance_mode: false,
 };
 
@@ -101,6 +115,18 @@ export default function SiteSettingsManager() {
       favicon_url: form.favicon_url.trim(),
       default_language: form.default_language,
       default_theme: form.default_theme,
+      entry_enabled: form.entry_enabled,
+      entry_kicker_id: form.entry_kicker_id.trim(),
+      entry_kicker_en: form.entry_kicker_en.trim(),
+      entry_title: form.entry_title.trim(),
+      entry_tagline_id: form.entry_tagline_id.trim(),
+      entry_tagline_en: form.entry_tagline_en.trim(),
+      entry_location_id: form.entry_location_id.trim(),
+      entry_location_en: form.entry_location_en.trim(),
+      entry_button_id: form.entry_button_id.trim(),
+      entry_button_en: form.entry_button_en.trim(),
+      entry_skip_returning: form.entry_skip_returning,
+      entry_transition_ms: Number(form.entry_transition_ms) || 450,
       maintenance_mode: Boolean(
         form.maintenance_mode
       ),
@@ -285,6 +311,117 @@ export default function SiteSettingsManager() {
               }
             />
             Maintenance Mode
+          </label>
+        </Panel>
+
+        <Panel title="Entry Experience">
+          <label style={labelStyle}>
+            Entry Experience
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={Boolean(form.entry_enabled)}
+                onChange={(e) =>
+                  update("entry_enabled", e.target.checked)
+                }
+              />
+              <span>
+                {form.entry_enabled ? "Aktif" : "Nonaktif"}
+              </span>
+            </div>
+          </label>
+
+          <Field
+            label="Kicker Indonesia"
+            value={form.entry_kicker_id}
+            onChange={(v) => update("entry_kicker_id", v)}
+          />
+
+          <Field
+            label="Kicker English"
+            value={form.entry_kicker_en}
+            onChange={(v) => update("entry_kicker_en", v)}
+          />
+
+          <Field
+            label="Title"
+            value={form.entry_title}
+            onChange={(v) => update("entry_title", v)}
+          />
+
+          <TextArea
+            label="Tagline Indonesia"
+            value={form.entry_tagline_id}
+            onChange={(v) => update("entry_tagline_id", v)}
+          />
+
+          <TextArea
+            label="Tagline English"
+            value={form.entry_tagline_en}
+            onChange={(v) => update("entry_tagline_en", v)}
+          />
+
+          <Field
+            label="Location Indonesia"
+            value={form.entry_location_id}
+            onChange={(v) => update("entry_location_id", v)}
+          />
+
+          <Field
+            label="Location English"
+            value={form.entry_location_en}
+            onChange={(v) => update("entry_location_en", v)}
+          />
+
+          <Field
+            label="Button Indonesia"
+            value={form.entry_button_id}
+            onChange={(v) => update("entry_button_id", v)}
+          />
+
+          <Field
+            label="Button English"
+            value={form.entry_button_en}
+            onChange={(v) => update("entry_button_en", v)}
+          />
+
+          <label style={labelStyle}>
+            Transition Duration (ms)
+            <input
+              type="number"
+              min="0"
+              max="5000"
+              step="50"
+              value={form.entry_transition_ms}
+              onChange={(e) =>
+                update("entry_transition_ms", e.target.value)
+              }
+              style={inputStyle}
+            />
+          </label>
+
+          <label
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              color: "var(--text-secondary)",
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={Boolean(form.entry_skip_returning)}
+              onChange={(e) =>
+                update("entry_skip_returning", e.target.checked)
+              }
+            />
+            Skip untuk returning visitor
           </label>
         </Panel>
       </div>

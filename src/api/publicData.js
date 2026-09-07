@@ -173,3 +173,12 @@ export async function getSiteSettings() {
     limit: "1",
   });
 }
+
+
+export async function getJourneyItems() {
+  return publicList("journey_items", {
+    select: "*",
+    is_active: "eq.true",
+    order: "sort_order.asc",
+  });
+}

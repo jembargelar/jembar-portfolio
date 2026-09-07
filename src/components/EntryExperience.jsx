@@ -1,14 +1,65 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { getSiteSettings } from "../api/publicData";
 
 const STORAGE_KEY = "jembar-entry-seen";
 
-export default function EntryExperience({ onEnter }) {
-  const [visible, setVisible] = useState(true);
+const fallbackSettings = {
+  entry_enabled: true,
+  entry_kicker_id: "Digital Portfolio",
+  entry_kicker_en: "Digital Portfolio",
+  entry_title: "JEMBAR.DEV",
+  entry_tagline_id:
+    "Membangun solusi digital untuk operasional bisnis modern.",
+  entry_tagline_en:
+    "Building digital solutions for modern business operations.",
+  entry_location_id: "GARUT · INDONESIA",
+  entry_location_en: "GARUT · INDONESIA",
+  entry_button_id: "MASUK",
+  entry_button_en: "ENTER",
+  entry_skip_returning: true,
+  entry_transition_ms: 450,
+};
+
+export default function EntryExperience({ onEnter, language = "id" }) {
+  const [settings, setSettings] = useState(fallbackSettings);
+  const [settingsLoaded, setSettingsLoaded] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let mounted = true;
+
+    async function loadSettings() {
+      try {
+        const data = await getSiteSettings();
+
+        if (mounted && data) {
+          setSettings({
+            ...fallbackSettings,
+            ...data,
+          });
+        }
+      } catch (error) {
+        console.error("Failed to load Entry Experience settings:", error);
+      } finally {
+        if (mounted) {
+          setSettingsLoaded(true);
+        }
+      }
+    }
+
+    loadSettings();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    const media = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
 
     const update = () => setReducedMotion(media.matches);
 
@@ -19,17 +70,33 @@ export default function EntryExperience({ onEnter }) {
   }, []);
 
   useEffect(() => {
-    try {
-      const seen = sessionStorage.getItem(STORAGE_KEY);
+    if (!settingsLoaded) return;
 
-      if (seen === "true") {
-        setVisible(false);
-        onEnter?.();
-      }
-    } catch {
-      // sessionStorage can be unavailable in some browser contexts.
+    if (!settings.entry_enabled) {
+      onEnter?.();
+      return;
     }
-  }, [onEnter]);
+
+    if (settings.entry_skip_returning) {
+      try {
+        const seen = sessionStorage.getItem(STORAGE_KEY);
+
+        if (seen === "true") {
+          onEnter?.();
+          return;
+        }
+      } catch {
+        // sessionStorage can be unavailable in some browser contexts.
+      }
+    }
+
+    setVisible(true);
+  }, [
+    settingsLoaded,
+    settings.entry_enabled,
+    settings.entry_skip_returning,
+    onEnter,
+  ]);
 
   const enter = () => {
     try {
@@ -38,23 +105,54 @@ export default function EntryExperience({ onEnter }) {
       // Ignore storage errors.
     }
 
+    const transitionMs = Number(settings.entry_transition_ms) || 450;
+
+    if (reducedMotion || transitionMs <= 0) {
+      setVisible(false);
+      onEnter?.();
+      return;
+    }
+
     setVisible(false);
 
     window.setTimeout(() => {
       onEnter?.();
-    }, reducedMotion ? 0 : 450);
+    }, transitionMs);
   };
 
-  if (!visible) return null;
+
+  if (!settingsLoaded) return null;
+
+  const isEnglish = language === "en";
+
+  const kicker = isEnglish
+    ? settings.entry_kicker_en
+    : settings.entry_kicker_id;
+
+  const tagline = isEnglish
+    ? settings.entry_tagline_en
+    : settings.entry_tagline_id;
+
+  const location = isEnglish
+    ? settings.entry_location_en
+    : settings.entry_location_id;
+
+  const button = isEnglish
+    ? settings.entry_button_en
+    : settings.entry_button_id;
+
+  const transitionMs = Number(settings.entry_transition_ms) || 450;
+  const transitionSeconds = transitionMs / 1000;
 
   return (
     <AnimatePresence>
-      <motion.div
+      {visible && (
+        <motion.div
         key="entry"
         initial={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{
-          duration: reducedMotion ? 0 : 0.45,
+          duration: reducedMotion ? 0 : transitionSeconds,
           ease: "easeInOut",
         }}
         style={{
@@ -71,7 +169,6 @@ export default function EntryExperience({ onEnter }) {
           isolation: "isolate",
         }}
       >
-        {/* Background grid */}
         <div
           aria-hidden="true"
           style={{
@@ -90,7 +187,6 @@ export default function EntryExperience({ onEnter }) {
           }}
         />
 
-        {/* Glow */}
         <motion.div
           aria-hidden="true"
           animate={
@@ -142,9 +238,14 @@ export default function EntryExperience({ onEnter }) {
           }}
         >
           <motion.div
-            initial={reducedMotion ? { opacity: 1 } : { opacity: 0 }}
+            initial={
+              reducedMotion ? { opacity: 1 } : { opacity: 0 }
+            }
             animate={{ opacity: 1 }}
-            transition={{ delay: reducedMotion ? 0 : 0.15, duration: 0.5 }}
+            transition={{
+              delay: reducedMotion ? 0 : 0.15,
+              duration: 0.5,
+            }}
             style={{
               fontSize: "clamp(.7rem, 1.5vw, .85rem)",
               letterSpacing: ".28em",
@@ -153,7 +254,7 @@ export default function EntryExperience({ onEnter }) {
               marginBottom: "22px",
             }}
           >
-            Digital Portfolio
+            {kicker}
           </motion.div>
 
           <motion.h1
@@ -176,19 +277,15 @@ export default function EntryExperience({ onEnter }) {
               letterSpacing: "-.06em",
             }}
           >
-            JEMBAR
-            <span
-              style={{
-                color: "#22d3ee",
-                textShadow: "0 0 35px rgba(34,211,238,.35)",
-              }}
-            >
-              .DEV
-            </span>
+            {String(settings.entry_title || "JEMBAR.DEV")}
           </motion.h1>
 
           <motion.p
-            initial={reducedMotion ? { opacity: 1 } : { opacity: 0 }}
+            initial={
+              reducedMotion
+                ? { opacity: 1 }
+                : { opacity: 0 }
+            }
             animate={{ opacity: 1 }}
             transition={{
               delay: reducedMotion ? 0 : 0.55,
@@ -202,13 +299,17 @@ export default function EntryExperience({ onEnter }) {
               lineHeight: 1.7,
             }}
           >
-            Building digital solutions for modern business operations.
+            {tagline}
           </motion.p>
 
           <motion.button
             type="button"
             onClick={enter}
-            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 16 }}
+            initial={
+              reducedMotion
+                ? { opacity: 1 }
+                : { opacity: 0, y: 16 }
+            }
             animate={{ opacity: 1, y: 0 }}
             transition={{
               delay: reducedMotion ? 0 : 0.75,
@@ -219,7 +320,8 @@ export default function EntryExperience({ onEnter }) {
                 ? undefined
                 : {
                     scale: 1.04,
-                    boxShadow: "0 0 42px rgba(34,211,238,.28)",
+                    boxShadow:
+                      "0 0 42px rgba(34,211,238,.28)",
                   }
             }
             whileTap={{ scale: 0.97 }}
@@ -229,7 +331,8 @@ export default function EntryExperience({ onEnter }) {
               minHeight: "54px",
               padding: "14px 28px",
               borderRadius: "999px",
-              border: "1px solid rgba(34,211,238,.55)",
+              border:
+                "1px solid rgba(34,211,238,.55)",
               background:
                 "linear-gradient(135deg, rgba(34,211,238,.18), rgba(59,130,246,.14))",
               color: "#f8fafc",
@@ -239,11 +342,14 @@ export default function EntryExperience({ onEnter }) {
               cursor: "pointer",
               backdropFilter: "blur(14px)",
               WebkitBackdropFilter: "blur(14px)",
-              boxShadow: "0 0 25px rgba(34,211,238,.10)",
+              boxShadow:
+                "0 0 25px rgba(34,211,238,.10)",
             }}
           >
-            ENTER
-            <span style={{ marginLeft: "10px" }}>→</span>
+            {button}
+            <span style={{ marginLeft: "10px" }}>
+              →
+            </span>
           </motion.button>
 
           <motion.div
@@ -260,10 +366,11 @@ export default function EntryExperience({ onEnter }) {
               letterSpacing: ".08em",
             }}
           >
-            GARUT · INDONESIA
+            {location}
           </motion.div>
         </motion.main>
-      </motion.div>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 }

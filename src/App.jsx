@@ -1,4 +1,5 @@
 import React, { Suspense, lazy } from "react";
+import { useTranslation } from "react-i18next";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -8,6 +9,7 @@ import About from "./components/About";
 import WhatIBuild from "./components/WhatIBuild";
 import Skills from "./components/Skills";
 import Experience from "./components/Experience";
+import Journey from "./components/Journey";
 import Projects from "./components/Projects";
 import Certificates from "./components/Certificates";
 import Education from "./components/Education";
@@ -39,6 +41,7 @@ function Portfolio() {
         <About />
         <WhatIBuild />
         <Experience />
+        <Journey />
         <Skills />
         <Projects />
         <Certificates />
@@ -52,6 +55,11 @@ function Portfolio() {
 
 export default function App() {
   const [entered, setEntered] = React.useState(false);
+  const { i18n } = useTranslation();
+  const language = i18n.language === "en" ? "en" : "id";
+  const handleEnter = React.useCallback(() => {
+    setEntered(true);
+  }, []);
 
   return (
     <>
@@ -62,7 +70,10 @@ export default function App() {
             entered ? (
               <Portfolio />
             ) : (
-              <EntryExperience onEnter={() => setEntered(true)} />
+              <EntryExperience
+                language={language}
+                onEnter={handleEnter}
+              />
             )
           }
         />
