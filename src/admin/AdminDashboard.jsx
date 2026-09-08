@@ -23,6 +23,7 @@ import {
   Settings,
   Milestone,
   Images,
+  FileText,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
 import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
@@ -38,6 +39,7 @@ import SupportManager from "./SupportManager";
 import SiteSettingsManager from "./SiteSettingsManager";
 import JourneyManager from "./JourneyManager";
 import MediaManager from "./MediaManager";
+import DocumentManager from "./DocumentManagerSecure";
 
 const menuItems = [
   {
@@ -99,6 +101,11 @@ const menuItems = [
     id: "media",
     label: "Media Library",
     icon: Images,
+  },
+  {
+    id: "documents",
+    label: "Documents",
+    icon: FileText,
   },
   {
     id: "projects",
@@ -199,11 +206,16 @@ export default function AdminDashboard() {
 
       setAuthorizationLoading(true);
 
-      const { data, error } = await supabase.rpc("is_admin");
+      const { data, error } = await supabase
+        .from("admin_users")
+        .select("user_id")
+        .eq("user_id", session.user.id)
+        .eq("is_active", true)
+        .maybeSingle();
 
       if (!mounted) return;
 
-      if (error || data !== true) {
+      if (error || !data) {
         console.error(
           "Admin authorization failed:",
           error || "User bukan admin."
@@ -840,6 +852,7 @@ export default function AdminDashboard() {
                   settings: "Site Settings",
                   journey: "Journey",
                   media: "Media Library",
+                  documents: "Documents",
                   projects: "Projects",
                 }[activeMenu] || "Dashboard"}
               </h1>
@@ -891,6 +904,10 @@ export default function AdminDashboard() {
 
             {activeMenu === "media" && (
               <MediaManager />
+            )}
+
+            {activeMenu === "documents" && (
+              <DocumentManager />
             )}
 
 

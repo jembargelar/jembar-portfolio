@@ -1453,3 +1453,341 @@
     transition: none !important;
   }
 }
+
+/* =========================================================
+   PORTFOLIO DOCUMENTS
+   ========================================================= */
+
+.admin-form-card {
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.admin-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-field > span {
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.admin-field input,
+.admin-field select,
+.admin-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.045);
+  color: inherit;
+  font: inherit;
+  outline: none;
+  padding: 12px 13px;
+}
+
+.admin-field textarea {
+  min-height: 96px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.admin-field input::placeholder,
+.admin-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.admin-field input:focus,
+.admin-field select:focus,
+.admin-field textarea:focus {
+  border-color: rgba(34, 211, 238, 0.65);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.08);
+}
+
+.admin-checkbox-row {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 0 2px;
+}
+
+.admin-checkbox-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.admin-checkbox-row input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #22d3ee;
+}
+
+.admin-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.admin-form-hint {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  opacity: 0.58;
+}
+
+.admin-panel-section {
+  margin-top: 24px;
+}
+
+.admin-section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.admin-section-heading h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.admin-section-heading p {
+  margin: 5px 0 0;
+  font-size: 0.84rem;
+  opacity: 0.6;
+}
+
+.admin-document-list {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-document-card {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.admin-document-icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 14px;
+  background: rgba(34, 211, 238, 0.08);
+}
+
+.admin-document-content {
+  min-width: 0;
+}
+
+.admin-document-title-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.admin-document-title-row h4 {
+  min-width: 0;
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.admin-document-type {
+  flex: 0 0 auto;
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  border-radius: 999px;
+  padding: 3px 7px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+}
+
+.admin-document-content > p {
+  margin: 6px 0 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  opacity: 0.68;
+  overflow-wrap: anywhere;
+}
+
+.admin-document-content .admin-document-en {
+  margin-top: 3px;
+  font-size: 0.78rem;
+  opacity: 0.5;
+}
+
+.admin-document-meta {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.admin-document-meta span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.045);
+  padding: 4px 7px;
+  font-size: 0.68rem;
+  line-height: 1.3;
+  opacity: 0.62;
+}
+
+.admin-document-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.admin-success-message,
+.admin-error-message {
+  margin-top: 14px;
+  padding: 11px 13px;
+  border-radius: 11px;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.admin-success-message {
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  background: rgba(34, 211, 238, 0.06);
+}
+
+.admin-error-message {
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  background: rgba(248, 113, 113, 0.06);
+}
+
+@media (max-width: 760px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .admin-form-card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .admin-form-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .admin-form-actions .admin-primary-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-form-hint {
+    text-align: center;
+  }
+
+  .admin-checkbox-row {
+    gap: 8px 18px;
+  }
+
+  .admin-document-card {
+    grid-template-columns: 44px minmax(0, 1fr);
+    align-items: start;
+    padding: 14px;
+  }
+
+  .admin-document-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .admin-document-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+    padding-top: 2px;
+  }
+
+  .admin-document-title-row {
+    align-items: flex-start;
+  }
+
+  .admin-section-heading {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-form-card {
+    padding: 15px;
+  }
+
+  .admin-field input,
+  .admin-field select,
+  .admin-field textarea {
+    font-size: 16px;
+  }
+
+  .admin-document-card {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .admin-document-meta {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-document-meta span {
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .admin-document-actions {
+    justify-content: stretch;
+  }
+
+  .admin-document-actions .admin-icon-button {
+    flex: 1;
+    min-height: 42px;
+  }
+}
