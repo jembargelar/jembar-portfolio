@@ -1791,3 +1791,169 @@
     min-height: 42px;
   }
 }
+
+/* =========================================================
+   CMS FORM GRID
+   Fix for managers using .admin-form-grid
+   ========================================================= */
+
+.admin-form-grid {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.admin-form-grid > label {
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: rgba(255,255,255,.68);
+  font-size: .76rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.admin-form-grid > label > input,
+.admin-form-grid > label > select,
+.admin-form-grid > label > textarea {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 12px 13px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 11px;
+  outline: none;
+  background: rgba(255,255,255,.045);
+  color: #fff;
+  font: inherit;
+  font-size: .85rem;
+  line-height: 1.5;
+}
+
+.admin-form-grid > label > textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.admin-form-grid > label > input::placeholder,
+.admin-form-grid > label > textarea::placeholder {
+  color: rgba(255,255,255,.28);
+}
+
+.admin-form-grid > label > input:focus,
+.admin-form-grid > label > select:focus,
+.admin-form-grid > label > textarea:focus {
+  border-color: rgba(34,211,238,.45);
+  box-shadow: 0 0 0 3px rgba(34,211,238,.06);
+}
+
+.admin-form-grid > .admin-form-full {
+  grid-column: 1 / -1;
+}
+
+.admin-form-grid > .admin-checkbox {
+  width: 100%;
+  min-width: 0;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 11px;
+  background: rgba(255,255,255,.025);
+}
+
+.admin-form-grid > .admin-checkbox input {
+  width: 17px !important;
+  min-width: 17px;
+  max-width: 17px;
+  height: 17px;
+  padding: 0;
+  margin: 0;
+  accent-color: #22d3ee;
+}
+
+.admin-form-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 16px;
+}
+
+.admin-form-actions .admin-primary-button,
+.admin-form-actions .admin-secondary-button {
+  min-width: 120px;
+}
+
+/* =========================================================
+   MOBILE CMS FORMS
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .admin-form-grid > .admin-form-full {
+    grid-column: auto;
+  }
+
+  .admin-form-grid > label {
+    width: 100%;
+  }
+
+  .admin-form-grid > label > input,
+  .admin-form-grid > label > select,
+  .admin-form-grid > label > textarea {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .admin-form-grid > .admin-checkbox {
+    width: 100%;
+  }
+
+  .admin-form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 9px;
+  }
+
+  .admin-form-actions .admin-primary-button,
+  .admin-form-actions .admin-secondary-button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .admin-form-grid {
+    gap: 12px;
+  }
+
+  .admin-form-grid > label {
+    font-size: .74rem;
+  }
+
+  .admin-form-grid > label > input,
+  .admin-form-grid > label > select,
+  .admin-form-grid > label > textarea {
+    padding: 11px 12px;
+    font-size: .82rem;
+  }
+
+  .admin-card {
+    padding: 15px;
+  }
+}
