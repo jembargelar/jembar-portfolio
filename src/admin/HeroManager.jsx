@@ -8,6 +8,10 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
+import {
+  removeImageIfUnreferenced,
+  normalizeImagePath,
+} from "../utils/imageReferences";
 import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
 
 const emptyHero = {
@@ -219,6 +223,45 @@ export default function HeroManager() {
 
       if (result.error) {
         throw new Error(result.error.message);
+      }
+
+      // ========================================================
+      // CLEANUP FOTO HERO LAMA
+      // ========================================================
+      // Foto lama hanya dibersihkan setelah database berhasil
+      // diperbarui. Jika masih direferensikan CMS lain, file
+      // akan dipertahankan.
+      if (
+        hero.id &&
+        hero.profile_image_url &&
+        result.data?.profile_image_url !== hero.profile_image_url
+      ) {
+        const oldPath = normalizeImagePath(
+          hero.profile_image_url
+        );
+
+        const newPath = normalizeImagePath(
+          result.data?.profile_image_url
+        );
+
+        if (oldPath && oldPath !== newPath) {
+          try {
+            const cleanupResult =
+              await removeImageIfUnreferenced(oldPath);
+
+            if (!cleanupResult.removed) {
+              console.info(
+                "Foto Hero lama masih digunakan dan dipertahankan:",
+                cleanupResult.references
+              );
+            }
+          } catch (cleanupError) {
+            console.warn(
+              "Foto Hero lama gagal dibersihkan:",
+              cleanupError
+            );
+          }
+        }
       }
 
       setHero({

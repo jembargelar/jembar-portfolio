@@ -26,6 +26,10 @@ import {
   FileText,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
+import {
+  removeImageIfUnreferenced,
+  normalizeImagePath,
+} from "../utils/imageReferences";
 import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
 import GalleryManager from "./GalleryManager";
 import HeroManager from "./HeroManager";
@@ -38,7 +42,7 @@ import SocialContactManager from "./SocialContactManager";
 import SupportManager from "./SupportManager";
 import SiteSettingsManager from "./SiteSettingsManager";
 import JourneyManager from "./JourneyManager";
-import MediaManager from "./MediaManager";
+import MediaLibrary from "./MediaLibrary";
 import DocumentManager from "./DocumentManagerSecure";
 
 const menuItems = [
@@ -506,28 +510,29 @@ export default function AdminDashboard() {
           );
         }
 
-        // Hapus foto lama hanya setelah database berhasil diperbarui.
+        // Bersihkan foto lama hanya setelah database berhasil diperbarui.
+        // File hanya dihapus jika sudah tidak direferensikan oleh CMS.
         if (imageFile && editingProject.image_url) {
-          const marker =
-            "/storage/v1/object/public/project-images/";
+          const oldPath = normalizeImagePath(
+            editingProject.image_url
+          );
 
-          if (editingProject.image_url.includes(marker)) {
-            const oldPath = decodeURIComponent(
-              editingProject.image_url.split(marker)[1]
-            );
+          if (oldPath && oldPath !== uploadedPath) {
+            try {
+              const cleanupResult =
+                await removeImageIfUnreferenced(oldPath);
 
-            if (oldPath && oldPath !== uploadedPath) {
-              const { error: oldImageError } =
-                await supabase.storage
-                  .from("project-images")
-                  .remove([oldPath]);
-
-              if (oldImageError) {
-                console.warn(
-                  "Foto lama gagal dihapus:",
-                  oldImageError
+              if (!cleanupResult.removed) {
+                console.info(
+                  "Foto lama masih digunakan dan dipertahankan:",
+                  cleanupResult.references
                 );
               }
+            } catch (cleanupError) {
+              console.warn(
+                "Foto lama gagal dibersihkan:",
+                cleanupError
+              );
             }
           }
         }
@@ -638,29 +643,32 @@ export default function AdminDashboard() {
     setMessage("");
 
     try {
-      if (project.image_url) {
-        const marker =
-          "/storage/v1/object/public/project-images/";
+      // Ambil seluruh asset gallery sebelum project dihapus.
+      // gallery_items akan ikut terhapus melalui ON DELETE CASCADE.
+      const { data: galleryItems, error: galleryFetchError } =
+        await supabase
+          .from("gallery_items")
+          .select("id,image_url")
+          .eq("project_id", project.id);
 
-        if (project.image_url.includes(marker)) {
-          const path = decodeURIComponent(
-            project.image_url.split(marker)[1]
-          );
-
-          const { error: storageError } =
-            await supabase.storage
-              .from("project-images")
-              .remove([path]);
-
-          if (storageError) {
-            console.warn(
-              "Gambar gagal dihapus:",
-              storageError
-            );
-          }
-        }
+      if (galleryFetchError) {
+        throw new Error(
+          "Gagal mengambil data gallery project: " +
+            galleryFetchError.message
+        );
       }
 
+      const imagePaths = [
+        normalizeImagePath(project.image_url),
+        ...(galleryItems || []).map((item) =>
+          normalizeImagePath(item.image_url)
+        ),
+      ].filter(Boolean);
+
+      const uniqueImagePaths = [...new Set(imagePaths)];
+
+      // Hapus data project terlebih dahulu.
+      // gallery_items ikut terhapus karena ON DELETE CASCADE.
       const { error: deleteError } = await supabase
         .from("projects")
         .delete()
@@ -670,12 +678,37 @@ export default function AdminDashboard() {
         throw new Error(deleteError.message);
       }
 
-      setMessage("Project berhasil dihapus.");
+      // Setelah seluruh referensi project/gallery hilang,
+      // bersihkan file Storage yang sudah benar-benar orphan.
+      const cleanupResults = await Promise.allSettled(
+        uniqueImagePaths.map((imagePath) =>
+          removeImageIfUnreferenced(imagePath)
+        )
+      );
+
+      const cleanupFailures = cleanupResults.filter(
+        (result) => result.status === "rejected"
+      );
+
+      if (cleanupFailures.length > 0) {
+        console.warn(
+          "Project terhapus, tetapi sebagian asset Storage gagal dibersihkan:",
+          cleanupFailures
+        );
+
+        setMessage(
+          "Project berhasil dihapus. Sebagian file gambar perlu dibersihkan manual."
+        );
+      } else {
+        setMessage("Project berhasil dihapus.");
+      }
+
       await loadProjects();
     } catch (err) {
       console.error(err);
       setError(
-        "Gagal menghapus project: " + err.message
+        "Gagal menghapus project: " +
+          (err.message || "Terjadi kesalahan.")
       );
     }
   }
@@ -903,7 +936,7 @@ export default function AdminDashboard() {
             )}
 
             {activeMenu === "media" && (
-              <MediaManager />
+              <MediaLibrary />
             )}
 
             {activeMenu === "documents" && (

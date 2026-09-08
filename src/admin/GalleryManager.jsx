@@ -7,6 +7,10 @@ import {
   Images,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
+import {
+  removeImageIfUnreferenced,
+  normalizeImagePath,
+} from "../utils/imageReferences";
 import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
 
 export default function GalleryManager({ projectId }) {
@@ -157,22 +161,9 @@ export default function GalleryManager({ projectId }) {
     }
   }
 
-  function getStoragePath(imageUrl) {
-    const marker =
-      "/storage/v1/object/public/project-images/";
-
-    const index = imageUrl.indexOf(marker);
-
-    if (index === -1) return null;
-
-    return decodeURIComponent(
-      imageUrl.slice(index + marker.length)
-    );
-  }
-
   async function deleteGalleryItem(item) {
     const confirmed = window.confirm(
-      "Hapus foto gallery ini?"
+      `Hapus foto gallery ini?\n\n${item.image_url || ""}`
     );
 
     if (!confirmed) return;
@@ -181,7 +172,12 @@ export default function GalleryManager({ projectId }) {
     setError("");
     setMessage("");
 
+    const imagePath = normalizeImagePath(item.image_url);
+
     try {
+      // ========================================================
+      // HAPUS DATA DATABASE TERLEBIH DAHULU
+      // ========================================================
       const { error: deleteError } = await supabase
         .from("gallery_items")
         .delete()
@@ -194,18 +190,28 @@ export default function GalleryManager({ projectId }) {
         );
       }
 
-      const storagePath = getStoragePath(item.image_url);
+      // ========================================================
+      // BARU CEK APAKAH FILE STORAGE MASIH DIREFERENSIKAN
+      // ========================================================
+      if (imagePath) {
+        try {
+          const cleanupResult =
+            await removeImageIfUnreferenced(imagePath);
 
-      if (storagePath) {
-        const { error: storageError } =
-          await supabase.storage
-            .from("project-images")
-            .remove([storagePath]);
-
-        if (storageError) {
+          if (!cleanupResult.removed) {
+            console.info(
+              "Foto gallery masih digunakan dan dipertahankan:",
+              cleanupResult.references
+            );
+          }
+        } catch (cleanupError) {
           console.warn(
-            "Database terhapus, tetapi file Storage gagal dihapus:",
-            storageError.message
+            "Database gallery sudah dihapus, tetapi file Storage gagal dibersihkan:",
+            cleanupError
+          );
+
+          setMessage(
+            "Foto gallery berhasil dihapus. File gambar masih perlu dibersihkan manual."
           );
         }
       }
@@ -214,10 +220,19 @@ export default function GalleryManager({ projectId }) {
         current.filter((gallery) => gallery.id !== item.id)
       );
 
-      setMessage("Foto gallery berhasil dihapus.");
+      if (!imagePath) {
+        setMessage("Foto gallery berhasil dihapus.");
+      } else {
+        setMessage(
+          "Foto gallery berhasil dihapus."
+        );
+      }
     } catch (deleteError) {
+      console.error(deleteError);
+
       setError(
-        deleteError.message || "Gagal menghapus foto."
+        deleteError.message ||
+          "Gagal menghapus foto gallery."
       );
     } finally {
       setDeletingId(null);

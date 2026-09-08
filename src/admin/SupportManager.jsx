@@ -8,6 +8,10 @@ import {
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
 import {
+  removeImageIfUnreferenced,
+  normalizeImagePath,
+} from "../utils/imageReferences";
+import {
   optimizeImage,
   formatImageSize,
 } from "../utils/imageOptimizer";
@@ -188,6 +192,41 @@ export default function SupportManager() {
           "Data Support gagal disimpan: " +
             result.error.message
         );
+      }
+
+      // ======================================================
+      // CLEANUP QRIS LAMA
+      // ======================================================
+      // Database harus berhasil disimpan terlebih dahulu.
+      // Setelah itu foto QRIS lama hanya dihapus jika sudah
+      // tidak direferensikan oleh bagian CMS lain.
+      if (
+        existing?.qris_image_url &&
+        existing.qris_image_url !== imageUrl
+      ) {
+        const oldPath = normalizeImagePath(
+          existing.qris_image_url
+        );
+        const newPath = normalizeImagePath(imageUrl);
+
+        if (oldPath && oldPath !== newPath) {
+          try {
+            const cleanupResult =
+              await removeImageIfUnreferenced(oldPath);
+
+            if (!cleanupResult.removed) {
+              console.info(
+                "QRIS lama masih digunakan dan dipertahankan:",
+                cleanupResult.references
+              );
+            }
+          } catch (cleanupError) {
+            console.warn(
+              "QRIS lama gagal dibersihkan:",
+              cleanupError
+            );
+          }
+        }
       }
 
       setForm((prev) => ({

@@ -8,6 +8,10 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import { supabase } from "../api/supabaseClient";
+import {
+  removeImageIfUnreferenced,
+  normalizeImagePath,
+} from "../utils/imageReferences";
 import { optimizeImage, formatImageSize } from "../utils/imageOptimizer";
 
 const emptyForm = {
@@ -178,6 +182,40 @@ export default function AboutManager() {
       setError(result.error.message);
       setSaving(false);
       return;
+    }
+
+    // ========================================================
+    // CLEANUP FOTO ABOUT LAMA
+    // ========================================================
+    // Foto lama hanya dibersihkan setelah database berhasil
+    // diperbarui. Jika masih digunakan oleh bagian CMS lain,
+    // file akan dipertahankan.
+    if (
+      recordId &&
+      form.image_url &&
+      result.data?.image_url !== form.image_url
+    ) {
+      const oldPath = normalizeImagePath(form.image_url);
+      const newPath = normalizeImagePath(result.data?.image_url);
+
+      if (oldPath && oldPath !== newPath) {
+        try {
+          const cleanupResult =
+            await removeImageIfUnreferenced(oldPath);
+
+          if (!cleanupResult.removed) {
+            console.info(
+              "Foto About lama masih digunakan dan dipertahankan:",
+              cleanupResult.references
+            );
+          }
+        } catch (cleanupError) {
+          console.warn(
+            "Foto About lama gagal dibersihkan:",
+            cleanupError
+          );
+        }
+      }
     }
 
     if (result.data?.id) {
