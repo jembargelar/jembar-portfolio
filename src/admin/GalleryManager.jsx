@@ -76,7 +76,7 @@ export default function GalleryManager({ projectId }) {
           continue;
         }
 
-        const optimizedImage = await optimizeImage(file);
+        const optimizedImage = file; // BYPASS TEST
 
         console.info(
           `[Image Optimizer] Gallery: ${formatImageSize(file.size)} → ${formatImageSize(optimizedImage.size)}`
@@ -96,7 +96,7 @@ export default function GalleryManager({ projectId }) {
           .upload(storagePath, optimizedImage, {
             cacheControl: "31536000",
             upsert: false,
-            contentType: "image/webp",
+            contentType: file.type,
           });
 
         if (uploadError) {
