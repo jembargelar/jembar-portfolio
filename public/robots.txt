@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/*
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
 
 Sitemap: https://jembar-portfolio.vercel.app/sitemap.xml
