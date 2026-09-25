@@ -89,7 +89,9 @@ export default function Hero() {
 
   const name = hero.name || fallbackHero.name;
   const role = pick("role_id", "role_en");
-  const tagline = pick("tagline_id", "tagline_en");
+  const tagline = isEn
+    ? "Building practical digital systems for modern operations."
+    : "Membangun sistem digital yang praktis untuk operasional modern.";
   const description = pick("description_id", "description_en");
   const location = pick("location_id", "location_en");
   const primaryCta = pick("primary_cta_id", "primary_cta_en");
