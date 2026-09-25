@@ -231,7 +231,7 @@ export default function Skills() {
         >
           <div
             style={{
-              fontSize: "0.78rem",
+              fontSize: "0.9rem",
               fontWeight: "800",
               letterSpacing: "0.18em",
               textTransform: "uppercase",

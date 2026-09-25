@@ -144,7 +144,7 @@ export default function Projects() {
 
                       <span
                         style={{
-                          fontSize: "0.75rem",
+                          fontSize: "0.85rem",
                           color: "var(--accent)",
                           fontWeight: "700",
                           textTransform: "uppercase",

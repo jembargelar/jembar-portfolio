@@ -162,7 +162,7 @@ export default function Contact() {
                     borderRadius: "14px",
                     textDecoration: "none",
                     fontWeight: "600",
-                    fontSize: "0.85rem"
+                    fontSize: "0.9rem"
                   }}
                 >
                   GitHub ↗
@@ -184,7 +184,7 @@ export default function Contact() {
                     borderRadius: "14px",
                     textDecoration: "none",
                     fontWeight: "600",
-                    fontSize: "0.85rem"
+                    fontSize: "0.9rem"
                   }}
                 >
                   LinkedIn ↗
@@ -229,7 +229,7 @@ export default function Contact() {
 
         </div>
 
-        <footer style={{ marginTop: "60px", textAlign: "center", color: "var(--text-secondary)", fontSize: "0.85rem" }}>
+        <footer style={{ marginTop: "60px", textAlign: "center", color: "var(--text-secondary)", fontSize: "0.9rem" }}>
           <p>© {new Date().getFullYear()} {heroName}. {t("copyright")}</p>
         </footer>
 

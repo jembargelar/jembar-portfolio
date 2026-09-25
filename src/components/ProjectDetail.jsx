@@ -295,7 +295,7 @@ export default function ProjectDetail() {
             <span
               style={{
                 color: "var(--accent)",
-                fontSize: "0.78rem",
+                fontSize: "0.9rem",
                 fontWeight: 800,
                 textTransform: "uppercase",
                 letterSpacing: "0.08em",
@@ -508,7 +508,7 @@ export default function ProjectDetail() {
                       background: "rgba(0,0,0,.68)",
                       color: "#fff",
                       backdropFilter: "blur(8px)",
-                      fontSize: "0.75rem",
+                      fontSize: "0.85rem",
                       fontWeight: 700,
                     }}
                   >

@@ -118,61 +118,101 @@ export default function About() {
 
   return (
     <section id="about" style={{ padding: "80px 20px" }}>
-      <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2
-            style={{
-              fontSize: "2rem",
-              fontWeight: "800",
-              color: "var(--text-primary)",
-              marginBottom: "12px",
-            }}
-          >
-            {sectionTitle}{" "}
-            <span style={{ color: "var(--accent)" }}>.</span>
-          </h2>
+      <style>{`
+        .about-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 28px;
+          align-items: center;
+          margin-bottom: 48px;
+        }
+        @media (min-width: 900px) {
+          .about-grid {
+            grid-template-columns: 1.55fr 1fr;
+            gap: 56px;
+            margin-bottom: 56px;
+          }
+        }
+        .about-text {
+          display: flex;
+          flex-direction: column;
+        }
+        .about-image-wrap {
+          border-radius: 22px;
+          overflow: hidden;
+          border: 1px solid var(--card-border, rgba(255,255,255,0.08));
+          background: var(--card-bg, rgba(255,255,255,0.02));
+          aspect-ratio: 4 / 3;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 22px;
+          max-width: 420px;
+          margin: 0 auto;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        @media (min-width: 900px) {
+          .about-image-wrap {
+            max-width: 100%;
+            margin: 0;
+          }
+        }
+        .about-image-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
+        }
+      `}</style>
 
-          <p
-            style={{
-              maxWidth: "760px",
-              color: "var(--text-secondary)",
-              fontSize: "1rem",
-              lineHeight: "1.7",
-              marginBottom: "40px",
-            }}
-          >
-            {mainDescription}
-          </p>
-        </motion.div>
-
-        {content.image_url && (
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+        <div className="about-grid">
           <motion.div
+            className="about-text"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{
-              marginBottom: "30px",
-              borderRadius: "18px",
-              overflow: "hidden",
-              border: "1px solid var(--border, rgba(255,255,255,0.08))",
-            }}
           >
-            <img
-              src={content.image_url}
-              alt={sectionTitle}
+            <h2
               style={{
-                width: "100%",
-                maxHeight: "420px",
-                objectFit: "cover",
-                display: "block",
+                fontSize: "clamp(1.6rem, 4.2vw, 2.4rem)",
+                fontWeight: "800",
+                color: "var(--text-primary)",
+                marginBottom: "14px",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.15,
               }}
-            />
+            >
+              {sectionTitle}{" "}
+              <span style={{ color: "var(--accent)" }}>.</span>
+            </h2>
+
+            <p
+              style={{
+                maxWidth: "560px",
+                color: "var(--text-secondary)",
+                fontSize: "1.05rem",
+                lineHeight: "1.8",
+                margin: 0,
+              }}
+            >
+              {mainDescription}
+            </p>
           </motion.div>
-        )}
+
+          {content.image_url && (
+            <motion.div
+              className="about-image-wrap"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <img src={content.image_url} alt={sectionTitle} />
+            </motion.div>
+          )}
+        </div>
 
         <div
           style={{
