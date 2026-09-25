@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { getSkills } from "../api/publicData";
+import SectionScene from "./three/SectionScene";
 
 const fallbackSkills = [
   {
@@ -204,6 +205,7 @@ export default function Skills() {
         overflow: "hidden",
       }}
     >
+      <SectionScene object="spiderman" position="right" scale={0.65} opacity={0.55} cameraZ={5.5} />
       <div
         style={{
           position: "absolute",
@@ -272,11 +274,7 @@ export default function Skills() {
         </motion.div>
 
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "22px",
-          }}
+          className="skills-grid"
         >
           {categories.map((category, categoryIndex) => {
             const categorySkills = skills.filter(
@@ -421,6 +419,27 @@ export default function Skills() {
       </div>
 
       <style>{`
+        .skills-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+        @media (min-width: 720px) and (max-width: 1023px) {
+          .skills-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .skills-grid > *:last-child {
+            grid-column: 1 / -1;
+          }
+        }
+        @media (min-width: 1024px) {
+          .skills-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          .skills-grid > *:last-child {
+            grid-column: auto;
+          }
+        }
         @media (max-width: 520px) {
           #skills {
             padding-left: 16px !important;

@@ -29,10 +29,8 @@ function Portfolio() {
     <div
       style={{
         minHeight: "100vh",
-        backgroundColor: "var(--bg-color)",
         color: "var(--text-primary)",
         position: "relative",
-        overflow: "hidden",
       }}
     >
       <VisualEffects />
