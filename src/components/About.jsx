@@ -10,6 +10,7 @@ import {
   Zap,
 } from "lucide-react";
 import { getAboutContent } from "../api/publicData";
+import SectionScene from "./three/SectionScene";
 
 const fallbackAbout = {
   title_id: "Administrasi × Bisnis × Teknologi",
@@ -117,7 +118,14 @@ export default function About() {
   ];
 
   return (
-    <section id="about" style={{ padding: "80px 20px" }}>
+    <section id="about" style={{ padding: "80px 20px", position: "relative", overflow: "hidden" }}>
+      <SectionScene
+        object="spiderman"
+        position="left"
+        scale={0.7}
+        opacity={0.45}
+        cameraZ={6}
+      />
       <style>{`
         .about-grid {
           display: grid;
@@ -166,7 +174,7 @@ export default function About() {
         }
       `}</style>
 
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         <div className="about-grid">
           <motion.div
             className="about-text"

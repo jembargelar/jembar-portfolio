@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { getHeroContent } from "../api/publicData";
+import PhotoLightbox from "./PhotoLightbox";
 
 export default function Navbar() {
   const { i18n } = useTranslation();
@@ -11,6 +12,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
   const [heroName, setHeroName] = useState("Jembar");
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const isEn = i18n.language === "en";
 
@@ -162,6 +164,37 @@ export default function Navbar() {
           box-shadow: 0 18px 55px rgba(15,23,42,.08);
         }
 
+        .nav-left-group {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-shrink: 0;
+        }
+        .nav-avatar {
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          padding: 0;
+          border: 2px solid rgba(34,211,238,.5);
+          background: transparent;
+          cursor: pointer;
+          overflow: hidden;
+          flex-shrink: 0;
+          transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+          box-shadow: 0 0 14px rgba(34,211,238,.25);
+        }
+        .nav-avatar:hover {
+          transform: translateY(-2px) scale(1.06);
+          border-color: rgba(34,211,238,1);
+          box-shadow: 0 0 22px rgba(34,211,238,.5);
+        }
+        .nav-avatar img {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;
+          object-position: center top;
+        }
         .nav-logo {
           flex-shrink: 0;
           background: none;
@@ -398,14 +431,24 @@ export default function Navbar() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className={`navbar-container ${scrolled ? "scrolled" : "top"}`}
         >
-          <button
-            className="nav-logo"
-            onClick={handleLogoClick}
-            aria-label="Logo"
-          >
-            {heroName.split(" ")[0]}
-            <span className="dot">.dev</span>
-          </button>
+          <div className="nav-left-group">
+            <button
+              type="button"
+              className="nav-avatar"
+              onClick={() => setLightboxOpen(true)}
+              aria-label="Open profile photo"
+            >
+              <img src="/jem.webp" alt={heroName} />
+            </button>
+            <button
+              className="nav-logo"
+              onClick={handleLogoClick}
+              aria-label="Logo"
+            >
+              {heroName.split(" ")[0]}
+              <span className="dot">.dev</span>
+            </button>
+          </div>
 
           <div className="nav-desktop">
             {navLinks.map((link) => (
@@ -492,6 +535,13 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
+
+      <PhotoLightbox
+        src="/jem.webp"
+        alt={heroName}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+      />
     </>
   );
 }

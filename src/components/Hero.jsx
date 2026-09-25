@@ -9,7 +9,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { getHeroContent } from "../api/publicData";
-import HeroScene from "./three/HeroScene";
+import SectionScene from "./three/SectionScene";
 
 const container = {
   hidden: {},
@@ -122,8 +122,8 @@ export default function Hero() {
           position: absolute;
           inset: 0;
           z-index: 0;
-          opacity: .5;
-          filter: saturate(.75);
+          opacity: 0.75;
+          pointer-events: none;
         }
         .jembar-hero-vignette {
           position: absolute;
@@ -527,9 +527,14 @@ export default function Hero() {
         }
       `}</style>
 
-      <div className="jembar-hero-canvas">
-        <HeroScene />
-      </div>
+
+      <SectionScene
+        object="spiderman"
+        position="right"
+        scale={0.7}
+        opacity={0.35}
+        cameraZ={6}
+      />
       <div className="jembar-hero-vignette" />
       <div className="jembar-hero-watermark" aria-hidden="true">JEMBAR</div>
 
@@ -614,35 +619,8 @@ export default function Hero() {
               </a>
             </motion.div>
           </div>
+          {/* Photo profile pindah ke section About */}
 
-          {/* PHOTO */}
-          <motion.div variants={photoReveal} className="jembar-hero-photo-wrap">
-            <a
-              href={profileImageUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="jembar-hero-photo"
-              aria-label={isEn ? "Open profile photo" : "Buka foto profil"}
-            >
-              <div className="jembar-hero-photo-inner">
-                <img
-                  src={profileImageUrl}
-                  alt={name}
-                  loading="eager"
-                  decoding="async"
-                  className="jembar-hero-photo-img"
-                />
-                <div className="jembar-hero-photo-overlay" aria-hidden="true" />
-                <div className="jembar-hero-photo-badge">
-                  <div>
-                    <div className="kicker">JEMBAR.DEV</div>
-                    <div className="title">Digital Portfolio</div>
-                  </div>
-                  <ExternalLink size={12} />
-                </div>
-              </div>
-            </a>
-          </motion.div>
         </motion.div>
 
         <motion.div
