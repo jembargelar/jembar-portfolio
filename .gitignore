@@ -25,3 +25,4 @@ dist-ssr
 .vercel
 .env*
 index.html.bak
+public/welcome.mp4

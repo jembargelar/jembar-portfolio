@@ -9,6 +9,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { getHeroContent } from "../api/publicData";
+import HeroScene from "./three/HeroScene";
 
 const container = {
   hidden: {},
@@ -161,6 +162,8 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
+      <HeroScene />
+
       {/* Ambient background */}
       <div
         aria-hidden="true"
