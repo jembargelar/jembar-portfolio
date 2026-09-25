@@ -169,6 +169,8 @@ export default function Skills() {
   const isEn = i18n.language === "en";
 
   const [skills, setSkills] = useState(fallbackSkills);
+  const [expandedCategories, setExpandedCategories] = useState({});
+  const MAX_VISIBLE_TAGS = 8;
 
   useEffect(() => {
     let mounted = true;
@@ -231,7 +233,7 @@ export default function Skills() {
         >
           <div
             style={{
-              fontSize: "0.78rem",
+              fontSize: "0.9rem",
               fontWeight: "800",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
@@ -280,6 +282,11 @@ export default function Skills() {
             const categorySkills = skills.filter(
               (skill) => skill.category === category.key
             );
+            const isExpanded = expandedCategories[category.key] || false;
+            const visibleSkills = isExpanded
+              ? categorySkills
+              : categorySkills.slice(0, MAX_VISIBLE_TAGS);
+            const hiddenCount = categorySkills.length - MAX_VISIBLE_TAGS;
 
             return (
               <motion.article
@@ -348,7 +355,7 @@ export default function Skills() {
                     gap: "9px",
                   }}
                 >
-                  {categorySkills.map((skill) => (
+                  {visibleSkills.map((skill) => (
                     <span
                       key={skill.id}
                       className="tech-pill"
@@ -363,6 +370,50 @@ export default function Skills() {
                     </span>
                   ))}
                 </div>
+
+                {categorySkills.length > MAX_VISIBLE_TAGS && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setExpandedCategories((prev) => ({
+                        ...prev,
+                        [category.key]: !prev[category.key],
+                      }))
+                    }
+                    style={{
+                      marginTop: "16px",
+                      background: "transparent",
+                      border: "1px solid var(--card-border)",
+                      color: "var(--accent)",
+                      fontSize: "0.82rem",
+                      fontWeight: "700",
+                      padding: "7px 14px",
+                      borderRadius: "10px",
+                      cursor: "pointer",
+                      fontFamily: "inherit",
+                      transition: "all .2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor =
+                        "rgba(34,211,238,.4)";
+                      e.currentTarget.style.background =
+                        "rgba(34,211,238,.06)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor =
+                        "var(--card-border)";
+                      e.currentTarget.style.background = "transparent";
+                    }}
+                  >
+                    {isExpanded
+                      ? isEn
+                        ? "Show less"
+                        : "Sembunyikan"
+                      : isEn
+                        ? `Show all (+${hiddenCount})`
+                        : `Lihat semua (+${hiddenCount})`}
+                  </button>
+                )}
               </motion.article>
             );
           })}

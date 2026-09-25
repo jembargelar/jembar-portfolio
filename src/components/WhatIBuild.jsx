@@ -120,7 +120,7 @@ export default function WhatIBuild() {
           <p
             style={{
               margin: "0 0 12px",
-              fontSize: "0.78rem",
+              fontSize: "0.9rem",
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase",

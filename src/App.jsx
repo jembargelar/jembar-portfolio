@@ -17,9 +17,12 @@ import Contact from "./components/Contact";
 import EntryExperience from "./components/EntryExperience";
 import SupportMyWork from "./components/SupportMyWork";
 import SiteMeta from "./components/SiteMeta";
+import Loader from "./components/Loader";
 
 const AdminDashboard = lazy(() => import("./admin/AdminDashboard"));
 const ProjectDetail = lazy(() => import("./components/ProjectDetail"));
+
+const ENTRY_KEY = "jembar-entry-seen";
 
 function Portfolio() {
   return (
@@ -53,81 +56,94 @@ function Portfolio() {
   );
 }
 
+function hasSeenEntry() {
+  try {
+    return sessionStorage.getItem(ENTRY_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
 export default function App() {
-  const [entered, setEntered] = React.useState(false);
+  const [phase, setPhase] = React.useState(() =>
+    hasSeenEntry() ? "portfolio" : "entry"
+  );
+
   const { i18n } = useTranslation();
   const language = i18n.language === "en" ? "en" : "id";
-  const handleEnter = React.useCallback(() => {
-    setEntered(true);
+
+  const handleEntryDone = React.useCallback(() => {
+    setPhase("loader");
+  }, []);
+
+  const handleLoaderDone = React.useCallback(() => {
+    setPhase("portfolio");
   }, []);
 
   return (
-    <>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            entered ? (
-              <Portfolio />
-            ) : (
-              <EntryExperience
-                language={language}
-                onEnter={handleEnter}
-              />
-            )
-          }
-        />
+    <Routes>
+      <Route
+        path="/"
+        element={
+          phase === "entry" ? (
+            <EntryExperience language={language} onEnter={handleEntryDone} />
+          ) : phase === "loader" ? (
+            <Loader onDone={handleLoaderDone} />
+          ) : (
+            <Portfolio />
+          )
+        }
+      />
 
-        <Route
-          path="/projects/:id"
-          element={
-            <Suspense
-              fallback={
-                <div
-                  style={{
-                    minHeight: "100vh",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "var(--bg-color)",
-                    color: "var(--text-primary)",
-                    fontFamily: "system-ui, sans-serif",
-                  }}
-                >
-                  Loading Project...
-                </div>
-              }
-            >
-              <ProjectDetail />
-            </Suspense>
-          }
-        />
+      <Route
+        path="/projects/:id"
+        element={
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  minHeight: "100vh",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "var(--bg-color)",
+                  color: "var(--text-primary)",
+                  fontFamily: "system-ui, sans-serif",
+                }}
+              >
+                Loading Project...
+              </div>
+            }
+          >
+            <ProjectDetail />
+          </Suspense>
+        }
+      />
 
-        <Route
-          path="/admin"
-          element={
-            <Suspense
-              fallback={
-                <div
-                  style={{
-                    minHeight: "100vh",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "#05070b",
-                    color: "#fff",
-                    fontFamily: "system-ui, sans-serif",
-                  }}
-                >
-                  Loading Admin...
-                </div>
-              }
-            >
-              <AdminDashboard />
-            </Suspense>
-          }
-        />
-      </Routes>
-    </>
+      <Route
+        path="/admin"
+        element={
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  minHeight: "100vh",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "#05070b",
+                  color: "#fff",
+                  fontFamily: "system-ui, sans-serif",
+                }}
+              >
+                Loading Admin...
+              </div>
+            }
+          >
+            <AdminDashboard />
+          </Suspense>
+        }
+      />
+    </Routes>
   );
 }
