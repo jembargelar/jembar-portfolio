@@ -45,7 +45,7 @@ const fallbackHero = {
   name: "Jembar Gelar Kusumah Wibawa",
   role_id: "Administrative Professional × Web Developer",
   role_en: "Administrative Professional × Web Developer",
-  tagline_id: "Building digital solutions for modern business operations.",
+  tagline_id: "Membangun solusi digital untuk operasional bisnis modern.",
   tagline_en: "Building digital solutions for modern business operations.",
   description_id:
     "Saya menggabungkan pengalaman administrasi, pengelolaan data, dan teknologi untuk membangun solusi digital yang praktis dan dapat digunakan oleh bisnis.",
@@ -57,7 +57,7 @@ const fallbackHero = {
   cv_url: "/Jembar_CV.pdf",
   primary_cta_id: "Lihat Proyek",
   primary_cta_en: "View Projects",
-  secondary_cta_id: "Download CV",
+  secondary_cta_id: "Unduh CV",
   secondary_cta_en: "Download CV",
 };
 
@@ -549,13 +549,13 @@ export default function Hero() {
             <motion.h1 variants={item} className="jembar-hero-h1">
               {isEn ? (
                 <>
-                  Digital solutions,{" "}
-                  <span className="accent">shipped with quiet precision.</span>
+                  Clean systems.{" "}
+                  <span className="accent">Calm business.</span>
                 </>
               ) : (
                 <>
-                  Solusi digital,{" "}
-                  <span className="accent">dikirim dengan presisi tenang.</span>
+                  Sistem yang rapi.{" "}
+                  <span className="accent">Bisnis yang tenang.</span>
                 </>
               )}
             </motion.h1>

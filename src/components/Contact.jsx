@@ -240,7 +240,7 @@ export default function Contact() {
               border: "1px solid var(--card-border)"
             }}>
               <iframe
-                title="Location Map"
+                title={i18n.language === "en" ? "Location Map" : "Peta Lokasi"}
                 src="https://maps.google.com/maps?q=Garut,West%20Java,Indonesia&t=&z=11&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"

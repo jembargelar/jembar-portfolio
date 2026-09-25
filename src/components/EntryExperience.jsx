@@ -13,7 +13,7 @@ const fallbackSettings = {
   entry_tagline_id:
     "Membangun solusi digital untuk operasional bisnis modern.",
   entry_tagline_en:
-    "Building digital solutions for modern business operations.",
+    "Membangun solusi digital untuk operasional bisnis modern.",
   entry_location_id: "GARUT · INDONESIA",
   entry_location_en: "GARUT · INDONESIA",
   entry_button_id: "MASUK",

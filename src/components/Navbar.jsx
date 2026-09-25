@@ -247,6 +247,12 @@ export default function Navbar() {
           align-items: center;
           gap: 2px;
           font-family: inherit;
+          position: relative;
+          transition: border-color .3s ease, box-shadow .3s ease;
+        }
+        .lang-toggle:hover {
+          border-color: rgba(34,211,238,.45);
+          box-shadow: 0 0 20px rgba(34,211,238,.18);
         }
         .lang-btn {
           border: none;
@@ -258,12 +264,45 @@ export default function Navbar() {
           border-radius: 999px;
           cursor: pointer;
           font-family: inherit;
-          transition: all .2s ease;
+          transition: all .25s ease;
           letter-spacing: .02em;
+          position: relative;
         }
         .lang-btn.active {
-          background: var(--accent-blue);
+          background: linear-gradient(135deg, #22d3ee, #3b82f6);
           color: #020617;
+          box-shadow:
+            0 0 12px rgba(34,211,238,.65),
+            0 0 26px rgba(34,211,238,.35),
+            0 0 45px rgba(59,130,246,.22),
+            inset 0 0 8px rgba(255,255,255,.4);
+          animation: langPulse 2.6s ease-in-out infinite;
+        }
+        .lang-btn:not(.active):hover {
+          color: var(--text-primary);
+          background: rgba(255,255,255,.06);
+        }
+        .light-mode .lang-btn:not(.active):hover {
+          background: rgba(15,23,42,.05);
+        }
+        @keyframes langPulse {
+          0%, 100% {
+            box-shadow:
+              0 0 12px rgba(34,211,238,.65),
+              0 0 26px rgba(34,211,238,.35),
+              0 0 45px rgba(59,130,246,.22),
+              inset 0 0 8px rgba(255,255,255,.4);
+          }
+          50% {
+            box-shadow:
+              0 0 16px rgba(34,211,238,.9),
+              0 0 34px rgba(34,211,238,.5),
+              0 0 60px rgba(59,130,246,.35),
+              inset 0 0 10px rgba(255,255,255,.55);
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .lang-btn.active { animation: none; }
         }
 
         .mobile-button { display: none; }

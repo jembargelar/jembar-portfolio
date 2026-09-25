@@ -125,7 +125,7 @@ export default function Loader({ onDone }) {
       </div>
 
       <p className="jembar-loader-tagline">
-        Building digital solutions for modern business operations.
+        Membangun solusi digital untuk operasional bisnis modern.
       </p>
 
       <div className="jembar-loader-barwrap">
