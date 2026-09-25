@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getSocialLinks, getHeroContent } from "../api/publicData";
 
@@ -115,7 +115,7 @@ export default function Contact() {
                 }}
               >
                 <Mail size={18} />
-                <span>{t("sendEmail")} ({email})</span>
+                <span>{t("sendEmail")}</span>
               </motion.a>
 
               <motion.a
@@ -201,11 +201,35 @@ export default function Contact() {
             className="glass-card"
             style={{ padding: "20px", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
-              <MapPin size={18} color="var(--accent)" />
-              <span style={{ fontSize: "0.9rem", fontWeight: "600", color: "var(--text-primary)" }}>
-                {location}
-              </span>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", marginBottom: "14px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <MapPin size={18} color="var(--accent)" />
+                <span style={{ fontSize: "0.9rem", fontWeight: "600", color: "var(--text-primary)" }}>
+                  {location}
+                </span>
+              </div>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Garut,West+Java,Indonesia"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  fontSize: "0.78rem",
+                  fontWeight: "700",
+                  color: "var(--accent)",
+                  textDecoration: "none",
+                  padding: "6px 11px",
+                  borderRadius: "10px",
+                  border: "1px solid rgba(34,211,238,.25)",
+                  background: "rgba(34,211,238,.08)",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Buka Maps
+                <ExternalLink size={12} />
+              </a>
             </div>
 
             <div style={{
@@ -217,10 +241,10 @@ export default function Contact() {
             }}>
               <iframe
                 title="Location Map"
-                src="https://maps.google.com/maps?q=Cianjur,West%20Java&t=&z=10&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Garut,West%20Java,Indonesia&t=&z=11&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
-                style={{ border: 0, filter: "grayscale(80%) invert(90%) contrast(120%)" }}
+                style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
               />
