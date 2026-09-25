@@ -64,6 +64,8 @@ export default function Spiderman({ position = [0, 0, 0], scale = 1, reducedMoti
               color={RED}
               roughness={0.35}
               metalness={0.2}
+              emissive={RED}
+              emissiveIntensity={0.35}
             />
           </mesh>
 
@@ -98,8 +100,8 @@ export default function Spiderman({ position = [0, 0, 0], scale = 1, reducedMoti
                 color="#f8fafc"
                 roughness={0.05}
                 metalness={0.3}
-                emissive="#e2e8f0"
-                emissiveIntensity={0.15}
+                emissive="#ffffff"
+                emissiveIntensity={0.5}
               />
             </mesh>
             {/* Black outline */}
@@ -117,8 +119,8 @@ export default function Spiderman({ position = [0, 0, 0], scale = 1, reducedMoti
                 color="#f8fafc"
                 roughness={0.05}
                 metalness={0.3}
-                emissive="#e2e8f0"
-                emissiveIntensity={0.15}
+                emissive="#ffffff"
+                emissiveIntensity={0.5}
               />
             </mesh>
             <mesh position={[0, 0, -0.005]} scale={1.08}>
@@ -144,7 +146,7 @@ export default function Spiderman({ position = [0, 0, 0], scale = 1, reducedMoti
         {/* Upper chest — red */}
         <mesh position={[0, 0.2, 0]}>
           <capsuleGeometry args={[0.38, 0.3, 8, 24]} />
-          <meshStandardMaterial color={RED} roughness={0.4} metalness={0.15} />
+          <meshStandardMaterial color={RED} roughness={0.4} metalness={0.15} emissive={RED} emissiveIntensity={0.25} />
         </mesh>
 
         {/* Chest web pattern */}
@@ -184,7 +186,7 @@ export default function Spiderman({ position = [0, 0, 0], scale = 1, reducedMoti
         {/* Lower torso — blue */}
         <mesh position={[0, -0.35, 0]}>
           <capsuleGeometry args={[0.36, 0.35, 8, 24]} />
-          <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} />
+          <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} emissive={BLUE} emissiveIntensity={0.2} />
         </mesh>
 
         {/* Belt */}
@@ -198,12 +200,12 @@ export default function Spiderman({ position = [0, 0, 0], scale = 1, reducedMoti
           {/* Upper arm — red */}
           <mesh position={[0, -0.15, 0]}>
             <capsuleGeometry args={[0.1, 0.3, 6, 16]} />
-            <meshStandardMaterial color={RED} roughness={0.4} metalness={0.15} />
+            <meshStandardMaterial color={RED} roughness={0.4} metalness={0.15} emissive={RED} emissiveIntensity={0.25} />
           </mesh>
           {/* Forearm — blue */}
           <mesh position={[0, -0.55, 0]}>
             <capsuleGeometry args={[0.09, 0.28, 6, 16]} />
-            <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} />
+            <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} emissive={BLUE} emissiveIntensity={0.2} />
           </mesh>
           {/* Hand */}
           <mesh position={[0, -0.8, 0]}>
@@ -216,11 +218,11 @@ export default function Spiderman({ position = [0, 0, 0], scale = 1, reducedMoti
         <group ref={armRightRef} position={[0.5, 0.2, 0]}>
           <mesh position={[0, -0.15, 0]}>
             <capsuleGeometry args={[0.1, 0.3, 6, 16]} />
-            <meshStandardMaterial color={RED} roughness={0.4} metalness={0.15} />
+            <meshStandardMaterial color={RED} roughness={0.4} metalness={0.15} emissive={RED} emissiveIntensity={0.25} />
           </mesh>
           <mesh position={[0, -0.55, 0]}>
             <capsuleGeometry args={[0.09, 0.28, 6, 16]} />
-            <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} />
+            <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} emissive={BLUE} emissiveIntensity={0.2} />
           </mesh>
           <mesh position={[0, -0.8, 0]}>
             <sphereGeometry args={[0.1, 16, 16]} />
@@ -232,12 +234,12 @@ export default function Spiderman({ position = [0, 0, 0], scale = 1, reducedMoti
         {/* Thigh — blue */}
         <mesh position={[-0.17, -0.95, 0]}>
           <capsuleGeometry args={[0.14, 0.35, 6, 16]} />
-          <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} />
+          <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} emissive={BLUE} emissiveIntensity={0.2} />
         </mesh>
         {/* Shin — blue */}
         <mesh position={[-0.17, -1.4, 0]}>
           <capsuleGeometry args={[0.12, 0.28, 6, 16]} />
-          <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} />
+          <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} emissive={BLUE} emissiveIntensity={0.2} />
         </mesh>
         {/* Boot — red */}
         <mesh position={[-0.17, -1.7, 0.05]}>
@@ -248,11 +250,11 @@ export default function Spiderman({ position = [0, 0, 0], scale = 1, reducedMoti
         {/* ===== RIGHT LEG ===== */}
         <mesh position={[0.17, -0.95, 0]}>
           <capsuleGeometry args={[0.14, 0.35, 6, 16]} />
-          <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} />
+          <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} emissive={BLUE} emissiveIntensity={0.2} />
         </mesh>
         <mesh position={[0.17, -1.4, 0]}>
           <capsuleGeometry args={[0.12, 0.28, 6, 16]} />
-          <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} />
+          <meshStandardMaterial color={BLUE} roughness={0.4} metalness={0.15} emissive={BLUE} emissiveIntensity={0.2} />
         </mesh>
         <mesh position={[0.17, -1.7, 0.05]}>
           <boxGeometry args={[0.22, 0.16, 0.32]} />

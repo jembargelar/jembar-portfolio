@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getSocialLinks, getHeroContent } from "../api/publicData";
+import SectionScene from "./three/SectionScene";
 
 export default function Contact() {
   const { t, i18n } = useTranslation();
@@ -67,7 +68,8 @@ export default function Contact() {
     t("contactSubtitle");
 
   return (
-    <section id="contact" style={{ padding: "80px 20px" }}>
+    <section id="contact" style={{ padding: "80px 20px", position: "relative", overflow: "hidden" }}>
+      <SectionScene object="spiderman" position="right" scale={0.7} opacity={0.5} cameraZ={5.5} />
       <div style={{ maxWidth: "950px", margin: "0 auto" }}>
 
         <motion.h2

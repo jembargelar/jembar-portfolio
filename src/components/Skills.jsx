@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { getSkills } from "../api/publicData";
+import SectionScene from "./three/SectionScene";
 
 const fallbackSkills = [
   {
@@ -204,6 +205,7 @@ export default function Skills() {
         overflow: "hidden",
       }}
     >
+      <SectionScene object="spiderman" position="right" scale={0.65} opacity={0.55} cameraZ={5.5} />
       <div
         style={{
           position: "absolute",

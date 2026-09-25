@@ -11,6 +11,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { getProjects } from "../api/publicData";
+import SectionScene from "./three/SectionScene";
 
 export default function Projects() {
   const { t, i18n } = useTranslation();
@@ -54,10 +55,11 @@ export default function Projects() {
 
   return (
     <>
-      <section id="projects" className="projects-section">
+      <section id="projects" className="projects-section" style={{ position: "relative", overflow: "hidden" }}>
+      <SectionScene object="spiderman" position="left" scale={0.65} opacity={0.5} cameraZ={5.5} />
         <style>{`
           .projects-section { padding: 80px 20px; }
-          .projects-inner { max-width: 950px; margin: 0 auto; }
+          .projects-inner { max-width: 950px; margin: 0 auto; position: relative; z-index: 1; }
           .projects-title {
             font-size: 2rem;
             font-weight: 800;

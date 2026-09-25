@@ -532,7 +532,7 @@ export default function Hero() {
         object="spiderman"
         position="right"
         scale={0.7}
-        opacity={0.35}
+        opacity={0.45}
         cameraZ={6}
       />
       <div className="jembar-hero-vignette" />
