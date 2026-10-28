@@ -25,19 +25,23 @@ export default function Projects() {
   const lang = i18n.language === "en" ? "en" : "id";
 
   useEffect(() => {
+    let mounted = true;
     async function fetchProjects() {
-      setLoading(true);
-      setError(null);
-      const { data, error } = await getProjects();
-      if (error) {
-        console.error("Gagal mengambil projects:", error);
-        setError("Gagal memuat project.");
-      } else {
-        setProjects(data || []);
+      try {
+        setLoading(true);
+        setError(null);
+        const { data, error } = await getProjects();
+        if (error) throw error;
+        if (mounted) setProjects(data || []);
+      } catch (err) {
+        console.error("Gagal mengambil projects:", err);
+        if (mounted) setError("Gagal memuat project. Coba refresh.");
+      } finally {
+        if (mounted) setLoading(false);
       }
-      setLoading(false);
     }
     fetchProjects();
+    return () => { mounted = false; };
   }, []);
 
   useEffect(() => {
