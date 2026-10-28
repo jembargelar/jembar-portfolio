@@ -90,6 +90,7 @@ export default function SectionScene({
     <div
       ref={wrapperRef}
       aria-hidden="true"
+      className="section-scene-wrapper"
       style={{
         position: "absolute",
         top: 0,
@@ -101,6 +102,13 @@ export default function SectionScene({
         ...positionStyle,
       }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .section-scene-wrapper {
+            display: none !important;
+          }
+        }
+      `}</style>
       <Canvas
         dpr={[1, 1]}
         frameloop={shouldRender ? "always" : "demand"}
